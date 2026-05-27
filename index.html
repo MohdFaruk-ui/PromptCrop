@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <title>PromptCrop OCR - Drag, Copy & Extract Text Instantly</title>
+  <style>
+    :root {
+      --bg-primary: #0b0b0e;
+      --bg-secondary: #13131a;
+      --bg-tertiary: #1b1b24;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #a020f0;
+      --accent-gold: #ffaa00;
+      --text-main: #f0f0f5;
+      --text-muted: #8e8e9f;
+      --success: #00e676;
+      --border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background glow decorations */
+    .glow-bg {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
+      top: -150px;
+      right: -100px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-bg-left {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(160, 32, 240, 0.05) 0%, transparent 75%);
+      bottom: -200px;
+      left: -200px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Container */
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 60px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      text-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-image {
+        order: -1;
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 6px 14px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 550px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 768px) {
+      .hero-actions {
+        justify-content: center;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-gradient:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 240, 255, 0.3);
+    }
+
+    .btn-outline {
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+      border-color: #fff;
+    }
+
+    /* Screenshot mockup container */
+    .hero-image-box {
+      background-color: var(--bg-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .mockup-header {
+      display: flex;
+      gap: 6px;
+      padding: 4px 10px 10px 10px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--border-color);
+    }
+
+    .mockup-content {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1b1b2f 0%, #0d0d15 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .mockup-overlay-sim {
+      position: absolute;
+      top: 20%;
+      left: 15%;
+      width: 70%;
+      height: 60%;
+      border: 2px dashed var(--accent-cyan);
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mockup-overlay-sim::after {
+      content: '⚡ Dragging selection...';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background-color: rgba(15, 15, 20, 0.9);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+    }
+
+    /* Features Section */
+    .features {
+      margin-bottom: 100px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .grid-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+    }
+
+    .feature-name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Pricing Section */
+    .pricing {
+      margin-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pricing-card {
+      background-color: var(--bg-secondary);
+      border: 2px solid rgba(160, 32, 240, 0.2);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 30px rgba(160, 32, 240, 0.05);
+      border-radius: 24px;
+      padding: 40px;
+      width: 440px;
+      max-width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);
+      color: #0b0b0e;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 10px;
+      color: var(--text-muted);
+    }
+
+    .price-row {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-value {
+      font-size: 54px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .price-period {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    /* Modal Overlay (Purchase Flow) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 8, 12, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      width: 400px;
+      max-width: 90%;
+      padding: 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      animation: modalSlide 0.3s ease-out;
+      position: relative;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input {
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    /* Success state */
+    .success-icon {
+      font-size: 48px;
+      color: var(--success);
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--border-color);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-bg"></div>
+  <div class="glow-bg-left"></div>
+
+  <div class="wrapper">
+    <!-- Navigation Navbar -->
+    <nav>
+      <div class="logo-area">
+        <span class="logo-icon">⚡</span>
+        <div class="logo-text">PromptCrop <span>OCR</span></div>
+      </div>
+      <div class="nav-links">
+        <a href="#pricing">Buy Premium</a>
+      </div>
+    </nav>
+
+    <!-- Hero Area -->
+    <section class="hero">
+      <div>
+        <span class="hero-tag">🔥 Offline & Secure Extension</span>
+        <h1 class="hero-title">Drag, Copy & Extract <span>Text Instantly</span> from Anywhere</h1>
+        <p class="hero-desc">Bypass the pain of copying prompts or texts from YouTube videos and websites. Drag a box, run local OCR, and auto-copy text in milliseconds.</p>
+        <div class="hero-actions">
+          <a href="#pricing" class="btn btn-gradient">Get Unlimited Premium</a>
+          <a href="#features" class="btn btn-outline">Explore Features</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-box">
+          <div class="mockup-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <div class="mockup-content">
+            <div class="mockup-overlay-sim"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Area -->
+    <section id="features" class="features">
+      <h2 class="section-title">Why PromptCrop OCR?</h2>
+      <div class="grid-features">
+        <div class="feature-card">
+          <span class="feature-icon">📸</span>
+          <h3 class="feature-card-title">Drag to Selection</h3>
+          <p class="feature-desc">Press Alt + C to instantly freeze the viewport and drag select any exact text area on YouTube videos or general webpages.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🛡️</span>
+          <h3 class="feature-card-title">100% Offline & Private</h3>
+          <p class="feature-desc">OCR runs directly inside your local browser context using local WebAssembly. Zero images or text sent to external servers.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🇧🇩</span>
+          <h3 class="feature-card-title">English + Bengali Support</h3>
+          <p class="feature-desc">Equipped with offline LSTM language engines for both English and Bengali. Auto-detects text characters seamlessly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Area -->
+    <section id="pricing" class="pricing">
+      <h2 class="section-title">Simple Lifetime Pricing</h2>
+      <div class="pricing-card">
+        <span class="pricing-badge">Lifetime Access</span>
+        <h3 class="pricing-name">PromptCrop Premium</h3>
+        <div class="price-row">
+          <span class="price-value">₹199</span>
+          <span class="price-period">/ one-time payment</span>
+        </div>
+        <ul class="pricing-features">
+          <li>Unlimited Daily Scans & Extracts</li>
+          <li>Full English & Bengali Auto OCR</li>
+          <li>Activate on up to 3 Devices simultaneously</li>
+          <li>Save Scan History Logs</li>
+          <li>Lifetime Free Updates & Support</li>
+        </ul>
+        <button id="btn-buy-now" class="btn btn-gradient" style="width: 100%; border: none;">Buy Premium (UPI / Card)</button>
+      </div>
+    </section>
+
+    <!-- Purchase Modal Overlay -->
+    <div id="purchase-modal" class="modal-overlay hidden">
+      <div class="modal-card" id="modal-card-form">
+        <button id="btn-close-modal" class="modal-close">&times;</button>
+        <h3 class="modal-title">Upgrade to Premium</h3>
+        <p class="modal-desc">Enter your email address to initiate checkout. Your premium license key will be sent here upon payment.</p>
+        
+        <div class="form-group">
+          <label for="checkout-email">Your Email Address</label>
+          <input type="email" id="checkout-email" placeholder="you@example.com" required>
+        </div>
+        <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px;">Proceed to Payment</button>
+      </div>
+
+      <!-- Success Screen -->
+      <div class="modal-card hidden" id="modal-card-success" style="text-align: center;">
+        <span class="success-icon">🎉</span>
+        <h3 class="modal-title" style="color: var(--success); margin-bottom: 12px;">Payment Successful!</h3>
+        <p class="modal-desc" style="color: #fff; font-size: 14px;">Your license has been activated.</p>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">We have sent your premium license key to: <strong id="success-email-text" style="color: #fff;">email@domain.com</strong>. Please check your inbox (and spam folder) to activate it in the extension.</p>
+        <button id="btn-close-success" class="btn btn-outline" style="width: 100%;">Close Window</button>
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <footer>
+      <p style="margin-bottom: 10px;">© 2026 Faruk. All rights reserved.</p>
+      <p>
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color: rgba(255,255,255,0.08); margin: 0 8px;">•</span>
+        <a href="terms.html">Terms of Service</a>
+      </p>
+    </footer>
+  </div>
+
+  <!-- Include Razorpay Standard Checkout Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    // Define the API URL of your Node.js backend. Update this once hosted live (e.g. Render/Vercel URL).
+    const BACKEND_URL = "http://localhost:5000";
+
+    const btnBuyNow = document.getElementById("btn-buy-now");
+    const purchaseModal = document.getElementById("purchase-modal");
+    const btnCloseModal = document.getElementById("btn-close-modal");
+    const btnProceedPayment = document.getElementById("btn-proceed-payment");
+    const checkoutEmail = document.getElementById("checkout-email");
+
+    const cardForm = document.getElementById("modal-card-form");
+    const cardSuccess = document.getElementById("modal-card-success");
+    const successEmailText = document.getElementById("success-email-text");
+    const btnCloseSuccess = document.getElementById("btn-close-success");
+
+    // Open Modal
+    btnBuyNow.addEventListener("click", () => {
+      purchaseModal.classList.remove("hidden");
+      cardForm.classList.remove("hidden");
+      cardSuccess.classList.add("hidden");
+      checkoutEmail.focus();
+    });
+
+    // Close Modal
+    const closeModal = () => {
+      purchaseModal.classList.add("hidden");
+      checkoutEmail.value = "";
+    };
+    btnCloseModal.addEventListener("click", closeModal);
+    btnCloseSuccess.addEventListener("click", closeModal);
+
+    // Proceed to Payment Action
+    btnProceedPayment.addEventListener("click", async () => {
+      const email = checkoutEmail.value.trim();
+      if (!email || !email.includes("@")) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      btnProceedPayment.textContent = "Processing...";
+      btnProceedPayment.disabled = true;
+
+      try {
+        // Step 1: Create Razorpay Order on your Backend
+        const response = await fetch(`${BACKEND_URL}/api/payment/create-order`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            amount: 199 // ₹199 INR
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to create payment order on backend.");
+        }
+
+        const data = await response.json();
+        
+        if (!data.success || !data.orderId) {
+          throw new Error(data.error || "Order creation rejected.");
+        }
+
+        // Step 2: Open Razorpay checkout pop-up on the client side
+        const options = {
+          key: "rzp_live_xxxxxxxxxxxxxx", // REPLACE THIS WITH YOUR REAL RAZORPAY KEY ID (e.g. rzp_live_...)
+          amount: data.amount, // 19900 Paise
+          currency: data.currency, // INR
+          name: "PromptCrop OCR",
+          description: "Lifetime Premium Access",
+          order_id: data.orderId,
+          prefill: {
+            email: email
+          },
+          theme: {
+            color: "#a020f0" // Neon purple theme
+          },
+          handler: function (response) {
+            // This function is executed when payment succeeds on frontend
+            console.log("Razorpay Payment Success:", response);
+            
+            // Show Success screen
+            successEmailText.textContent = email;
+            cardForm.classList.add("hidden");
+            cardSuccess.classList.remove("hidden");
+          },
+          modal: {
+            ondismiss: function () {
+              btnProceedPayment.textContent = "Proceed to Payment";
+              btnProceedPayment.disabled = false;
+            }
+          }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+
+      } catch (err) {
+        console.error(err);
+        alert(`Payment error: ${err.message || "Failed to initialize checkout."}`);
+        btnProceedPayment.textContent = "Proceed to Payment";
+        btnProceedPayment.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
