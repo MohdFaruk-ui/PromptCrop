@@ -237,41 +237,186 @@
       background-color: var(--border-color);
     }
 
+    /* Animated Mockup Layout */
     .mockup-content {
       border-radius: 12px;
       overflow: hidden;
       aspect-ratio: 16/9;
-      background: linear-gradient(135deg, #1b1b2f 0%, #0d0d15 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: #0d0d15;
       border: 1px solid var(--border-color);
       position: relative;
+      width: 100%;
+      user-select: none;
     }
 
-    .mockup-overlay-sim {
+    .mockup-screen {
       position: absolute;
-      top: 20%;
-      left: 15%;
-      width: 70%;
-      height: 60%;
-      border: 2px dashed var(--accent-cyan);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #1b1b2f 0%, #0d0d15 100%);
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+    }
+
+    .mockup-video-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .video-title {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 2px 8px;
       border-radius: 4px;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mockup-video-player {
+      flex-grow: 1;
+      background: #09090e;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 15px;
+      overflow: hidden;
+    }
+
+    .video-prompt-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      text-align: left;
+      max-width: 85%;
+      pointer-events: none;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      bottom: 8px;
+      left: 12px;
+      font-size: 8px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .mockup-overlay-sim::after {
-      content: '⚡ Dragging selection...';
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      background-color: rgba(15, 15, 20, 0.9);
-      padding: 6px 12px;
+    /* Selection Box */
+    .mockup-select-box {
+      position: absolute;
+      border: 2px dashed var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      border-radius: 4px;
+      pointer-events: none;
+      animation: selectBoxAnim 7s infinite ease-in-out;
+      z-index: 5;
+    }
+
+    .mockup-scan-line {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      box-shadow: 0 0 10px var(--accent-cyan);
+      opacity: 0;
+      animation: scanLineAnim 7s infinite ease-in-out;
+    }
+
+    /* Corners */
+    .mockup-corner {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--accent-purple);
+      pointer-events: none;
+    }
+    .mockup-corner.tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+    .mockup-corner.tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+    .mockup-corner.bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+    .mockup-corner.br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+    /* Cursor */
+    .mockup-cursor {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z'/%3E%3Cpath d='M13 13l6 6'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 10;
+      filter: drop-shadow(0 2px 4px rgba(0, 240, 255, 0.4));
+      animation: cursorAnim 7s infinite ease-in-out;
+    }
+
+    /* Copy Toast */
+    .mockup-copy-toast {
+      position: absolute;
+      bottom: 20px;
+      background: rgba(0, 230, 118, 0.95);
+      border: 1px solid rgba(0, 230, 118, 0.2);
+      color: #0b0b0e;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 5px 12px;
       border-radius: 20px;
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 8px 20px rgba(0, 230, 118, 0.25);
+      pointer-events: none;
+      z-index: 15;
+      animation: toastAnim 7s infinite ease-in-out;
+    }
+
+    /* Animations Keyframes */
+    @keyframes cursorAnim {
+      0% { top: 90%; left: 95%; opacity: 1; }
+      20% { top: 38%; left: 13%; opacity: 1; } /* Move to start */
+      22% { transform: scale(0.8); } /* Click */
+      25% { transform: scale(1); }
+      45% { top: 73%; left: 83%; opacity: 1; } /* Drag to end */
+      48% { transform: scale(0.8); } /* Release */
+      50% { transform: scale(1); opacity: 0; } /* Fade out */
+      100% { top: 90%; left: 95%; opacity: 0; }
+    }
+
+    @keyframes selectBoxAnim {
+      0%, 20% { top: 38%; left: 13%; width: 0%; height: 0%; opacity: 0; }
+      45% { top: 38%; left: 13%; width: 73%; height: 38%; opacity: 1; }
+      85% { top: 38%; left: 13%; width: 73%; height: 38%; opacity: 1; }
+      92%, 100% { top: 38%; left: 13%; width: 73%; height: 38%; opacity: 0; }
+    }
+
+    @keyframes scanLineAnim {
+      0%, 45% { top: 0%; opacity: 0; }
+      48% { top: 0%; opacity: 1; }
+      68% { top: 100%; opacity: 1; }
+      72% { top: 100%; opacity: 0; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    @keyframes toastAnim {
+      0%, 68% { opacity: 0; transform: translate(-50%, 15px); left: 50%; }
+      74% { opacity: 1; transform: translate(-50%, 0px); left: 50%; }
+      92% { opacity: 1; transform: translate(-50%, 0px); left: 50%; }
+      98%, 100% { opacity: 0; transform: translate(-50%, -10px); left: 50%; }
     }
 
     /* Features Section */
@@ -376,6 +521,304 @@
       font-size: 14px;
       color: var(--text-muted);
       line-height: 1.6;
+    }
+
+    /* Demos Section CSS */
+    .demos-section {
+      margin-bottom: 120px;
+    }
+
+    .grid-demos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-demos {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .demo-card {
+      background: rgba(19, 19, 26, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .demo-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(0, 240, 255, 0.05), transparent 40%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .demo-card:hover::before {
+      opacity: 1;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 20px rgba(0, 240, 255, 0.02);
+    }
+
+    .demo-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .demo-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent-purple);
+      background: rgba(160, 32, 240, 0.08);
+      border: 1px solid rgba(160, 32, 240, 0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .demo-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Video Description Mockup Styling */
+    .mockup-desc-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      color: #c0c0d0;
+      font-size: 10px;
+      text-align: left;
+    }
+
+    .desc-header {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      right: 5%;
+      height: 22%;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .desc-channel {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .desc-views {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .desc-text-box {
+      position: absolute;
+      top: 32%;
+      left: 5%;
+      right: 5%;
+      bottom: 5%;
+    }
+
+    .desc-para {
+      font-size: 9.5px;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 20%;
+    }
+
+    .desc-code-block {
+      position: absolute;
+      top: 32%;
+      left: 0;
+      width: 100%;
+      height: 38%;
+      background: #09090e;
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+      font-size: 9px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Website Image Mockup Styling */
+    .mockup-img-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .img-graphic {
+      background: linear-gradient(135deg, #1b1b3a 0%, #111122 100%);
+      border: 1.5px solid rgba(255,255,255,0.05);
+      border-radius: 10px;
+      width: 90%;
+      height: 85%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      position: relative;
+    }
+
+    .graphic-badge {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      border: 1px solid rgba(255, 170, 0, 0.2);
+      background: rgba(255, 170, 0, 0.05);
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .graphic-diagram {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .graphic-node {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 10px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .graphic-node.highlight-node {
+      border-color: rgba(160, 32, 240, 0.4);
+      background: rgba(160, 32, 240, 0.05);
+    }
+
+    .graphic-arrow {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* Video Description Mockup Animation Keyframes */
+    .desc-select {
+      animation: descSelectBoxAnim 7s infinite ease-in-out;
+    }
+    .desc-scan {
+      animation: scanLineAnim 7s infinite ease-in-out;
+    }
+    .desc-cursor {
+      animation: descCursorAnim 7s infinite ease-in-out;
+    }
+    .desc-toast {
+      animation: descToastAnim 7s infinite ease-in-out;
+    }
+
+    @keyframes descCursorAnim {
+      0% { top: 90%; left: 95%; opacity: 1; }
+      20% { top: 52%; left: 5%; opacity: 1; } /* Move to start */
+      22% { transform: scale(0.8); } /* Click */
+      25% { transform: scale(1); }
+      45% { top: 78%; left: 95%; opacity: 1; } /* Drag to end */
+      48% { transform: scale(0.8); } /* Release */
+      50% { transform: scale(1); opacity: 0; } /* Fade out */
+      100% { top: 90%; left: 95%; opacity: 0; }
+    }
+
+    @keyframes descSelectBoxAnim {
+      0%, 20% { top: 52%; left: 5%; width: 0%; height: 0%; opacity: 0; }
+      45% { top: 52%; left: 5%; width: 90%; height: 26%; opacity: 1; }
+      85% { top: 52%; left: 5%; width: 90%; height: 26%; opacity: 1; }
+      92%, 100% { top: 52%; left: 5%; width: 90%; height: 26%; opacity: 0; }
+    }
+
+    @keyframes descToastAnim {
+      0%, 68% { opacity: 0; transform: translate(-50%, 15px); left: 50%; }
+      74% { opacity: 1; transform: translate(-50%, 0px); left: 50%; }
+      92% { opacity: 1; transform: translate(-50%, 0px); left: 50%; }
+      98%, 100% { opacity: 0; transform: translate(-50%, -10px); left: 50%; }
+    }
+
+    /* Website Image Mockup Animation Keyframes */
+    .img-select {
+      animation: imgSelectBoxAnim 7s infinite ease-in-out;
+    }
+    .img-scan {
+      animation: scanLineAnim 7s infinite ease-in-out;
+    }
+    .img-cursor {
+      animation: imgCursorAnim 7s infinite ease-in-out;
+    }
+    .img-toast {
+      animation: imgToastAnim 7s infinite ease-in-out;
+    }
+
+    @keyframes imgCursorAnim {
+      0% { top: 90%; left: 95%; opacity: 1; }
+      20% { top: 48%; left: 52%; opacity: 1; }
+      22% { transform: scale(0.8); }
+      25% { transform: scale(1); }
+      45% { top: 65%; left: 93%; opacity: 1; }
+      48% { transform: scale(0.8); }
+      50% { transform: scale(1); opacity: 0; }
+      100% { top: 90%; left: 95%; opacity: 0; }
+    }
+
+    @keyframes imgSelectBoxAnim {
+      0%, 20% { top: 48%; left: 52%; width: 0%; height: 0%; opacity: 0; }
+      45% { top: 48%; left: 52%; width: 41%; height: 17%; opacity: 1; }
+      85% { top: 48%; left: 52%; width: 41%; height: 17%; opacity: 1; }
+      92%, 100% { top: 48%; left: 52%; width: 41%; height: 17%; opacity: 0; }
+    }
+
+    @keyframes imgToastAnim {
+      0%, 68% { opacity: 0; transform: translate(-50%, 15px); left: 50%; }
+      74% { opacity: 1; transform: translate(-50%, 0px); left: 50%; }
+      92% { opacity: 1; transform: translate(-50%, 0px); left: 50%; }
+      98%, 100% { opacity: 0; transform: translate(-50%, -10px); left: 50%; }
     }
 
     /* Pricing Section */
@@ -642,7 +1085,133 @@
             <span class="dot"></span>
           </div>
           <div class="mockup-content">
-            <div class="mockup-overlay-sim"></div>
+            <!-- Simulated YouTube Video / Code Screen -->
+            <div class="mockup-screen">
+              <div class="mockup-video-header">
+                <span class="video-title">YouTube Video Player - Python Tutorial</span>
+              </div>
+              <div class="mockup-video-player">
+                <div class="video-prompt-text">
+                  Write a Python script to scrape product prices from eCommerce websites and save them...
+                </div>
+                <div class="video-play-btn">▶</div>
+              </div>
+            </div>
+            
+            <!-- Simulated Selection Box -->
+            <div class="mockup-select-box">
+              <div class="mockup-scan-line"></div>
+              <div class="mockup-corner tl"></div>
+              <div class="mockup-corner tr"></div>
+              <div class="mockup-corner bl"></div>
+              <div class="mockup-corner br"></div>
+            </div>
+
+            <!-- Simulated Mouse Cursor -->
+            <div class="mockup-cursor"></div>
+
+            <!-- Simulated Copy Notification -->
+            <div class="mockup-copy-toast">📋 Copied to Clipboard!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demos Area -->
+    <section class="demos-section">
+      <h2 class="section-title">See PromptCrop in Action</h2>
+      <p class="section-subtitle">Unlock copy-restricted environments instantly. Here are two more common ways developers use PromptCrop daily:</p>
+      
+      <div class="grid-demos">
+        <!-- Demo 1: Copying Video Description / Locked Web Text -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <span class="demo-badge">Use Case 1</span>
+            <h3 class="demo-title">Copy Locked Descriptions & Code</h3>
+          </div>
+          <div class="mockup-image-box">
+            <div class="mockup-header">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <!-- Mockup Content: Video Description -->
+            <div class="mockup-content desc-mockup">
+              <div class="mockup-screen">
+                <div class="mockup-desc-container">
+                  <div class="desc-header">
+                    <span class="desc-channel">PythonCoder Pro</span>
+                    <span class="desc-views">1.2M views • 2 weeks ago</span>
+                  </div>
+                  <div class="desc-text-box">
+                    <p class="desc-para" style="margin-top: 4px;">In this tutorial, we will set up our local development environment. Here is the configuration prompt you need to copy:</p>
+                    <div class="desc-code-block">
+                      docker run -d -p 5432:5432 --name local-postgres -e POSTGRES_PASSWORD=secret postgres
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Selection Box -->
+              <div class="mockup-select-box desc-select">
+                <div class="mockup-scan-line desc-scan"></div>
+                <div class="mockup-corner tl"></div>
+                <div class="mockup-corner tr"></div>
+                <div class="mockup-corner bl"></div>
+                <div class="mockup-corner br"></div>
+              </div>
+
+              <!-- Cursor -->
+              <div class="mockup-cursor desc-cursor"></div>
+
+              <!-- Copy Toast -->
+              <div class="mockup-copy-toast desc-toast">📋 Code Copied!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo 2: Copying from Website Images / Graphics -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <span class="demo-badge">Use Case 2</span>
+            <h3 class="demo-title">Extract Text from Infographics & Images</h3>
+          </div>
+          <div class="mockup-image-box">
+            <div class="mockup-header">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <!-- Mockup Content: Website Image -->
+            <div class="mockup-content img-mockup">
+              <div class="mockup-screen">
+                <div class="mockup-img-container">
+                  <div class="img-graphic">
+                    <div class="graphic-badge">SYSTEM ARCHITECTURE</div>
+                    <div class="graphic-diagram">
+                      <div class="graphic-node">API Gateway</div>
+                      <div class="graphic-arrow">➔</div>
+                      <div class="graphic-node highlight-node">Auth Service (JWT validation)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Selection Box -->
+              <div class="mockup-select-box img-select">
+                <div class="mockup-scan-line img-scan"></div>
+                <div class="mockup-corner tl"></div>
+                <div class="mockup-corner tr"></div>
+                <div class="mockup-corner bl"></div>
+                <div class="mockup-corner br"></div>
+              </div>
+
+              <!-- Cursor -->
+              <div class="mockup-cursor img-cursor"></div>
+
+              <!-- Copy Toast -->
+              <div class="mockup-copy-toast img-toast">📋 Architecture Text Copied!</div>
+            </div>
           </div>
         </div>
       </div>
@@ -894,7 +1463,7 @@
     });
 
     // Card Spotlight Mouse Tracking Effect (Interactive Design Spell)
-    document.querySelectorAll('.feature-card').forEach(card => {
+    document.querySelectorAll('.feature-card, .demo-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
