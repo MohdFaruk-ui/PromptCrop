@@ -335,18 +335,45 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 20px;
     }
 
     .pricing-card {
       background-color: var(--bg-secondary);
-      border: 2px solid rgba(160, 32, 240, 0.2);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 30px rgba(160, 32, 240, 0.05);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       border-radius: 24px;
-      padding: 40px;
-      width: 440px;
-      max-width: 100%;
+      padding: 40px 30px;
       text-align: center;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+
+    .pricing-card.premium-tier {
+      border: 2px solid rgba(160, 32, 240, 0.35);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 30px rgba(160, 32, 240, 0.08);
+    }
+
+    .pricing-card.premium-tier:hover {
+      border-color: rgba(160, 32, 240, 0.7);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 40px rgba(160, 32, 240, 0.15);
     }
 
     .pricing-badge {
@@ -596,22 +623,61 @@
 
     <!-- Pricing Area -->
     <section id="pricing" class="pricing">
-      <h2 class="section-title">Simple Lifetime Pricing</h2>
-      <div class="pricing-card">
-        <span class="pricing-badge">Lifetime Access</span>
-        <h3 class="pricing-name">PromptCrop Premium</h3>
-        <div class="price-row">
-          <span class="price-value">₹199</span>
-          <span class="price-period">/ one-time payment</span>
+      <h2 class="section-title">Choose Your Plan</h2>
+      <div class="pricing-grid">
+        <!-- Starter Pack -->
+        <div class="pricing-card">
+          <span class="pricing-badge" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff;">Starter Pack</span>
+          <h3 class="pricing-name" style="margin-top: 20px;">Starter</h3>
+          <div class="price-row">
+            <span class="price-value">₹99</span>
+            <span class="price-period">/ one-time</span>
+          </div>
+          <ul class="pricing-features" style="margin: 20px 0;">
+            <li>200 Scan Credits (Never expire)</li>
+            <li>9-Language Script Auto-Detection</li>
+            <li>Activate on up to 3 Devices</li>
+            <li>Local Offline Processing</li>
+            <li>Lifetime Support</li>
+          </ul>
+          <button onclick="openPurchaseModal(99, 'Starter Pack (200 Scans)')" class="btn btn-outline" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Starter Pack</button>
         </div>
-        <ul class="pricing-features">
-          <li>Unlimited Daily Scans & Extracts</li>
-          <li>Full English & Bengali Auto OCR</li>
-          <li>Activate on up to 3 Devices simultaneously</li>
-          <li>Save Scan History Logs</li>
-          <li>Lifetime Free Updates & Support</li>
-        </ul>
-        <button id="btn-buy-now" class="btn btn-gradient" style="width: 100%; border: none;">Buy Premium (UPI / Card)</button>
+
+        <!-- Pro Pack -->
+        <div class="pricing-card">
+          <span class="pricing-badge" style="background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan);">Pro Pack</span>
+          <h3 class="pricing-name" style="margin-top: 20px;">Pro</h3>
+          <div class="price-row">
+            <span class="price-value">₹199</span>
+            <span class="price-period">/ one-time</span>
+          </div>
+          <ul class="pricing-features" style="margin: 20px 0;">
+            <li>1000 Scan Credits (Never expire)</li>
+            <li>9-Language Script Auto-Detection</li>
+            <li>Activate on up to 3 Devices</li>
+            <li>Local Offline Processing</li>
+            <li>Lifetime Support</li>
+          </ul>
+          <button onclick="openPurchaseModal(199, 'Pro Pack (1000 Scans)')" class="btn btn-outline" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Pro Pack</button>
+        </div>
+
+        <!-- Unlimited Lifetime -->
+        <div class="pricing-card premium-tier">
+          <span class="pricing-badge" style="background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%); color: #0b0b0e;">Best Value</span>
+          <h3 class="pricing-name" style="margin-top: 20px; color: #fff;">Unlimited Premium</h3>
+          <div class="price-row">
+            <span class="price-value">₹499</span>
+            <span class="price-period">/ lifetime access</span>
+          </div>
+          <ul class="pricing-features" style="margin: 20px 0;">
+            <li>Unlimited Lifetime Scans</li>
+            <li>9-Language Script Auto-Detection</li>
+            <li>Activate on up to 3 Devices</li>
+            <li>100% Offline Mode (No Server Sync)</li>
+            <li>Lifetime Free Updates & Support</li>
+          </ul>
+          <button onclick="openPurchaseModal(499, 'Unlimited Lifetime Premium')" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer; border-radius: 8px;">Go Unlimited</button>
+        </div>
       </div>
     </section>
 
@@ -654,9 +720,8 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     // Define the API URL of your Node.js backend. Update this once hosted live (e.g. Render/Vercel URL).
-    const BACKEND_URL = "http://localhost:5000";
+    const BACKEND_URL = "https://promptcrop-backend.onrender.com";
 
-    const btnBuyNow = document.getElementById("btn-buy-now");
     const purchaseModal = document.getElementById("purchase-modal");
     const btnCloseModal = document.getElementById("btn-close-modal");
     const btnProceedPayment = document.getElementById("btn-proceed-payment");
@@ -667,13 +732,19 @@
     const successEmailText = document.getElementById("success-email-text");
     const btnCloseSuccess = document.getElementById("btn-close-success");
 
-    // Open Modal
-    btnBuyNow.addEventListener("click", () => {
+    let selectedAmount = 0;
+    let selectedDescription = "";
+
+    // Open Modal Function
+    window.openPurchaseModal = function (amount, description) {
+      selectedAmount = amount;
+      selectedDescription = description;
+      
       purchaseModal.classList.remove("hidden");
       cardForm.classList.remove("hidden");
       cardSuccess.classList.add("hidden");
       checkoutEmail.focus();
-    });
+    };
 
     // Close Modal
     const closeModal = () => {
@@ -701,7 +772,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: email,
-            amount: 199 // ₹199 INR
+            amount: selectedAmount
           })
         });
 
@@ -718,10 +789,10 @@
         // Step 2: Open Razorpay checkout pop-up on the client side
         const options = {
           key: "rzp_live_xxxxxxxxxxxxxx", // REPLACE THIS WITH YOUR REAL RAZORPAY KEY ID (e.g. rzp_live_...)
-          amount: data.amount, // 19900 Paise
+          amount: data.amount,
           currency: data.currency, // INR
           name: "PromptCrop OCR",
-          description: "Lifetime Premium Access",
+          description: selectedDescription,
           order_id: data.orderId,
           prefill: {
             email: email
