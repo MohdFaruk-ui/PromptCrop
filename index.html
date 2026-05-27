@@ -276,57 +276,106 @@
 
     /* Features Section */
     .features {
-      margin-bottom: 100px;
+      margin-bottom: 120px;
+      position: relative;
     }
 
-    .section-title {
-      font-size: 32px;
+    .features .section-title {
+      font-size: 38px;
       font-weight: 800;
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #ffffff 40%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .features .section-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
     }
 
     .grid-features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
     }
 
     .feature-card {
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 30px;
+      background: rgba(19, 19, 26, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 24px;
+      padding: 35px 30px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      transition: border-color 0.3s;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(0, 240, 255, 0.06), transparent 40%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
     }
 
     .feature-card:hover {
-      border-color: rgba(0, 240, 255, 0.2);
+      transform: translateY(-6px);
+      border-color: rgba(0, 240, 255, 0.25);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 30px rgba(0, 240, 255, 0.03);
     }
 
-    .feature-icon {
-      font-size: 28px;
-      width: 50px;
-      height: 50px;
-      background-color: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-color);
+    .feature-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(160, 32, 240, 0.1) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.15);
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 12px;
+      font-size: 26px;
+      margin-bottom: 4px;
+      transition: transform 0.3s ease;
     }
 
-    .feature-name {
-      font-size: 18px;
+    .feature-card:hover .feature-icon-wrapper {
+      transform: scale(1.1) rotate(5deg);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(160, 32, 240, 0.15) 100%);
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    .feature-card-title {
+      font-size: 20px;
       font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
     }
 
     .feature-desc {
       font-size: 14px;
       color: var(--text-muted);
+      line-height: 1.6;
     }
 
     /* Pricing Section */
@@ -602,21 +651,37 @@
     <!-- Features Area -->
     <section id="features" class="features">
       <h2 class="section-title">Why PromptCrop OCR?</h2>
+      <p class="section-subtitle">Extract text from videos, images, code guides, and copy-restricted websites with absolute speed, privacy, and precision.</p>
       <div class="grid-features">
         <div class="feature-card">
-          <span class="feature-icon">📸</span>
-          <h3 class="feature-card-title">Drag to Selection</h3>
-          <p class="feature-desc">Press Alt + C to instantly freeze the viewport and drag select any exact text area on YouTube videos or general webpages.</p>
+          <div class="feature-icon-wrapper">📸</div>
+          <h3 class="feature-card-title">Drag-to-Select Capture</h3>
+          <p class="feature-desc">Press Alt + C to instantly freeze your screen. Draw a selection box over any YouTube video, locked PDF, image, or web page component to grab text.</p>
         </div>
         <div class="feature-card">
-          <span class="feature-icon">🛡️</span>
-          <h3 class="feature-card-title">100% Offline & Private</h3>
-          <p class="feature-desc">OCR runs directly inside your local browser context using local WebAssembly. Zero images or text sent to external servers.</p>
+          <div class="feature-icon-wrapper">🌐</div>
+          <h3 class="feature-card-title">9-Language Auto-Detection</h3>
+          <p class="feature-desc">Built-in local support for English, Bengali, Spanish, Hindi, French, German, Portuguese, Arabic, and Russian. Detects languages automatically without selecting menus.</p>
         </div>
         <div class="feature-card">
-          <span class="feature-icon">🇧🇩</span>
-          <h3 class="feature-card-title">English + Bengali Support</h3>
-          <p class="feature-desc">Equipped with offline LSTM language engines for both English and Bengali. Auto-detects text characters seamlessly.</p>
+          <div class="feature-icon-wrapper">🛡️</div>
+          <h3 class="feature-card-title">100% Client-Side Privacy</h3>
+          <p class="feature-desc">Zero external API calls. Your cropped images and extracted text are processed completely on your own machine using local WebAssembly. 100% safe.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">⚡</div>
+          <h3 class="feature-card-title">Zero-Latency Local OCR</h3>
+          <p class="feature-desc">Optimized WebAssembly binaries run high-accuracy neural network OCR engines directly in your browser. Get copyable text outputs in a few hundred milliseconds.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">📋</div>
+          <h3 class="feature-card-title">Instant Clipboard Sync</h3>
+          <p class="feature-desc">Extracted text is automatically copied to your clipboard. View and re-copy scan logs from your premium history dashboard whenever you need them.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">💎</div>
+          <h3 class="feature-card-title">Flexible Pricing Systems</h3>
+          <p class="feature-desc">Pay for exactly what you need. Choose from budget-friendly starter credits, medium usage pro credits, or buy a lifetime access key to scan infinitely.</p>
         </div>
       </div>
     </section>
@@ -826,6 +891,17 @@
         btnProceedPayment.textContent = "Proceed to Payment";
         btnProceedPayment.disabled = false;
       }
+    });
+
+    // Card Spotlight Mouse Tracking Effect (Interactive Design Spell)
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
     });
   </script>
 </body>
