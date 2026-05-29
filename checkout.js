@@ -13,7 +13,7 @@ const BACKEND_URL = "https://promptcrop-backend.onrender.com";
 const DOWNLOAD_URL = "https://chromewebstore.google.com/detail/promptcrop-ocr/your-extension-id-here";
 
 // Your Personal UPI ID for receiving payments directly (No Business Account required!)
-const DEVELOPER_UPI_ID = "mohdfaruk.dev@okaxis"; 
+const DEVELOPER_UPI_ID = "yfspicy@ybl"; 
 
 
 // -------------------------------------------------------------
