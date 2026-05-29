@@ -3,9 +3,22 @@
  * Copyright (c) 2026 Faruk. All rights reserved.
  */
 
+// -------------------------------------------------------------
+// Configurable Constants (Update these for production)
+// -------------------------------------------------------------
 // Define the API URL of your Node.js backend. Update this once hosted live (e.g. Render/Vercel URL).
 const BACKEND_URL = "https://promptcrop-backend.onrender.com";
 
+// Chrome Web Store Download Link (Update this once your extension is published)
+const DOWNLOAD_URL = "https://chromewebstore.google.com/detail/promptcrop-ocr/your-extension-id-here";
+
+// Your Personal UPI ID for receiving payments directly (No Business Account required!)
+const DEVELOPER_UPI_ID = "mohdfaruk.dev@okaxis"; 
+
+
+// -------------------------------------------------------------
+// DOM Elements
+// -------------------------------------------------------------
 const purchaseModal = document.getElementById("purchase-modal");
 const btnCloseModal = document.getElementById("btn-close-modal");
 const btnProceedPayment = document.getElementById("btn-proceed-payment");
@@ -16,29 +29,138 @@ const cardSuccess = document.getElementById("modal-card-success");
 const successEmailText = document.getElementById("success-email-text");
 const btnCloseSuccess = document.getElementById("btn-close-success");
 
+// Payment Method Selectors
+const methodRazorpay = document.getElementById("method-razorpay");
+const methodUpiQr = document.getElementById("method-upi-qr");
+const razorpayContainer = document.getElementById("razorpay-method-container");
+const upiQrContainer = document.getElementById("upi-qr-method-container");
+
+// UPI Details DOM
+const upiQrImage = document.getElementById("upi-qr-image");
+const upiIdDisplay = document.getElementById("upi-id-display");
+const btnCopyUpiId = document.getElementById("btn-copy-upi-id");
+const upiAmountDisplay = document.getElementById("upi-amount-display");
+
 let selectedAmount = 0;
 let selectedDescription = "";
 
+
+// -------------------------------------------------------------
+// Initialization & Extension Download Bindings
+// -------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  // Set Download links dynamically for all layout download buttons
+  document.querySelectorAll(".link-download-ext").forEach(link => {
+    link.href = DOWNLOAD_URL;
+    link.target = "_blank";
+  });
+
+  // Display UPI ID in the checkout details
+  if (upiIdDisplay) {
+    upiIdDisplay.textContent = DEVELOPER_UPI_ID;
+  }
+
+  // Bind Buy Pack buttons dynamically to open the payment modal
+  document.querySelectorAll(".btn-buy-pack").forEach(button => {
+    button.addEventListener("click", () => {
+      const amount = parseInt(button.getAttribute("data-amount"), 10);
+      const desc = button.getAttribute("data-desc");
+      if (typeof window.openPurchaseModal === "function") {
+        window.openPurchaseModal(amount, desc);
+      }
+    });
+  });
+});
+
+
+// -------------------------------------------------------------
+// Modal Action Functions
+// -------------------------------------------------------------
 // Open Modal Function
 window.openPurchaseModal = function (amount, description) {
   selectedAmount = amount;
   selectedDescription = description;
   
-  purchaseModal.classList.remove("hidden");
-  cardForm.classList.remove("hidden");
-  cardSuccess.classList.add("hidden");
-  checkoutEmail.focus();
+  // Update UI elements in modal
+  if (upiAmountDisplay) {
+    upiAmountDisplay.textContent = `₹${amount}`;
+  }
+  
+  // Set up the dynamic UPI URL and QR Code
+  generateUpiQrCode(amount);
+
+  // Reset payment tabs back to default (Razorpay)
+  selectPaymentMethod("razorpay");
+
+  if (purchaseModal) purchaseModal.classList.remove("hidden");
+  if (cardForm) cardForm.classList.remove("hidden");
+  if (cardSuccess) cardSuccess.classList.add("hidden");
+  if (checkoutEmail) checkoutEmail.focus();
 };
 
 // Close Modal
 const closeModal = () => {
-  purchaseModal.classList.add("hidden");
-  checkoutEmail.value = "";
+  if (purchaseModal) purchaseModal.classList.add("hidden");
+  if (checkoutEmail) checkoutEmail.value = "";
 };
 if (btnCloseModal) btnCloseModal.addEventListener("click", closeModal);
 if (btnCloseSuccess) btnCloseSuccess.addEventListener("click", closeModal);
 
-// Proceed to Payment Action
+
+// -------------------------------------------------------------
+// Payment Tab Switching & QR Generator
+// -------------------------------------------------------------
+function selectPaymentMethod(method) {
+  if (method === "razorpay") {
+    if (methodRazorpay) methodRazorpay.classList.add("active");
+    if (methodUpiQr) methodUpiQr.classList.remove("active");
+    if (razorpayContainer) razorpayContainer.classList.remove("hidden");
+    if (upiQrContainer) upiQrContainer.classList.add("hidden");
+  } else {
+    if (methodRazorpay) methodRazorpay.classList.remove("active");
+    if (methodUpiQr) methodUpiQr.classList.add("active");
+    if (razorpayContainer) razorpayContainer.classList.add("hidden");
+    if (upiQrContainer) upiQrContainer.classList.remove("hidden");
+  }
+}
+
+if (methodRazorpay) {
+  methodRazorpay.addEventListener("click", () => selectPaymentMethod("razorpay"));
+}
+if (methodUpiQr) {
+  methodUpiQr.addEventListener("click", () => selectPaymentMethod("upi-qr"));
+}
+
+// Generate QR Code via standard UPI deep link schema
+function generateUpiQrCode(amount) {
+  if (!upiQrImage) return;
+
+  // Standard UPI payment URI format
+  const pn = encodeURIComponent("PromptCrop OCR");
+  const tn = encodeURIComponent(`License ${selectedDescription}`);
+  const upiUri = `upi://pay?pa=${DEVELOPER_UPI_ID}&pn=${pn}&am=${amount}&cu=INR&tn=${tn}`;
+  
+  // Render using free public QR generator API
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(upiUri)}`;
+  upiQrImage.src = qrApiUrl;
+}
+
+// Copy UPI ID Action
+if (btnCopyUpiId) {
+  btnCopyUpiId.addEventListener("click", () => {
+    navigator.clipboard.writeText(DEVELOPER_UPI_ID).then(() => {
+      btnCopyUpiId.textContent = "Copied!";
+      setTimeout(() => {
+        btnCopyUpiId.textContent = "Copy ID";
+      }, 1500);
+    });
+  });
+}
+
+
+// -------------------------------------------------------------
+// Proceed to Automatic Payment (Razorpay)
+// -------------------------------------------------------------
 if (btnProceedPayment) {
   btnProceedPayment.addEventListener("click", async () => {
     const email = checkoutEmail.value.trim();
@@ -114,6 +236,10 @@ if (btnProceedPayment) {
   });
 }
 
+
+// -------------------------------------------------------------
+// Interactive UI Visual Effects
+// -------------------------------------------------------------
 // Card Spotlight Mouse Tracking Effect (Interactive Design Spell)
 document.querySelectorAll('.feature-card, .demo-card').forEach(card => {
   card.addEventListener('mousemove', e => {
@@ -122,5 +248,21 @@ document.querySelectorAll('.feature-card, .demo-card').forEach(card => {
     const y = e.clientY - rect.top;
     card.style.setProperty('--x', `${x}px`);
     card.style.setProperty('--y', `${y}px`);
+  });
+});
+
+// FAQ Accordion Toggle Interaction
+document.querySelectorAll(".faq-question").forEach(question => {
+  question.addEventListener("click", () => {
+    const item = question.parentElement;
+    const isActive = item.classList.contains("active");
+    
+    // Close other FAQ items
+    document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("active"));
+    
+    // If it wasn't active, open it
+    if (!isActive) {
+      item.classList.add("active");
+    }
   });
 });

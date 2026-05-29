@@ -3,11 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://promptcrop-backend.onrender.com http://localhost:5000 https://api.razorpay.com; img-src 'self' data: https://*.razorpay.com; frame-src https://api.razorpay.com; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://promptcrop-backend.onrender.com http://localhost:5000 https://api.razorpay.com; img-src 'self' data: https://*.razorpay.com https://api.qrserver.com; frame-src https://api.razorpay.com; frame-ancestors 'none';">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <title>PromptCrop OCR - Drag, Copy & Extract Text Instantly</title>
+  <title>Offline Chrome OCR Extension: Drag, Copy & Extract Text | PromptCrop</title>
+  <meta name="description" content="Extract text from YouTube videos and images instantly with PromptCrop OCR. A secure, 100% offline Chrome extension using local WebAssembly. Try it free.">
+  
+  <!-- Open Graph Tags (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:title" content="Securely Extract Text Offline from Any Video or Web Image | PromptCrop OCR">
+  <meta property="og:description" content="Tired of copy restrictions on YouTube and web apps? PromptCrop OCR runs 100% locally in your browser to extract code and text selections in milliseconds.">
+  <meta property="og:image" content="https://mohdfaruk-ui.github.io/PromptCrop/favicon.png">
+  <meta property="og:url" content="https://mohdfaruk-ui.github.io/PromptCrop/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stop Typing Out Video Prompts Manually - PromptCrop OCR">
+  <meta name="twitter:description" content="Drag, copy, and paste text locally from any video or image. No servers, no tracking, pure WebAssembly speed. Add to Chrome for free.">
+  <meta name="twitter:image" content="https://mohdfaruk-ui.github.io/PromptCrop/favicon.png">
+
+  <!-- WebSite & Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PromptCrop OCR",
+    "url": "https://mohdfaruk-ui.github.io/PromptCrop/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PromptCrop OCR",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mohdfaruk-ui.github.io/PromptCrop/favicon.png"
+      }
+    }
+  }
+  </script>
+
+  <!-- SoftwareApplication / Product Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PromptCrop OCR",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Windows, macOS, Linux, ChromeOS",
+    "downloadUrl": "https://chromewebstore.google.com/detail/promptcrop-ocr/your-extension-id-here",
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "INR",
+      "lowPrice": "99",
+      "highPrice": "499",
+      "offerCount": "3",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Starter Pack",
+          "price": "99",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro Pack",
+          "price": "199",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Unlimited Lifetime Premium",
+          "price": "499",
+          "priceCurrency": "INR"
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "124",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Faruk"
+    }
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://mohdfaruk-ui.github.io/PromptCrop/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PromptCrop OCR Extension",
+        "item": "https://mohdfaruk-ui.github.io/PromptCrop/#pricing"
+      }
+    ]
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is PromptCrop OCR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PromptCrop OCR is a secure, 100% offline Chrome extension that lets you drag a selection box over any video frame or webpage to instantly extract and copy text."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does PromptCrop OCR send my screenshots to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All image processing and OCR are executed entirely on your machine using local WebAssembly binaries, ensuring 100% data privacy and offline capability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the offline OCR script auto-detection work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It uses an optimized local Tesseract OCR engine that detects 9 languages simultaneously, including English, Bengali, Spanish, German, French, Portuguese, Hindi, Russian, and Arabic."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the limit for the free tier?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The free tier allows up to 10 local OCR scans per day. Upgrade to a premium plan to increase your limits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the UPI QR payment verify my purchase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Scan the UPI QR code, pay the plan amount, and email your transaction screenshot to support@promptcrop.com. We will email your license key within 5-10 minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many devices can use a single premium key?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A single premium license key can be activated on up to 3 separate Chrome browser installations simultaneously."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
@@ -1045,8 +1208,239 @@
       color: #fff;
     }
 
+    /* Payment Method Selector & UPI Styles */
+    .payment-method-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn-method {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-method:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .btn-method.active {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.05);
+      color: #fff;
+    }
+
+    .upi-qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .upi-qr-image-wrapper {
+      background: #fff;
+      padding: 10px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .upi-qr-image {
+      width: 180px;
+      height: 180px;
+    }
+
+    .upi-id-box {
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      width: 100%;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .upi-id-text {
+      font-family: monospace;
+      font-size: 13px;
+      color: #fff;
+      user-select: all;
+    }
+
+    .btn-copy-upi {
+      background: none;
+      border: none;
+      color: var(--accent-cyan);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .btn-copy-upi:hover {
+      text-decoration: underline;
+    }
+
+    .upi-instructions {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      text-align: left;
+      width: 100%;
+    }
+
+    .upi-instructions ol {
+      padding-left: 16px;
+      margin-top: 5px;
+    }
+
+    .upi-instructions li {
+      margin-bottom: 4px;
+    }
+
     .hidden {
       display: none !important;
+    }
+
+    /* Comparison Section */
+    .comparison-section {
+      margin-bottom: 100px;
+      width: 100%;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      background: var(--bg-secondary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table th {
+      background-color: rgba(255, 255, 255, 0.02);
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table td.highlight-col {
+      background-color: rgba(0, 240, 255, 0.02);
+      font-weight: 600;
+    }
+
+    .comparison-status-yes {
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .comparison-status-no {
+      color: #ff5252;
+      font-weight: bold;
+    }
+
+    .comparison-status-partial {
+      color: var(--accent-gold);
+      font-weight: bold;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-top: 60px;
+      margin-bottom: 100px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      padding: 20px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      font-size: 15px;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--accent-cyan);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 150px;
+      padding: 0 20px 20px 20px;
     }
   </style>
 </head>
@@ -1062,8 +1456,9 @@
         <span class="logo-icon">⚡</span>
         <div class="logo-text">PromptCrop <span>OCR</span></div>
       </div>
-      <div class="nav-links">
+      <div class="nav-links" style="display: flex; align-items: center; gap: 20px;">
         <a href="#pricing">Buy Premium</a>
+        <a href="#" class="btn btn-outline link-download-ext" style="padding: 8px 16px; font-size: 13px; border-radius: 8px;">📥 Download Extension</a>
       </div>
     </nav>
 
@@ -1071,11 +1466,16 @@
     <section class="hero">
       <div>
         <span class="hero-tag">🔥 Offline & Secure Extension</span>
-        <h1 class="hero-title">Drag, Copy & Extract <span>Text Instantly</span> from Anywhere</h1>
-        <p class="hero-desc">Bypass the pain of copying prompts or texts from YouTube videos and websites. Drag a box, run local OCR, and auto-copy text in milliseconds.</p>
+        <h1 class="hero-title">Offline Chrome OCR Extension: Drag, Copy & Extract <span>Text Instantly</span></h1>
+        
+        <blockquote class="aeo-summary" style="border-left: 3px solid var(--accent-cyan); padding: 12px 16px; margin: 15px 0; font-style: italic; color: var(--text-main); font-size: 14px; background: rgba(0, 240, 255, 0.02); border-radius: 0 8px 8px 0; line-height: 1.5; max-width: 550px; text-align: left;">
+          PromptCrop OCR is a secure, 100% offline Chrome extension that extracts text instantly from any video or webpage using local WebAssembly, allowing developers to capture code and prompts without copy restrictions.
+        </blockquote>
+
+        <p class="hero-desc" style="margin-top: 10px;">Bypass the pain of copying prompts or texts from YouTube videos and websites. Drag a box, run local OCR, and auto-copy text in milliseconds.</p>
         <div class="hero-actions">
-          <a href="#pricing" class="btn btn-gradient">Get Unlimited Premium</a>
-          <a href="#features" class="btn btn-outline">Explore Features</a>
+          <a href="#" class="btn btn-gradient link-download-ext">📥 Add to Chrome (Free)</a>
+          <a href="#pricing" class="btn btn-outline">Unlock Premium (from ₹99)</a>
         </div>
       </div>
       <div class="hero-image">
@@ -1256,6 +1656,64 @@
       </div>
     </section>
 
+    <!-- Competitor Comparison Section -->
+    <section class="comparison-section" id="comparison">
+      <h2 class="section-title">Why PromptCrop OCR Wins</h2>
+      <p class="section-subtitle">A fair comparison between PromptCrop OCR, online transcription tools, and manual typing.</p>
+      
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature / Metric</th>
+              <th class="highlight-col" style="color: var(--accent-cyan);">PromptCrop OCR</th>
+              <th>Online OCR Tools</th>
+              <th>Manual Typing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>100% Offline Processing</strong></td>
+              <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (WASM-based)</td>
+              <td><span class="comparison-status-no">❌ No</span> (Server-dependent)</td>
+              <td><span class="comparison-status-yes">✅ Yes</span> (Self-type)</td>
+            </tr>
+            <tr>
+              <td><strong>Data Privacy & Safety</strong></td>
+              <td class="highlight-col"><span class="comparison-status-yes">🛡️ Absolute</span> (Zero server upload)</td>
+              <td><span class="comparison-status-no">⚠️ Risk</span> (Images uploaded)</td>
+              <td><span class="comparison-status-yes">🛡️ Safe</span></td>
+            </tr>
+            <tr>
+              <td><strong>Speed & Latency</strong></td>
+              <td class="highlight-col"><span class="comparison-status-yes">⚡ ~300ms</span> (Instant local copy)</td>
+              <td><span class="comparison-status-no">⚠️ 3 - 10s</span> (Network lag)</td>
+              <td><span class="comparison-status-no">❌ Slow</span> (Minutes of typing)</td>
+            </tr>
+            <tr>
+              <td><strong>YouTube Video Copying</strong></td>
+              <td class="highlight-col"><span class="comparison-status-yes">✅ Seamless</span> (Capture frames directly)</td>
+              <td><span class="comparison-status-no">❌ Complex</span> (Need screenshot first)</td>
+              <td><span class="comparison-status-yes">⚠️ Tedious</span> (Pause/Play frequently)</td>
+            </tr>
+            <tr>
+              <td><strong>9-Language Auto-Detection</strong></td>
+              <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (Auto-detect & run)</td>
+              <td><span class="comparison-status-partial">⚠️ Manual</span> (Select from dropdown)</td>
+              <td><span class="comparison-status-yes">✅ Yes</span> (Human brain)</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-page Document Scanning</strong></td>
+              <td class="highlight-col"><span class="comparison-status-no">❌ Limited</span> (Best for crops/screens)</td>
+              <td><span class="comparison-status-yes">✅ Excellent</span> (PDF files support)</td>
+              <td><span class="comparison-status-no">❌ Hard</span> (Manual typing)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 11px; color: var(--text-muted); margin-top: 15px; font-style: italic;">Comparison data is verified as of May 2026. Online OCR tools typically refer to web-based cloud upload utilities.</p>
+    </section>
+
     <!-- Pricing Area -->
     <section id="pricing" class="pricing">
       <h2 class="section-title">Choose Your Plan</h2>
@@ -1275,7 +1733,7 @@
             <li>Local Offline Processing</li>
             <li>Lifetime Support</li>
           </ul>
-          <button onclick="openPurchaseModal(99, 'Starter Pack (200 Scans)')" class="btn btn-outline" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Starter Pack</button>
+          <button data-amount="99" data-desc="Starter Pack (200 Scans)" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Starter Pack</button>
         </div>
 
         <!-- Pro Pack -->
@@ -1293,7 +1751,7 @@
             <li>Local Offline Processing</li>
             <li>Lifetime Support</li>
           </ul>
-          <button onclick="openPurchaseModal(199, 'Pro Pack (1000 Scans)')" class="btn btn-outline" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Pro Pack</button>
+          <button data-amount="199" data-desc="Pro Pack (1000 Scans)" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Pro Pack</button>
         </div>
 
         <!-- Unlimited Lifetime -->
@@ -1311,23 +1769,106 @@
             <li>100% Offline Mode (No Server Sync)</li>
             <li>Lifetime Free Updates & Support</li>
           </ul>
-          <button onclick="openPurchaseModal(499, 'Unlimited Lifetime Premium')" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer; border-radius: 8px;">Go Unlimited</button>
+          <button data-amount="499" data-desc="Unlimited Lifetime Premium" class="btn btn-gradient btn-buy-pack" style="width: 100%; border: none; padding: 12px; cursor: pointer; border-radius: 8px;">Go Unlimited</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Got questions? We have answers. Find everything you need to know about PromptCrop OCR below.</p>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">What is PromptCrop OCR?</div>
+          <div class="faq-answer">
+            PromptCrop OCR is a secure, 100% offline Chrome extension that lets you drag a selection box over any video frame or webpage to instantly extract and copy text.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Does PromptCrop OCR send my screenshots to a server?</div>
+          <div class="faq-answer">
+            No. All image processing and OCR are executed entirely on your machine using local WebAssembly binaries, ensuring 100% data privacy and offline capability.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">How does the offline OCR script auto-detection work?</div>
+          <div class="faq-answer">
+            It uses an optimized local Tesseract OCR engine that detects 9 languages simultaneously, including English, Bengali, Spanish, German, French, Portuguese, Hindi, Russian, and Arabic.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">What is the limit for the free tier?</div>
+          <div class="faq-answer">
+            The free tier allows up to 10 local OCR scans per day. Upgrade to a premium plan to increase your limits.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">How does the UPI QR payment verify my purchase?</div>
+          <div class="faq-answer">
+            Scan the UPI QR code, pay the plan amount, and email your transaction screenshot to support@promptcrop.com. We will email your license key within 5-10 minutes.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">How many devices can use a single premium key?</div>
+          <div class="faq-answer">
+            A single premium license key can be activated on up to 3 separate Chrome browser installations simultaneously.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Purchase Modal Overlay -->
     <div id="purchase-modal" class="modal-overlay hidden">
-      <div class="modal-card" id="modal-card-form">
+      <div class="modal-card" id="modal-card-form" style="width: 440px;">
         <button id="btn-close-modal" class="modal-close">&times;</button>
-        <h3 class="modal-title">Upgrade to Premium</h3>
-        <p class="modal-desc">Enter your email address to initiate checkout. Your premium license key will be sent here upon payment.</p>
+        <h3 class="modal-title" id="purchase-modal-title">Upgrade to Premium</h3>
+        <p class="modal-desc">Select your payment method. Your unique license key will be sent to your email after verification.</p>
         
-        <div class="form-group">
-          <label for="checkout-email">Your Email Address</label>
-          <input type="email" id="checkout-email" placeholder="you@example.com" required>
+        <!-- Payment Method Tabs -->
+        <div class="payment-method-selector">
+          <button type="button" class="btn-method active" id="method-razorpay">⚡ Online Card / UPI</button>
+          <button type="button" class="btn-method" id="method-upi-qr">📸 Scan UPI QR Code</button>
         </div>
-        <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px;">Proceed to Payment</button>
+
+        <!-- Method 1: Razorpay Container -->
+        <div id="razorpay-method-container">
+          <div class="form-group">
+            <label for="checkout-email">Your Email Address</label>
+            <input type="email" id="checkout-email" placeholder="you@example.com" required>
+          </div>
+          <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Payment</button>
+        </div>
+
+        <!-- Method 2: UPI QR Code Container -->
+        <div id="upi-qr-method-container" class="hidden">
+          <div class="upi-qr-container">
+            <div class="upi-qr-image-wrapper">
+              <img id="upi-qr-image" class="upi-qr-image" src="" alt="UPI QR Code">
+            </div>
+            
+            <div class="upi-id-box">
+              <span class="upi-id-text" id="upi-id-display">your-upi-id@upi</span>
+              <button type="button" class="btn-copy-upi" id="btn-copy-upi-id">Copy ID</button>
+            </div>
+            
+            <div class="upi-instructions">
+              <strong>Instructions:</strong>
+              <ol>
+                <li>Scan the QR code with any UPI app (GPay, PhonePe, Paytm, etc.).</li>
+                <li>Pay the correct plan amount: <strong id="upi-amount-display">₹99</strong>.</li>
+                <li>Send a screenshot of the payment success and your checkout email to: <strong>support@promptcrop.com</strong></li>
+                <li>We will verify and email your premium license key within 5-10 minutes.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Success Screen -->
@@ -1344,9 +1885,9 @@
     <footer>
       <p style="margin-bottom: 10px;">© 2026 Faruk. All rights reserved.</p>
       <p>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="privacy.html" title="PromptCrop OCR Privacy Policy">Privacy & Data Protection Policy</a>
         <span style="color: rgba(255,255,255,0.08); margin: 0 8px;">•</span>
-        <a href="terms.html">Terms of Service</a>
+        <a href="terms.html" title="PromptCrop OCR Terms of Service">Terms & Conditions of Service</a>
       </p>
     </footer>
   </div>

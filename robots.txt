@@ -1,0 +1,5 @@
+# robots.txt for PromptCrop OCR
+User-agent: *
+Allow: /
+
+Sitemap: https://mohdfaruk-ui.github.io/PromptCrop/sitemap.xml
