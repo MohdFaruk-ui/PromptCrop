@@ -1811,7 +1811,7 @@
         <div class="faq-item">
           <div class="faq-question">How does the UPI QR payment verify my purchase?</div>
           <div class="faq-answer">
-            Scan the UPI QR code, pay the plan amount, and email your transaction screenshot to mohdfaruk.dev@gmail.com. We will email your license key within 5-10 minutes.
+            Scan the UPI QR code, pay the plan amount, and email your transaction screenshot to support@promptcrop.com. We will email your license key within 5-10 minutes.
           </div>
         </div>
         
@@ -1834,6 +1834,7 @@
         <!-- Payment Method Tabs -->
         <div class="payment-method-selector">
           <button type="button" class="btn-method active" id="method-razorpay">⚡ Online Card / UPI</button>
+          <button type="button" class="btn-method" id="method-kofi">🌐 Card / PayPal (Global)</button>
           <button type="button" class="btn-method" id="method-upi-qr">📸 Scan UPI QR Code</button>
         </div>
 
@@ -1844,6 +1845,16 @@
             <input type="email" id="checkout-email" placeholder="you@example.com" required>
           </div>
           <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Payment</button>
+        </div>
+
+        <!-- Method 3: Ko-fi Container -->
+        <div id="kofi-method-container" class="hidden">
+          <div class="form-group">
+            <label for="kofi-email">Your Email Address</label>
+            <input type="email" id="kofi-email" placeholder="you@example.com">
+          </div>
+          <button id="btn-proceed-kofi" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Card / PayPal</button>
+          <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">Securely checkout via Ko-fi Shop. Supports credit cards and PayPal globally.</p>
         </div>
 
         <!-- Method 2: UPI QR Code Container -->
@@ -1863,7 +1874,7 @@
               <ol>
                 <li>Scan the QR code with any UPI app (GPay, PhonePe, Paytm, etc.).</li>
                 <li>Pay the correct plan amount: <strong id="upi-amount-display">₹99</strong>.</li>
-                <li>Send a screenshot of the payment success and your checkout email to: <strong>mohdfaruk.dev@gmail.com</strong></li>
+                <li>Send a screenshot of the payment success and your checkout email to: <strong>support@promptcrop.com</strong></li>
                 <li>We will verify and email your premium license key within 5-10 minutes.</li>
               </ol>
             </div>

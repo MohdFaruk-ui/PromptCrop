@@ -31,9 +31,22 @@ const btnCloseSuccess = document.getElementById("btn-close-success");
 
 // Payment Method Selectors
 const methodRazorpay = document.getElementById("method-razorpay");
+const methodKofi = document.getElementById("method-kofi");
 const methodUpiQr = document.getElementById("method-upi-qr");
 const razorpayContainer = document.getElementById("razorpay-method-container");
+const kofiContainer = document.getElementById("kofi-method-container");
 const upiQrContainer = document.getElementById("upi-qr-method-container");
+
+// Ko-fi checkout fields
+const kofiEmail = document.getElementById("kofi-email");
+const btnProceedKofi = document.getElementById("btn-proceed-kofi");
+
+// Ko-fi Shop links matching selected plan amount
+const KOFI_PLAN_URLS = {
+  99: "https://ko-fi.com/s/a9abcc6b72",       // Starter (200 Scans)
+  199: "https://ko-fi.com/s/43bbbcd320",      // Pro (1000 Scans)
+  499: "https://ko-fi.com/s/f27bc524d7"      // Unlimited Lifetime
+};
 
 // UPI Details DOM
 const upiQrImage = document.getElementById("upi-qr-image");
@@ -111,21 +124,35 @@ if (btnCloseSuccess) btnCloseSuccess.addEventListener("click", closeModal);
 // Payment Tab Switching & QR Generator
 // -------------------------------------------------------------
 function selectPaymentMethod(method) {
+  // Reset active classes
+  if (methodRazorpay) methodRazorpay.classList.remove("active");
+  if (methodKofi) methodKofi.classList.remove("active");
+  if (methodUpiQr) methodUpiQr.classList.remove("active");
+
+  // Hide all containers
+  if (razorpayContainer) razorpayContainer.classList.add("hidden");
+  if (kofiContainer) kofiContainer.classList.add("hidden");
+  if (upiQrContainer) upiQrContainer.classList.add("hidden");
+
+  // Show selected method and containers
   if (method === "razorpay") {
     if (methodRazorpay) methodRazorpay.classList.add("active");
-    if (methodUpiQr) methodUpiQr.classList.remove("active");
     if (razorpayContainer) razorpayContainer.classList.remove("hidden");
-    if (upiQrContainer) upiQrContainer.classList.add("hidden");
-  } else {
-    if (methodRazorpay) methodRazorpay.classList.remove("active");
+  } else if (method === "kofi") {
+    if (methodKofi) methodKofi.classList.add("active");
+    if (kofiContainer) kofiContainer.classList.remove("hidden");
+    if (kofiEmail) kofiEmail.focus();
+  } else if (method === "upi-qr") {
     if (methodUpiQr) methodUpiQr.classList.add("active");
-    if (razorpayContainer) razorpayContainer.classList.add("hidden");
     if (upiQrContainer) upiQrContainer.classList.remove("hidden");
   }
 }
 
 if (methodRazorpay) {
   methodRazorpay.addEventListener("click", () => selectPaymentMethod("razorpay"));
+}
+if (methodKofi) {
+  methodKofi.addEventListener("click", () => selectPaymentMethod("kofi"));
 }
 if (methodUpiQr) {
   methodUpiQr.addEventListener("click", () => selectPaymentMethod("upi-qr"));
@@ -233,6 +260,41 @@ if (btnProceedPayment) {
       btnProceedPayment.textContent = "Proceed to Payment";
       btnProceedPayment.disabled = false;
     }
+  });
+}
+
+// -------------------------------------------------------------
+// Proceed to International Checkout (Ko-fi Shop)
+// -------------------------------------------------------------
+if (btnProceedKofi) {
+  btnProceedKofi.addEventListener("click", () => {
+    const email = kofiEmail.value.trim();
+    if (!email || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    const kofiUrl = KOFI_PLAN_URLS[selectedAmount];
+    if (!kofiUrl) {
+      alert("Selected plan is not configured for Ko-fi. Please try another payment method.");
+      return;
+    }
+
+    // Open in a new tab for a smooth experience
+    window.open(kofiUrl, "_blank");
+
+    // Close checkout modal
+    closeModal();
+  });
+}
+
+// Synchronize inputs between Razorpay and Ko-fi email fields for UI convenience
+if (checkoutEmail && kofiEmail) {
+  checkoutEmail.addEventListener("input", () => {
+    kofiEmail.value = checkoutEmail.value;
+  });
+  kofiEmail.addEventListener("input", () => {
+    checkoutEmail.value = kofiEmail.value;
   });
 }
 
