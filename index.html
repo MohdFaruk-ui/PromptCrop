@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://promptcrop-backend.onrender.com http://localhost:5000 https://api.razorpay.com; img-src 'self' data: https://*.razorpay.com https://api.qrserver.com; frame-src https://api.razorpay.com; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://checkout.razorpay.com https://assets.lemonsqueezy.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://promptcrop-backend.onrender.com http://localhost:5000 https://api.razorpay.com; img-src 'self' data: https://*.razorpay.com https://api.qrserver.com; frame-src https://api.razorpay.com https://lemonsqueezy.com https://*.lemonsqueezy.com; frame-ancestors 'none';">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -1475,7 +1475,7 @@
         <p class="hero-desc" style="margin-top: 10px;">Bypass the pain of copying prompts or texts from YouTube videos and websites. Drag a box, run local OCR, and auto-copy text in milliseconds.</p>
         <div class="hero-actions">
           <a href="#" class="btn btn-gradient link-download-ext">📥 Add to Chrome (Free)</a>
-          <a href="#pricing" class="btn btn-outline">Unlock Premium (from ₹99)</a>
+          <a href="#pricing" class="btn btn-outline" id="hero-pricing-cta">Unlock Premium (from ₹149)</a>
         </div>
       </div>
       <div class="hero-image">
@@ -1723,53 +1723,53 @@
           <span class="pricing-badge" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff;">Starter Pack</span>
           <h3 class="pricing-name" style="margin-top: 20px;">Starter</h3>
           <div class="price-row">
-            <span class="price-value">₹99</span>
+            <span class="price-value" id="starter-price">₹149</span>
             <span class="price-period">/ one-time</span>
           </div>
           <ul class="pricing-features" style="margin: 20px 0;">
-            <li>200 Scan Credits (Never expire)</li>
+            <li><strong id="starter-credits">300</strong> Scan Credits (Never expire)</li>
             <li>9-Language Script Auto-Detection</li>
             <li>Activate on up to 3 Devices</li>
             <li>Local Offline Processing</li>
             <li>Lifetime Support</li>
           </ul>
-          <button data-amount="99" data-desc="Starter Pack (200 Scans)" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Starter Pack</button>
+          <button data-plan="starter" data-desc="Starter Pack (300 Scans)" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Starter Pack</button>
         </div>
 
         <!-- Pro Pack -->
-        <div class="pricing-card">
-          <span class="pricing-badge" style="background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan);">Pro Pack</span>
+        <div class="pricing-card premium-tier">
+          <span class="pricing-badge" style="background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%); border: none; color: #0b0b0e;">Most Popular</span>
           <h3 class="pricing-name" style="margin-top: 20px;">Pro</h3>
           <div class="price-row">
-            <span class="price-value">₹199</span>
+            <span class="price-value" id="pro-price">₹399</span>
             <span class="price-period">/ one-time</span>
           </div>
           <ul class="pricing-features" style="margin: 20px 0;">
-            <li>1000 Scan Credits (Never expire)</li>
+            <li><strong id="pro-credits">1500</strong> Scan Credits (Never expire)</li>
             <li>9-Language Script Auto-Detection</li>
             <li>Activate on up to 3 Devices</li>
             <li>Local Offline Processing</li>
             <li>Lifetime Support</li>
           </ul>
-          <button data-amount="199" data-desc="Pro Pack (1000 Scans)" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Pro Pack</button>
+          <button data-plan="pro" data-desc="Pro Pack (1500 Scans)" class="btn btn-gradient btn-buy-pack" style="width: 100%; border: none; padding: 12px; cursor: pointer; border-radius: 8px;">Buy Pro Pack</button>
         </div>
 
         <!-- Unlimited Lifetime -->
-        <div class="pricing-card premium-tier">
+        <div class="pricing-card">
           <span class="pricing-badge" style="background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%); color: #0b0b0e;">Best Value</span>
           <h3 class="pricing-name" style="margin-top: 20px; color: #fff;">Unlimited Premium</h3>
           <div class="price-row">
-            <span class="price-value">₹499</span>
+            <span class="price-value" id="unlimited-price">₹799</span>
             <span class="price-period">/ lifetime access</span>
           </div>
           <ul class="pricing-features" style="margin: 20px 0;">
-            <li>Unlimited Lifetime Scans</li>
+            <li><strong>Unlimited</strong> Lifetime Scans</li>
             <li>9-Language Script Auto-Detection</li>
-            <li>Activate on up to 3 Devices</li>
+            <li>Activate on up to <strong>5 Devices</strong></li>
             <li>100% Offline Mode (No Server Sync)</li>
-            <li>Lifetime Free Updates & Support</li>
+            <li>Lifetime Free Updates & Priority Support</li>
           </ul>
-          <button data-amount="499" data-desc="Unlimited Lifetime Premium" class="btn btn-gradient btn-buy-pack" style="width: 100%; border: none; padding: 12px; cursor: pointer; border-radius: 8px;">Go Unlimited</button>
+          <button data-plan="unlimited" data-desc="Unlimited Lifetime Premium" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Go Unlimited</button>
         </div>
       </div>
     </section>
@@ -1804,7 +1804,7 @@
         <div class="faq-item">
           <div class="faq-question">What is the limit for the free tier?</div>
           <div class="faq-answer">
-            The free tier allows up to 10 local OCR scans per day. Upgrade to a premium plan to increase your limits.
+            The free tier allows up to 5 local OCR scans per day. Upgrade to a premium plan to increase your limits.
           </div>
         </div>
         
@@ -1834,7 +1834,7 @@
         <!-- Payment Method Tabs -->
         <div class="payment-method-selector">
           <button type="button" class="btn-method active" id="method-razorpay">⚡ Online Card / UPI</button>
-          <button type="button" class="btn-method" id="method-kofi">🌐 Card / PayPal (Global)</button>
+          <button type="button" class="btn-method" id="method-lemonsqueezy">🌐 Card / PayPal (Global)</button>
           <button type="button" class="btn-method" id="method-upi-qr">📸 Scan UPI QR Code</button>
         </div>
 
@@ -1847,14 +1847,14 @@
           <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Payment</button>
         </div>
 
-        <!-- Method 3: Ko-fi Container -->
-        <div id="kofi-method-container" class="hidden">
+        <!-- Method 3: Lemon Squeezy Container -->
+        <div id="lemonsqueezy-method-container" class="hidden">
           <div class="form-group">
-            <label for="kofi-email">Your Email Address</label>
-            <input type="email" id="kofi-email" placeholder="you@example.com">
+            <label for="lemonsqueezy-email">Your Email Address</label>
+            <input type="email" id="lemonsqueezy-email" placeholder="you@example.com">
           </div>
-          <button id="btn-proceed-kofi" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Card / PayPal</button>
-          <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">Securely checkout via Ko-fi Shop. Supports credit cards and PayPal globally.</p>
+          <button id="btn-proceed-lemonsqueezy" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Checkout</button>
+          <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">Securely checkout via Lemon Squeezy. Supports cards, PayPal, and Apple Pay globally via secure pop-up overlay.</p>
         </div>
 
         <!-- Method 2: UPI QR Code Container -->
@@ -1905,6 +1905,8 @@
 
   <!-- Include Razorpay Standard Checkout Script -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- Include Lemon Squeezy Overlay Checkout Script -->
+  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
   <script src="checkout.js"></script>
 </body>
 </html>

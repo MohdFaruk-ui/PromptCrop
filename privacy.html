@@ -152,6 +152,16 @@
     <h2>6. Contact Us</h2>
     <p>If you have any questions or feedback regarding this Privacy Policy, feel free to contact us at: <strong>support@promptcrop.com</strong></p>
 
+    <h2>7. Privacy Verification & Network Audit Guide</h2>
+    <p>We believe in absolute transparency. Unlike cloud-based OCR products, PromptCrop OCR runs entirely locally inside your browser. You can audit and verify this yourself at any time by following these steps:</p>
+    <ol style="margin-left: 20px; margin-bottom: 20px; color: #c0c0d0;">
+      <li style="margin-bottom: 8px; font-size: 15px;">Open any webpage (e.g. YouTube) and open Google Chrome Developer Tools by pressing <strong>F12</strong> or <strong>Ctrl+Shift+I</strong> (Cmd+Option+I on macOS).</li>
+      <li style="margin-bottom: 8px; font-size: 15px;">Navigate to the <strong>Network</strong> tab inside Developer Tools and check the <strong>Preserve log</strong> checkbox.</li>
+      <li style="margin-bottom: 8px; font-size: 15px;">Trigger PromptCrop OCR by clicking the extension icon or pressing <strong>Alt+C</strong>, then drag a selection box over any text/video area.</li>
+      <li style="margin-bottom: 8px; font-size: 15px;">Inspect the Network list: you will see that **zero network requests** are sent during the image cropping and OCR text extraction process. All calculations occur inside a sandboxed WebAssembly container local to your system.</li>
+    </ol>
+    <p>Our extension's <code>manifest.json</code> permissions do not request access to read full system details or intercept network calls. The source files are obfuscated solely to comply with Chrome Web Store safety guidelines, without hiding any outbound telemetry (as there is none).</p>
+
     <footer>
       © 2026 Faruk. All rights reserved. | <a href="terms.html" style="color: var(--text-muted); text-decoration: none; hover: color: #fff;">Terms of Service</a>
     </footer>

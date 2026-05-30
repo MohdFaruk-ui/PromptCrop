@@ -15,6 +15,82 @@ const DOWNLOAD_URL = "https://chromewebstore.google.com/detail/promptcrop-ocr/yo
 // Your Personal UPI ID for receiving payments directly (No Business Account required!)
 const DEVELOPER_UPI_ID = "yfspicy@ybl"; 
 
+// -------------------------------------------------------------
+// Geographic Location Detection & Pricing Tables (Section 4 checkout improvements)
+// -------------------------------------------------------------
+let userCountry = "IN"; // Default country
+let userCurrency = "INR"; // Default currency
+
+const PRICING_CONFIG = {
+  INR: {
+    symbol: "₹",
+    starter: { price: 149, displayPrice: "₹149", credits: 300, desc: "Starter Pack (300 Scans)" },
+    pro: { price: 399, displayPrice: "₹399", credits: 1500, desc: "Pro Pack (1500 Scans)" },
+    unlimited: { price: 799, displayPrice: '₹799 <span style="font-size: 14px; text-decoration: line-through; opacity: 0.5; margin-left: 8px;">₹999</span>', credits: "Unlimited", desc: "Unlimited Lifetime Premium" }
+  },
+  USD: {
+    symbol: "$",
+    starter: { price: 4.99, displayPrice: "$4.99", credits: 300, desc: "Starter Pack (300 Scans)" },
+    pro: { price: 12.99, displayPrice: "$12.99", credits: 1500, desc: "Pro Pack (1500 Scans)" },
+    unlimited: { price: 19.99, displayPrice: '$19.99 <span style="font-size: 14px; text-decoration: line-through; opacity: 0.5; margin-left: 8px;">$29.99</span>', credits: "Unlimited", desc: "Unlimited Lifetime Premium" }
+  }
+};
+
+async function detectUserLocation() {
+  try {
+    const res = await fetch("https://ipapi.co/json/");
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.country_code) {
+        userCountry = data.country_code;
+        userCurrency = (userCountry === "IN") ? "INR" : "USD";
+        console.log(`Detected country: ${userCountry}, Currency: ${userCurrency}`);
+      }
+    }
+  } catch (err) {
+    console.warn("Geo-IP detection failed, using timezone fallback:", err);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (tz && !tz.includes("Calcutta") && !tz.includes("Asia/Kolkata")) {
+      userCountry = "US";
+      userCurrency = "USD";
+    }
+  }
+  applyGeographicPricing();
+}
+
+function applyGeographicPricing() {
+  const config = PRICING_CONFIG[userCurrency];
+  if (!config) return;
+
+  const starterPriceEl = document.getElementById("starter-price");
+  const proPriceEl = document.getElementById("pro-price");
+  const unlimitedPriceEl = document.getElementById("unlimited-price");
+  const heroCtaEl = document.getElementById("hero-pricing-cta");
+
+  if (starterPriceEl) starterPriceEl.innerHTML = config.starter.displayPrice;
+  if (proPriceEl) proPriceEl.innerHTML = config.pro.displayPrice;
+  if (unlimitedPriceEl) unlimitedPriceEl.innerHTML = config.unlimited.displayPrice;
+
+  if (heroCtaEl) {
+    if (userCurrency === "INR") {
+      heroCtaEl.textContent = "Unlock Premium (from ₹149)";
+    } else {
+      heroCtaEl.textContent = "Unlock Premium (from $4.99)";
+    }
+  }
+}
+
+function applyGeographicCheckoutUI() {
+  const selector = document.querySelector(".payment-method-selector");
+  if (userCurrency === "INR") {
+    if (selector) selector.style.display = "flex";
+    selectPaymentMethod("razorpay");
+  } else {
+    if (selector) selector.style.display = "none";
+    selectPaymentMethod("lemonsqueezy");
+  }
+}
+
 
 // -------------------------------------------------------------
 // DOM Elements
@@ -31,21 +107,21 @@ const btnCloseSuccess = document.getElementById("btn-close-success");
 
 // Payment Method Selectors
 const methodRazorpay = document.getElementById("method-razorpay");
-const methodKofi = document.getElementById("method-kofi");
+const methodLemonsqueezy = document.getElementById("method-lemonsqueezy");
 const methodUpiQr = document.getElementById("method-upi-qr");
 const razorpayContainer = document.getElementById("razorpay-method-container");
-const kofiContainer = document.getElementById("kofi-method-container");
+const lemonsqueezyContainer = document.getElementById("lemonsqueezy-method-container");
 const upiQrContainer = document.getElementById("upi-qr-method-container");
 
-// Ko-fi checkout fields
-const kofiEmail = document.getElementById("kofi-email");
-const btnProceedKofi = document.getElementById("btn-proceed-kofi");
+// Lemon Squeezy checkout fields
+const lemonsqueezyEmail = document.getElementById("lemonsqueezy-email");
+const btnProceedLemonsqueezy = document.getElementById("btn-proceed-lemonsqueezy");
 
-// Ko-fi Shop links matching selected plan amount
-const KOFI_PLAN_URLS = {
-  99: "https://ko-fi.com/s/a9abcc6b72",       // Starter (200 Scans)
-  199: "https://ko-fi.com/s/43bbbcd320",      // Pro (1000 Scans)
-  499: "https://ko-fi.com/s/f27bc524d7"      // Unlimited Lifetime
+// Lemon Squeezy Shop links matching selected plans
+const LEMON_SQUEEZY_PLAN_URLS = {
+  starter: "https://promptcrop.lemonsqueezy.com/checkout/buy/8a72a08c-905c-4be6-8e5b-b9fbf3b3ab0e",
+  pro: "https://promptcrop.lemonsqueezy.com/checkout/buy/426a8f3b-313d-4952-ba15-ec587b1cbf30",
+  unlimited: "https://promptcrop.lemonsqueezy.com/checkout/buy/78e5f1b1-21bb-4592-a1f1-e9ee5f33f678"
 };
 
 // UPI Details DOM
@@ -62,6 +138,9 @@ let selectedDescription = "";
 // Initialization & Extension Download Bindings
 // -------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  // Detect geographic location
+  detectUserLocation();
+
   // Set Download links dynamically for all layout download buttons
   document.querySelectorAll(".link-download-ext").forEach(link => {
     link.href = DOWNLOAD_URL;
@@ -76,10 +155,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Bind Buy Pack buttons dynamically to open the payment modal
   document.querySelectorAll(".btn-buy-pack").forEach(button => {
     button.addEventListener("click", () => {
-      const amount = parseInt(button.getAttribute("data-amount"), 10);
+      const plan = button.getAttribute("data-plan");
       const desc = button.getAttribute("data-desc");
       if (typeof window.openPurchaseModal === "function") {
-        window.openPurchaseModal(amount, desc);
+        window.openPurchaseModal(plan, desc);
       }
     });
   });
@@ -90,20 +169,35 @@ document.addEventListener("DOMContentLoaded", () => {
 // Modal Action Functions
 // -------------------------------------------------------------
 // Open Modal Function
-window.openPurchaseModal = function (amount, description) {
-  selectedAmount = amount;
-  selectedDescription = description;
+let selectedPlan = "";
+
+// Open Modal Function
+window.openPurchaseModal = function (plan, description) {
+  selectedPlan = plan;
   
+  // Get plan details dynamically based on currency
+  const planDetails = PRICING_CONFIG[userCurrency]?.[plan] || { price: 99, desc: description };
+  selectedAmount = planDetails.price;
+  selectedDescription = planDetails.desc;
+  
+  // Update modal title
+  const modalTitleEl = document.getElementById("purchase-modal-title");
+  if (modalTitleEl) {
+    modalTitleEl.textContent = `Upgrade: ${description}`;
+  }
+
   // Update UI elements in modal
   if (upiAmountDisplay) {
-    upiAmountDisplay.textContent = `₹${amount}`;
+    upiAmountDisplay.textContent = `₹${selectedAmount}`;
   }
   
-  // Set up the dynamic UPI URL and QR Code
-  generateUpiQrCode(amount);
+  // Set up the dynamic UPI URL and QR Code (only relevant for India)
+  if (userCurrency === "INR") {
+    generateUpiQrCode(selectedAmount);
+  }
 
-  // Reset payment tabs back to default (Razorpay)
-  selectPaymentMethod("razorpay");
+  // Configure tab visibility and default selection based on country
+  applyGeographicCheckoutUI();
 
   if (purchaseModal) purchaseModal.classList.remove("hidden");
   if (cardForm) cardForm.classList.remove("hidden");
@@ -126,22 +220,22 @@ if (btnCloseSuccess) btnCloseSuccess.addEventListener("click", closeModal);
 function selectPaymentMethod(method) {
   // Reset active classes
   if (methodRazorpay) methodRazorpay.classList.remove("active");
-  if (methodKofi) methodKofi.classList.remove("active");
+  if (methodLemonsqueezy) methodLemonsqueezy.classList.remove("active");
   if (methodUpiQr) methodUpiQr.classList.remove("active");
 
   // Hide all containers
   if (razorpayContainer) razorpayContainer.classList.add("hidden");
-  if (kofiContainer) kofiContainer.classList.add("hidden");
+  if (lemonsqueezyContainer) lemonsqueezyContainer.classList.add("hidden");
   if (upiQrContainer) upiQrContainer.classList.add("hidden");
 
   // Show selected method and containers
   if (method === "razorpay") {
     if (methodRazorpay) methodRazorpay.classList.add("active");
     if (razorpayContainer) razorpayContainer.classList.remove("hidden");
-  } else if (method === "kofi") {
-    if (methodKofi) methodKofi.classList.add("active");
-    if (kofiContainer) kofiContainer.classList.remove("hidden");
-    if (kofiEmail) kofiEmail.focus();
+  } else if (method === "lemonsqueezy") {
+    if (methodLemonsqueezy) methodLemonsqueezy.classList.add("active");
+    if (lemonsqueezyContainer) lemonsqueezyContainer.classList.remove("hidden");
+    if (lemonsqueezyEmail) lemonsqueezyEmail.focus();
   } else if (method === "upi-qr") {
     if (methodUpiQr) methodUpiQr.classList.add("active");
     if (upiQrContainer) upiQrContainer.classList.remove("hidden");
@@ -151,8 +245,8 @@ function selectPaymentMethod(method) {
 if (methodRazorpay) {
   methodRazorpay.addEventListener("click", () => selectPaymentMethod("razorpay"));
 }
-if (methodKofi) {
-  methodKofi.addEventListener("click", () => selectPaymentMethod("kofi"));
+if (methodLemonsqueezy) {
+  methodLemonsqueezy.addEventListener("click", () => selectPaymentMethod("lemonsqueezy"));
 }
 if (methodUpiQr) {
   methodUpiQr.addEventListener("click", () => selectPaymentMethod("upi-qr"));
@@ -264,37 +358,53 @@ if (btnProceedPayment) {
 }
 
 // -------------------------------------------------------------
-// Proceed to International Checkout (Ko-fi Shop)
+// Proceed to International Checkout (Lemon Squeezy Overlay)
 // -------------------------------------------------------------
-if (btnProceedKofi) {
-  btnProceedKofi.addEventListener("click", () => {
-    const email = kofiEmail.value.trim();
+window.createLemonSqueezyCheckout = function(url, email) {
+  if (window.LemonSqueezy) {
+    try {
+      const checkoutUrl = new URL(url);
+      if (email) {
+        checkoutUrl.searchParams.set("checkout[email]", email);
+      }
+      window.LemonSqueezy.Url.Open(checkoutUrl.toString());
+    } catch (e) {
+      window.open(url, "_blank");
+    }
+  } else {
+    window.open(url, "_blank");
+  }
+};
+
+if (btnProceedLemonsqueezy) {
+  btnProceedLemonsqueezy.addEventListener("click", () => {
+    const email = lemonsqueezyEmail.value.trim();
     if (!email || !email.includes("@")) {
       alert("Please enter a valid email address.");
       return;
     }
 
-    const kofiUrl = KOFI_PLAN_URLS[selectedAmount];
-    if (!kofiUrl) {
-      alert("Selected plan is not configured for Ko-fi. Please try another payment method.");
+    const checkoutUrl = LEMON_SQUEEZY_PLAN_URLS[selectedPlan];
+    if (!checkoutUrl) {
+      alert("Selected plan is not configured for Lemon Squeezy.");
       return;
     }
 
-    // Open in a new tab for a smooth experience
-    window.open(kofiUrl, "_blank");
+    // Open Lemon Squeezy Modal Overlay
+    window.createLemonSqueezyCheckout(checkoutUrl, email);
 
     // Close checkout modal
     closeModal();
   });
 }
 
-// Synchronize inputs between Razorpay and Ko-fi email fields for UI convenience
-if (checkoutEmail && kofiEmail) {
+// Synchronize inputs between Razorpay and Lemon Squeezy email fields for UI convenience
+if (checkoutEmail && lemonsqueezyEmail) {
   checkoutEmail.addEventListener("input", () => {
-    kofiEmail.value = checkoutEmail.value;
+    lemonsqueezyEmail.value = checkoutEmail.value;
   });
-  kofiEmail.addEventListener("input", () => {
-    checkoutEmail.value = kofiEmail.value;
+  lemonsqueezyEmail.addEventListener("input", () => {
+    checkoutEmail.value = lemonsqueezyEmail.value;
   });
 }
 
