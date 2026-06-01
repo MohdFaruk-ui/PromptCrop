@@ -87,7 +87,7 @@ function applyGeographicCheckoutUI() {
     selectPaymentMethod("razorpay");
   } else {
     if (selector) selector.style.display = "none";
-    selectPaymentMethod("lemonsqueezy");
+    selectPaymentMethod("dodopayments");
   }
 }
 
@@ -107,21 +107,22 @@ const btnCloseSuccess = document.getElementById("btn-close-success");
 
 // Payment Method Selectors
 const methodRazorpay = document.getElementById("method-razorpay");
-const methodLemonsqueezy = document.getElementById("method-lemonsqueezy");
+const methodDodopayments = document.getElementById("method-dodopayments");
 const methodUpiQr = document.getElementById("method-upi-qr");
 const razorpayContainer = document.getElementById("razorpay-method-container");
-const lemonsqueezyContainer = document.getElementById("lemonsqueezy-method-container");
+const dodopaymentsContainer = document.getElementById("dodopayments-method-container");
 const upiQrContainer = document.getElementById("upi-qr-method-container");
 
-// Lemon Squeezy checkout fields
-const lemonsqueezyEmail = document.getElementById("lemonsqueezy-email");
-const btnProceedLemonsqueezy = document.getElementById("btn-proceed-lemonsqueezy");
+// Dodo Payments checkout fields
+const dodopaymentsEmail = document.getElementById("dodopayments-email");
+const btnProceedDodopayments = document.getElementById("btn-proceed-dodopayments");
 
-// Lemon Squeezy Shop links matching selected plans
-const LEMON_SQUEEZY_PLAN_URLS = {
-  starter: "https://promptcrop.lemonsqueezy.com/checkout/buy/8a72a08c-905c-4be6-8e5b-b9fbf3b3ab0e",
-  pro: "https://promptcrop.lemonsqueezy.com/checkout/buy/426a8f3b-313d-4952-ba15-ec587b1cbf30",
-  unlimited: "https://promptcrop.lemonsqueezy.com/checkout/buy/78e5f1b1-21bb-4592-a1f1-e9ee5f33f678"
+// Dodo Payments Shop links matching selected plans
+// Replace these with your actual Dodo Payments Product checkout URLs
+const DODO_PAYMENTS_PLAN_URLS = {
+  starter: "https://checkout.dodopayments.com/buy/pdt_0Ng6jt5orc4Tf1uFT23G2",
+  pro: "https://checkout.dodopayments.com/buy/pdt_0Ng6k2Jisg8WF69zC9Wkc",
+  unlimited: "https://checkout.dodopayments.com/buy/pdt_0Ng6kCSEpXeRY0fgK2Mfy"
 };
 
 // UPI Details DOM
@@ -162,6 +163,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Initialize Dodo Payments overlay SDK
+  if (window.DodoPaymentsCheckout && window.DodoPaymentsCheckout.DodoPayments) {
+    window.DodoPaymentsCheckout.DodoPayments.Initialize({
+      mode: "test", // Change to "live" when deploying to production
+      displayType: "overlay",
+      onEvent: (event) => {
+        console.log("Dodo Payments event:", event);
+      }
+    });
+  }
 });
 
 
@@ -220,22 +232,22 @@ if (btnCloseSuccess) btnCloseSuccess.addEventListener("click", closeModal);
 function selectPaymentMethod(method) {
   // Reset active classes
   if (methodRazorpay) methodRazorpay.classList.remove("active");
-  if (methodLemonsqueezy) methodLemonsqueezy.classList.remove("active");
+  if (methodDodopayments) methodDodopayments.classList.remove("active");
   if (methodUpiQr) methodUpiQr.classList.remove("active");
 
   // Hide all containers
   if (razorpayContainer) razorpayContainer.classList.add("hidden");
-  if (lemonsqueezyContainer) lemonsqueezyContainer.classList.add("hidden");
+  if (dodopaymentsContainer) dodopaymentsContainer.classList.add("hidden");
   if (upiQrContainer) upiQrContainer.classList.add("hidden");
 
   // Show selected method and containers
   if (method === "razorpay") {
     if (methodRazorpay) methodRazorpay.classList.add("active");
     if (razorpayContainer) razorpayContainer.classList.remove("hidden");
-  } else if (method === "lemonsqueezy") {
-    if (methodLemonsqueezy) methodLemonsqueezy.classList.add("active");
-    if (lemonsqueezyContainer) lemonsqueezyContainer.classList.remove("hidden");
-    if (lemonsqueezyEmail) lemonsqueezyEmail.focus();
+  } else if (method === "dodopayments") {
+    if (methodDodopayments) methodDodopayments.classList.add("active");
+    if (dodopaymentsContainer) dodopaymentsContainer.classList.remove("hidden");
+    if (dodopaymentsEmail) dodopaymentsEmail.focus();
   } else if (method === "upi-qr") {
     if (methodUpiQr) methodUpiQr.classList.add("active");
     if (upiQrContainer) upiQrContainer.classList.remove("hidden");
@@ -245,8 +257,8 @@ function selectPaymentMethod(method) {
 if (methodRazorpay) {
   methodRazorpay.addEventListener("click", () => selectPaymentMethod("razorpay"));
 }
-if (methodLemonsqueezy) {
-  methodLemonsqueezy.addEventListener("click", () => selectPaymentMethod("lemonsqueezy"));
+if (methodDodopayments) {
+  methodDodopayments.addEventListener("click", () => selectPaymentMethod("dodopayments"));
 }
 if (methodUpiQr) {
   methodUpiQr.addEventListener("click", () => selectPaymentMethod("upi-qr"));
@@ -358,16 +370,18 @@ if (btnProceedPayment) {
 }
 
 // -------------------------------------------------------------
-// Proceed to International Checkout (Lemon Squeezy Overlay)
+// Proceed to International Checkout (Dodo Payments Overlay)
 // -------------------------------------------------------------
-window.createLemonSqueezyCheckout = function(url, email) {
-  if (window.LemonSqueezy) {
+window.createDodoPaymentsCheckout = function(url, email) {
+  if (window.DodoPaymentsCheckout && window.DodoPaymentsCheckout.DodoPayments) {
     try {
       const checkoutUrl = new URL(url);
       if (email) {
-        checkoutUrl.searchParams.set("checkout[email]", email);
+        checkoutUrl.searchParams.set("email", email);
       }
-      window.LemonSqueezy.Url.Open(checkoutUrl.toString());
+      window.DodoPaymentsCheckout.DodoPayments.Checkout.open({
+        checkoutUrl: checkoutUrl.toString()
+      });
     } catch (e) {
       window.open(url, "_blank");
     }
@@ -376,35 +390,35 @@ window.createLemonSqueezyCheckout = function(url, email) {
   }
 };
 
-if (btnProceedLemonsqueezy) {
-  btnProceedLemonsqueezy.addEventListener("click", () => {
-    const email = lemonsqueezyEmail.value.trim();
+if (btnProceedDodopayments) {
+  btnProceedDodopayments.addEventListener("click", () => {
+    const email = dodopaymentsEmail.value.trim();
     if (!email || !email.includes("@")) {
       alert("Please enter a valid email address.");
       return;
     }
 
-    const checkoutUrl = LEMON_SQUEEZY_PLAN_URLS[selectedPlan];
+    const checkoutUrl = DODO_PAYMENTS_PLAN_URLS[selectedPlan];
     if (!checkoutUrl) {
-      alert("Selected plan is not configured for Lemon Squeezy.");
+      alert("Selected plan is not configured for Dodo Payments.");
       return;
     }
 
-    // Open Lemon Squeezy Modal Overlay
-    window.createLemonSqueezyCheckout(checkoutUrl, email);
+    // Open Dodo Payments Modal Overlay
+    window.createDodoPaymentsCheckout(checkoutUrl, email);
 
     // Close checkout modal
     closeModal();
   });
 }
 
-// Synchronize inputs between Razorpay and Lemon Squeezy email fields for UI convenience
-if (checkoutEmail && lemonsqueezyEmail) {
+// Synchronize inputs between Razorpay and Dodo Payments email fields for UI convenience
+if (checkoutEmail && dodopaymentsEmail) {
   checkoutEmail.addEventListener("input", () => {
-    lemonsqueezyEmail.value = checkoutEmail.value;
+    dodopaymentsEmail.value = checkoutEmail.value;
   });
-  lemonsqueezyEmail.addEventListener("input", () => {
-    checkoutEmail.value = lemonsqueezyEmail.value;
+  dodopaymentsEmail.addEventListener("input", () => {
+    checkoutEmail.value = dodopaymentsEmail.value;
   });
 }
 
