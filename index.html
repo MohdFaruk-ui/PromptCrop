@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://checkout.razorpay.com https://assets.lemonsqueezy.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://promptcrop-backend.onrender.com http://localhost:5000 https://api.razorpay.com; img-src 'self' data: https://*.razorpay.com https://api.qrserver.com; frame-src https://api.razorpay.com https://lemonsqueezy.com https://*.lemonsqueezy.com; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://checkout.razorpay.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://promptcrop-backend.onrender.com http://localhost:5000 https://api.razorpay.com; img-src 'self' data: https://*.razorpay.com https://api.qrserver.com; frame-src https://api.razorpay.com https://checkout.dodopayments.com; frame-ancestors 'none';">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -962,20 +962,20 @@
 
     @keyframes imgCursorAnim {
       0% { top: 90%; left: 95%; opacity: 1; }
-      20% { top: 48%; left: 52%; opacity: 1; }
+      20% { top: 45%; left: 54%; opacity: 1; }
       22% { transform: scale(0.8); }
       25% { transform: scale(1); }
-      45% { top: 65%; left: 93%; opacity: 1; }
+      45% { top: 58%; left: 88%; opacity: 1; }
       48% { transform: scale(0.8); }
       50% { transform: scale(1); opacity: 0; }
       100% { top: 90%; left: 95%; opacity: 0; }
     }
 
     @keyframes imgSelectBoxAnim {
-      0%, 20% { top: 48%; left: 52%; width: 0%; height: 0%; opacity: 0; }
-      45% { top: 48%; left: 52%; width: 41%; height: 17%; opacity: 1; }
-      85% { top: 48%; left: 52%; width: 41%; height: 17%; opacity: 1; }
-      92%, 100% { top: 48%; left: 52%; width: 41%; height: 17%; opacity: 0; }
+      0%, 20% { top: 45%; left: 54%; width: 0%; height: 0%; opacity: 0; }
+      45% { top: 45%; left: 54%; width: 34%; height: 13%; opacity: 1; }
+      85% { top: 45%; left: 54%; width: 34%; height: 13%; opacity: 1; }
+      92%, 100% { top: 45%; left: 54%; width: 34%; height: 13%; opacity: 0; }
     }
 
     @keyframes imgToastAnim {
@@ -1834,7 +1834,7 @@
         <!-- Payment Method Tabs -->
         <div class="payment-method-selector">
           <button type="button" class="btn-method active" id="method-razorpay">⚡ Online Card / UPI</button>
-          <button type="button" class="btn-method" id="method-lemonsqueezy">🌐 Card / PayPal (Global)</button>
+          <button type="button" class="btn-method" id="method-dodopayments">🌐 Card / PayPal (Global)</button>
           <button type="button" class="btn-method" id="method-upi-qr">📸 Scan UPI QR Code</button>
         </div>
 
@@ -1847,14 +1847,14 @@
           <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Payment</button>
         </div>
 
-        <!-- Method 3: Lemon Squeezy Container -->
-        <div id="lemonsqueezy-method-container" class="hidden">
+        <!-- Method 3: Dodo Payments Container -->
+        <div id="dodopayments-method-container" class="hidden">
           <div class="form-group">
-            <label for="lemonsqueezy-email">Your Email Address</label>
-            <input type="email" id="lemonsqueezy-email" placeholder="you@example.com">
+            <label for="dodopayments-email">Your Email Address</label>
+            <input type="email" id="dodopayments-email" placeholder="you@example.com">
           </div>
-          <button id="btn-proceed-lemonsqueezy" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Checkout</button>
-          <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">Securely checkout via Lemon Squeezy. Supports cards, PayPal, and Apple Pay globally via secure pop-up overlay.</p>
+          <button id="btn-proceed-dodopayments" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Checkout</button>
+          <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">Securely checkout via Dodo Payments. Supports cards, PayPal, Google Pay, and Apple Pay globally via secure pop-up overlay.</p>
         </div>
 
         <!-- Method 2: UPI QR Code Container -->
@@ -1905,8 +1905,8 @@
 
   <!-- Include Razorpay Standard Checkout Script -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <!-- Include Lemon Squeezy Overlay Checkout Script -->
-  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+  <!-- Include Dodo Payments Overlay Checkout Script -->
+  <script src="https://cdn.jsdelivr.net/npm/dodopayments-checkout@latest/dist/index.js"></script>
   <script src="checkout.js"></script>
 </body>
 </html>
