@@ -10,7 +10,7 @@
 const BACKEND_URL = "https://promptcrop-backend.onrender.com";
 
 // Chrome Web Store Download Link (Update this once your extension is published)
-const DOWNLOAD_URL = "https://chromewebstore.google.com/detail/promptcrop-ocr/your-extension-id-here";
+const DOWNLOAD_URL = "https://chromewebstore.google.com/detail/promptcrop-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh";
 
 // Your Personal UPI ID for receiving payments directly (No Business Account required!)
 const DEVELOPER_UPI_ID = "yfspicy@ybl"; 
