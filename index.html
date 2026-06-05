@@ -1873,10 +1873,25 @@
               <strong>Instructions:</strong>
               <ol>
                 <li>Scan the QR code with any UPI app (GPay, PhonePe, Paytm, etc.).</li>
-                <li>Pay the correct plan amount: <strong id="upi-amount-display">₹99</strong>.</li>
-                <li>Send a screenshot of the payment success and your checkout email to: <strong>support@promptcrop.com</strong></li>
-                <li>We will verify and email your premium license key within 5-10 minutes.</li>
+                <li>Pay the **EXACT** amount shown above: <strong id="upi-amount-display">₹99.00</strong> (including paise).</li>
+                <li>Enter your email and the **12-digit UPI Transaction ID / UTR** from your app transaction details below.</li>
+                <li>Click **Submit Payment Verification**. Once approved, your key is automatically generated and emailed!</li>
               </ol>
+            </div>
+
+            <div style="border-top: 1px solid var(--border-color); margin-top: 15px; padding-top: 15px; text-align: left;">
+              <div class="form-group" style="margin-bottom: 15px;">
+                <label for="upi-user-email" style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; letter-spacing: 0.5px;">Your Checkout Email</label>
+                <input type="email" id="upi-user-email" placeholder="you@example.com" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--bg-tertiary); color: #fff; outline: none; font-size: 14px;">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 15px;">
+                <label for="upi-utr" style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; letter-spacing: 0.5px;">12-Digit UPI Transaction ID / UTR</label>
+                <input type="text" id="upi-utr" placeholder="Enter 12-digit reference number" maxlength="12" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--bg-tertiary); color: #fff; outline: none; font-family: monospace; font-size: 14px;">
+              </div>
+
+              <button type="button" id="btn-submit-upi-proof" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer; margin-top: 5px; font-weight: 700;">Submit Payment Verification</button>
+              <div id="upi-submission-status" style="margin-top: 12px; font-size: 13px; text-align: center; font-weight: 600;"></div>
             </div>
           </div>
         </div>
