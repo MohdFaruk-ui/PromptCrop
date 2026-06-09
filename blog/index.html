@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptCrop OCR Blog — YouTube Text Copying & OCR Guides</title>
+  <meta name="description" content="Discover step-by-step guides, tool comparisons, and tutorials on how to copy text from videos, extract code, and use offline OCR Chrome extensions.">
+  <link rel="canonical" href="https://mohdfaruk-ui.github.io/PromptCrop/blog/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PromptCrop OCR Blog — Guides & Tutorials">
+  <meta property="og:description" content="In-depth tutorials, developer tips, and tool comparisons for copying text from YouTube videos, extracting code, and browser-based OCR.">
+  <meta property="og:url" content="https://mohdfaruk-ui.github.io/PromptCrop/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://mohdfaruk-ui.github.io/PromptCrop/assets/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PromptCrop OCR Blog — Guides & Tutorials">
+  <meta name="twitter:description" content="In-depth tutorials, developer tips, and tool comparisons for copying text from YouTube videos.">
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mohdfaruk-ui.github.io/PromptCrop/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mohdfaruk-ui.github.io/PromptCrop/blog/" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  
+  <style>
+    :root {
+      --bg-primary: #0b0b0e;
+      --bg-secondary: #13131a;
+      --bg-tertiary: #1b1b24;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #a020f0;
+      --text-main: #f0f0f5;
+      --text-muted: #8e8e9f;
+      --border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Glow backgrounds */
+    .glow-top {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, transparent 70%);
+      top: -200px;
+      right: -150px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Header */
+    header {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon { font-size: 24px; text-shadow: 0 0 10px var(--accent-cyan); }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .logo-text span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    /* Blog List Wrapper */
+    .blog-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .blog-header h1 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .blog-header h1 span {
+      background: linear-gradient(90deg, var(--accent-cyan), #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .blog-header p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Grid layout */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .blog-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(147, 51, 234, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .blog-card-image {
+      height: 180px;
+      background: linear-gradient(135deg, #2e1065 0%, #1e1b4b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .blog-card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(15, 10, 25, 0.8) 100%);
+    }
+
+    .blog-card-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .blog-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: rgba(147, 51, 234, 0.15);
+      color: #c084fc;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(147, 51, 234, 0.2);
+    }
+
+    .blog-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      transition: color 0.2s ease;
+    }
+
+    .blog-card:hover .blog-card-title {
+      color: #c084fc;
+    }
+
+    .blog-card-excerpt {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .blog-read-more {
+      font-size: 13px;
+      font-weight: 600;
+      color: #c084fc;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s ease;
+      margin-top: auto;
+    }
+
+    .blog-card:hover .blog-read-more {
+      gap: 10px;
+    }
+
+    /* CTA Section inside Blog Hub */
+    .blog-cta {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.06) 0%, rgba(160, 32, 240, 0.06) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.12);
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .blog-cta h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .blog-cta p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-gradient:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 240, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border-color);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: #fff; }
+
+    footer .footer-sep {
+      color: rgba(255, 255, 255, 0.08);
+      margin: 0 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .blog-header h1 { font-size: 32px; }
+      .blog-header p { font-size: 16px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-top"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="https://mohdfaruk-ui.github.io/PromptCrop/" class="logo-area">
+      <span class="logo-icon">⚡</span>
+      <div class="logo-text">PromptCrop <span>OCR</span></div>
+    </a>
+    <nav class="nav-links">
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/">Home</a>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/#features">Features</a>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/#pricing">Pricing</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="blog-wrapper">
+    <div class="blog-header">
+      <h1>Guides, Tips & <span>Resources</span></h1>
+      <p>Master offline OCR, boost your productivity, and learn how to extract text from videos and images in milliseconds.</p>
+    </div>
+
+    <div class="blog-grid">
+      <!-- Article 1 -->
+      <a href="copy-text-youtube-video.html" class="blog-card">
+        <div class="blog-card-image">
+          📺
+        </div>
+        <div class="blog-card-content">
+          <span class="blog-tag">Tutorial</span>
+          <h2 class="blog-card-title">How to Copy Text from Any YouTube Video (3 Methods)</h2>
+          <p class="blog-card-excerpt">
+            Stop manually transcribing code or notes from tutorial videos. Discover the absolute fastest way to extract visual text from YouTube frames.
+          </p>
+          <span class="blog-read-more">Read Article <span>→</span></span>
+        </div>
+      </a>
+
+      <!-- Article 2 -->
+      <a href="best-ocr-chrome-extensions.html" class="blog-card">
+        <div class="blog-card-image">
+          🔍
+        </div>
+        <div class="blog-card-content">
+          <span class="blog-tag">Comparison</span>
+          <h2 class="blog-card-title">5 Best OCR Chrome Extensions in 2026 (Compared)</h2>
+          <p class="blog-card-excerpt">
+            We review the top screenshot-to-text extensions, evaluating their speed, local privacy protection, and character recognition accuracy.
+          </p>
+          <span class="blog-read-more">Read Article <span>→</span></span>
+        </div>
+      </a>
+
+      <!-- Article 3 -->
+      <a href="extract-code-from-tutorial-videos.html" class="blog-card">
+        <div class="blog-card-image">
+          💻
+        </div>
+        <div class="blog-card-content">
+          <span class="blog-tag">Guide</span>
+          <h2 class="blog-card-title">How Developers Extract Code from Tutorial Videos</h2>
+          <p class="blog-card-excerpt">
+            A developer's guide to pausing programming tutorials and instantly extracting clean, indented, ready-to-run code snippets on your machine.
+          </p>
+          <span class="blog-read-more">Read Article <span>→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="blog-cta">
+      <h2>Copy Text from Videos & Images Instantly</h2>
+      <p>Save hours of manual typing with PromptCrop's ultra-fast, 100% offline WebAssembly OCR extension.</p>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/" class="btn btn-gradient">Get PromptCrop OCR Free</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom: 8px;">© 2026 Faruk. All rights reserved.</p>
+    <p>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/">Home</a>
+      <span class="footer-sep">•</span>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/privacy.html">Privacy Policy</a>
+      <span class="footer-sep">•</span>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/terms.html">Terms of Service</a>
+    </p>
+  </footer>
+</body>
+</html>
