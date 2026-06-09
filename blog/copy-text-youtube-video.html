@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Copy Text from Any YouTube Video (3 Methods) | PromptCrop OCR</title>
+  <meta name="description" content="Learn how to copy text from YouTube video frames instantly using 3 proven methods. From offline OCR extensions to built-in transcripts — find the best approach for your workflow.">
+  <link rel="canonical" href="https://mohdfaruk-ui.github.io/PromptCrop/blog/copy-text-youtube-video.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How to Copy Text from Any YouTube Video (3 Methods)">
+  <meta property="og:description" content="Stop pausing and retyping text from YouTube videos. Here are 3 real methods to copy text from any video frame — including one that works 100% offline.">
+  <meta property="og:url" content="https://mohdfaruk-ui.github.io/PromptCrop/blog/copy-text-youtube-video.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mohdfaruk-ui.github.io/PromptCrop/favicon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to Copy Text from Any YouTube Video (3 Methods)">
+  <meta name="twitter:description" content="Stop pausing and retyping text from YouTube videos. 3 real methods to copy text from any video frame.">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Copy Text from Any YouTube Video (3 Methods)",
+    "description": "Learn how to copy text from YouTube video frames instantly using 3 proven methods.",
+    "author": { "@type": "Person", "name": "Faruk" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PromptCrop OCR",
+      "logo": { "@type": "ImageObject", "url": "https://mohdfaruk-ui.github.io/PromptCrop/favicon.png" }
+    },
+    "datePublished": "2026-06-09",
+    "dateModified": "2026-06-09",
+    "mainEntityOfPage": "https://mohdfaruk-ui.github.io/PromptCrop/blog/copy-text-youtube-video.html"
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mohdfaruk-ui.github.io/PromptCrop/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mohdfaruk-ui.github.io/PromptCrop/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Copy Text from YouTube Video", "item": "https://mohdfaruk-ui.github.io/PromptCrop/blog/copy-text-youtube-video.html" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <style>
+    :root {
+      --bg-primary: #0b0b0e;
+      --bg-secondary: #13131a;
+      --bg-tertiary: #1b1b24;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #a020f0;
+      --text-main: #f0f0f5;
+      --text-muted: #8e8e9f;
+      --border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Glow backgrounds */
+    .glow-top {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, transparent 70%);
+      top: -200px;
+      right: -150px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-bottom {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(160, 32, 240, 0.04) 0%, transparent 75%);
+      bottom: -150px;
+      left: -200px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Header */
+    header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon { font-size: 24px; text-shadow: 0 0 10px var(--accent-cyan); }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .logo-text span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    /* Article Container */
+    .article-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 50px 24px 80px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .breadcrumb a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+
+    /* Article Header */
+    .article-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 5px 14px;
+      border-radius: 30px;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .article-title em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .article-meta {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .article-meta .dot { opacity: 0.3; }
+
+    /* Article Body */
+    .article-body h2 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .article-body h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .article-body p {
+      color: #c8c8d8;
+      font-size: 16px;
+      margin-bottom: 18px;
+      line-height: 1.75;
+    }
+
+    .article-body a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+      transition: border-color 0.2s;
+    }
+
+    .article-body a:hover { border-color: var(--accent-cyan); }
+
+    .article-body ul, .article-body ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      color: #c8c8d8;
+    }
+
+    .article-body li {
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .article-body strong { color: #fff; }
+
+    /* Step boxes */
+    .step-box {
+      background: rgba(19, 19, 26, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 20px 0 24px;
+    }
+
+    .step-box .step-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-purple);
+      margin-bottom: 10px;
+    }
+
+    .step-box p {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    /* Keyboard shortcut tags */
+    kbd {
+      background: var(--bg-tertiary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent-cyan);
+      white-space: nowrap;
+    }
+
+    /* Callout / Tip box */
+    .callout {
+      background: rgba(0, 240, 255, 0.04);
+      border-left: 3px solid var(--accent-cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 18px 24px;
+      margin: 24px 0;
+    }
+
+    .callout.warning {
+      background: rgba(255, 170, 0, 0.04);
+      border-left-color: #ffaa00;
+    }
+
+    .callout p { margin-bottom: 0; font-size: 15px; }
+
+    .callout strong { color: var(--accent-cyan); }
+
+    .callout.warning strong { color: #ffaa00; }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 14px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .comparison-table th {
+      background: var(--bg-tertiary);
+      color: var(--accent-cyan);
+      font-weight: 700;
+      text-align: left;
+      padding: 14px 16px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .comparison-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: #c0c0d0;
+    }
+
+    .comparison-table tr:last-child td { border-bottom: none; }
+
+    .comparison-table tbody tr {
+      background: rgba(19, 19, 26, 0.3);
+      transition: background 0.2s;
+    }
+
+    .comparison-table tbody tr:hover { background: rgba(19, 19, 26, 0.6); }
+
+    /* CTA Box */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.06) 0%, rgba(160, 32, 240, 0.06) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.12);
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .cta-box h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-gradient:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 240, 255, 0.3);
+    }
+
+    /* Related articles */
+    .related-articles {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .related-articles h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .related-card {
+      background: rgba(19, 19, 26, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .related-card:hover {
+      border-color: rgba(0, 240, 255, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .related-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .related-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 30px 24px;
+      border-top: 1px solid var(--border-color);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: #fff; }
+
+    footer .footer-sep {
+      color: rgba(255, 255, 255, 0.08);
+      margin: 0 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .article-title { font-size: 28px; }
+      .article-body h2 { font-size: 22px; }
+      .related-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-top"></div>
+  <div class="glow-bottom"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="https://mohdfaruk-ui.github.io/PromptCrop/" class="logo-area">
+      <span class="logo-icon">⚡</span>
+      <div class="logo-text">PromptCrop <span>OCR</span></div>
+    </a>
+    <nav class="nav-links">
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/">Home</a>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/#features">Features</a>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/#pricing">Pricing</a>
+    </nav>
+  </header>
+
+  <!-- Article -->
+  <main class="article-wrapper">
+    <div class="breadcrumb">
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/">Home</a>
+      <span class="sep">›</span>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/blog/">Blog</a>
+      <span class="sep">›</span>
+      Copy Text from YouTube Video
+    </div>
+
+    <span class="article-tag">Guide</span>
+    <h1 class="article-title">How to Copy Text from Any <em>YouTube Video</em> (3 Methods)</h1>
+    <div class="article-meta">
+      <span>By Faruk</span>
+      <span class="dot">•</span>
+      <span>June 9, 2026</span>
+      <span class="dot">•</span>
+      <span>8 min read</span>
+    </div>
+
+    <article class="article-body">
+      <p>
+        If you've ever tried to <strong>copy text from a YouTube video</strong>, you already know the frustration. You see a code snippet, a URL, an API key, or a ChatGPT prompt on screen — and there's literally no way to select it. You can't right-click. You can't highlight. You just… stare at it.
+      </p>
+
+      <p>
+        Most people end up pausing the video, squinting at the screen, and manually typing everything character by character. That's slow, error-prone, and honestly a waste of your time in 2026.
+      </p>
+
+      <p>
+        The good news? There are real solutions. In this guide, I'll walk you through <strong>3 proven methods to copy text from any YouTube video</strong> — from the fastest one-click approach to the manual workarounds. Let's get into it.
+      </p>
+
+      <!-- Method 1 -->
+      <h2>Method 1: Use PromptCrop OCR (Fastest & Most Private)</h2>
+
+      <p>
+        This is hands-down the quickest way to copy text from YouTube videos. <a href="https://mohdfaruk-ui.github.io/PromptCrop/">PromptCrop OCR</a> is a Chrome extension that uses offline OCR to extract text directly from your screen — no uploads, no servers, no API calls.
+      </p>
+
+      <p>
+        You literally draw a box around the text you want, and it's copied to your clipboard in about 300 milliseconds. That's it.
+      </p>
+
+      <h3>Step-by-Step Walkthrough</h3>
+
+      <div class="step-box">
+        <div class="step-label">Step 1 — Install the Extension</div>
+        <p>Head to the <a href="https://chromewebstore.google.com/detail/promptcrop-ocr/your-extension-id-here">Chrome Web Store</a> and add PromptCrop OCR to your browser. It's free to install (you get 3 scans per day on the free tier).</p>
+      </div>
+
+      <div class="step-box">
+        <div class="step-label">Step 2 — Open Your YouTube Video</div>
+        <p>Navigate to the YouTube video that has the text you need. Pause it at the frame where the text is visible — a code snippet, a URL, a terminal command, whatever it is.</p>
+      </div>
+
+      <div class="step-box">
+        <div class="step-label">Step 3 — Activate PromptCrop</div>
+        <p>Press <kbd>Alt</kbd> + <kbd>C</kbd> on your keyboard (or click the extension icon in your toolbar). Your cursor will turn into a crosshair.</p>
+      </div>
+
+      <div class="step-box">
+        <div class="step-label">Step 4 — Drag to Select</div>
+        <p>Click and drag a selection box around the text you want to copy. Cover just the text area — you don't need to be pixel-perfect, but tighter selections give cleaner results.</p>
+      </div>
+
+      <div class="step-box">
+        <div class="step-label">Step 5 — Done. Text is Copied.</div>
+        <p>Release your mouse. PromptCrop processes the selected region locally using WebAssembly-powered Tesseract OCR, and the extracted text is instantly copied to your clipboard. You'll see a green "✓ Copied" toast notification confirming it.</p>
+      </div>
+
+      <p>
+        Now just <kbd>Ctrl</kbd> + <kbd>V</kbd> to paste wherever you need it — your code editor, terminal, notes app, chat window.
+      </p>
+
+      <div class="callout">
+        <p><strong>Why this method wins:</strong> Everything happens locally inside your browser. Your screenshots never leave your machine — no cloud processing, no privacy risk. It also auto-detects 9 languages, so it works on non-English content too.</p>
+      </div>
+
+      <h3>When to Use This Method</h3>
+
+      <ul>
+        <li>Copying code snippets from programming tutorials</li>
+        <li>Grabbing API keys, URLs, or terminal commands from video walkthroughs</li>
+        <li>Extracting ChatGPT/AI prompts shown on screen</li>
+        <li>Copying text from slides, presentations, or whiteboard videos</li>
+        <li>Any situation where you need the <em>exact</em> text visible in the video frame</li>
+      </ul>
+
+      <!-- Method 2 -->
+      <h2>Method 2: YouTube's Built-In Transcript (Limited but Free)</h2>
+
+      <p>
+        YouTube does have a transcript feature built right into the player. If the video creator has enabled captions (or if YouTube auto-generated them), you can access a full text transcript.
+      </p>
+
+      <h3>How to Access It</h3>
+
+      <ol>
+        <li>Open the YouTube video and click the <strong>"…" (more)</strong> button below the video title</li>
+        <li>Select <strong>"Show transcript"</strong> from the dropdown</li>
+        <li>A transcript panel opens on the right side with timestamped text</li>
+        <li>You can select and copy text from the transcript panel</li>
+      </ol>
+
+      <h3>The Limitations (And Why It Won't Always Work)</h3>
+
+      <p>
+        Here's the thing — this method only captures <em>spoken words</em>. It transcribes what someone said out loud in the video.
+      </p>
+
+      <p>
+        It does <strong>not</strong> capture:
+      </p>
+
+      <ul>
+        <li>Code shown on screen (unless the presenter reads it aloud, character by character)</li>
+        <li>URLs or links displayed visually</li>
+        <li>Text in slides or presentation decks</li>
+        <li>Terminal output or console logs</li>
+        <li>Whiteboard notes or handwritten text</li>
+      </ul>
+
+      <p>
+        Also, auto-generated transcripts are notoriously inaccurate for technical content. Try getting YouTube to auto-transcribe a Python function name or a Kubernetes command — it's going to butcher it.
+      </p>
+
+      <div class="callout warning">
+        <p><strong>Bottom line:</strong> The transcript feature is fine for capturing what someone <em>said</em>. But if you need text that's <em>shown</em> on screen — code, URLs, configs — it won't help you at all.</p>
+      </div>
+
+      <!-- Method 3 -->
+      <h2>Method 3: Screenshot + Online OCR Tool (Works, But Risky)</h2>
+
+      <p>
+        This is the manual workaround that many people default to. Take a screenshot of the video frame, then upload it to an online OCR service like Google Lens, OnlineOCR.net, or i2OCR to extract the text.
+      </p>
+
+      <h3>The Process</h3>
+
+      <ol>
+        <li>Pause the YouTube video at the right frame</li>
+        <li>Take a screenshot (<kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> on Windows, or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> on Mac)</li>
+        <li>Open an online OCR tool in a new tab</li>
+        <li>Upload the screenshot</li>
+        <li>Wait for processing</li>
+        <li>Copy the extracted text</li>
+      </ol>
+
+      <p>
+        It works. But there are real problems with this approach.
+      </p>
+
+      <h3>The Privacy Issue</h3>
+
+      <p>
+        When you upload a screenshot to an online OCR service, you're sending whatever is in that image to someone else's server. That might include sensitive content: proprietary code, internal dashboards, personal information, API keys, credentials.
+      </p>
+
+      <p>
+        Most free OCR websites don't have transparent privacy policies. Some explicitly state they may store or analyze uploaded images. If you're working with anything even remotely sensitive, this is a real risk.
+      </p>
+
+      <h3>The Speed Issue</h3>
+
+      <p>
+        Taking a screenshot → opening a new tab → uploading → waiting → copying. That's a 60+ second workflow for something that should take 2 seconds. If you're doing this multiple times per video, it adds up fast.
+      </p>
+
+      <div class="callout warning">
+        <p><strong>Use with caution:</strong> Online OCR tools are fine for the occasional non-sensitive screenshot. But for daily use — especially with code or private content — the privacy and speed trade-offs aren't worth it.</p>
+      </div>
+
+      <!-- Comparison -->
+      <h2>Quick Comparison: All 3 Methods</h2>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>PromptCrop OCR</th>
+            <th>YouTube Transcript</th>
+            <th>Screenshot + Online OCR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Captures on-screen text</strong></td>
+            <td>✅ Yes</td>
+            <td>❌ No (speech only)</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td><strong>Speed</strong></td>
+            <td>~300ms</td>
+            <td>Instant (if available)</td>
+            <td>60+ seconds</td>
+          </tr>
+          <tr>
+            <td><strong>Privacy</strong></td>
+            <td>100% offline</td>
+            <td>N/A</td>
+            <td>⚠️ Uploaded to server</td>
+          </tr>
+          <tr>
+            <td><strong>Works with code</strong></td>
+            <td>✅ Excellent</td>
+            <td>❌ Poor</td>
+            <td>✅ Decent</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-language</strong></td>
+            <td>9 languages</td>
+            <td>Varies by video</td>
+            <td>Depends on tool</td>
+          </tr>
+          <tr>
+            <td><strong>Requires upload</strong></td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><strong>Free tier</strong></td>
+            <td>3 scans/day</td>
+            <td>Free</td>
+            <td>Free (most tools)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Final thoughts -->
+      <h2>Which Method Should You Use?</h2>
+
+      <p>
+        It depends on what you're trying to copy:
+      </p>
+
+      <ul>
+        <li><strong>Need the exact text shown on screen</strong> (code, URLs, configs)? → Use <a href="https://mohdfaruk-ui.github.io/PromptCrop/">PromptCrop OCR</a>. It's the only method that reliably captures visual text from video frames.</li>
+        <li><strong>Just want what someone said?</strong> → YouTube's transcript is fine if it's available and accurate enough for your needs.</li>
+        <li><strong>One-off screenshot of non-sensitive content?</strong> → An online OCR tool will get the job done, but don't make it a habit with private data.</li>
+      </ul>
+
+      <p>
+        For developers, students, and anyone who regularly works with tutorial videos, PromptCrop is going to save you a surprising amount of time. That <kbd>Alt</kbd> + <kbd>C</kbd> shortcut becomes muscle memory fast.
+      </p>
+
+      <p>
+        Looking for more options? Check out our comparison of the <a href="best-ocr-chrome-extensions.html">5 best OCR Chrome extensions in 2026</a>, or read how developers specifically use OCR to <a href="extract-code-from-tutorial-videos.html">extract code from tutorial videos</a>.
+      </p>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Try PromptCrop Free</h3>
+        <p>Copy text from any YouTube video in under a second. 100% offline, zero privacy risk. Free tier includes 3 scans per day.</p>
+        <a href="https://mohdfaruk-ui.github.io/PromptCrop/" class="btn btn-gradient">Get PromptCrop OCR →</a>
+      </div>
+
+      <!-- Related Articles -->
+      <div class="related-articles">
+        <h3>Related Articles</h3>
+        <div class="related-grid">
+          <a href="best-ocr-chrome-extensions.html" class="related-card">
+            <h4>5 Best OCR Chrome Extensions in 2026</h4>
+            <p>Honest comparison of the top OCR tools for Chrome, ranked by speed, privacy, and accuracy.</p>
+          </a>
+          <a href="extract-code-from-tutorial-videos.html" class="related-card">
+            <h4>Extract Code from Tutorial Videos</h4>
+            <p>How developers copy code snippets from YouTube tutorials without typing a single character.</p>
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom: 8px;">© 2026 Faruk. All rights reserved.</p>
+    <p>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/">Home</a>
+      <span class="footer-sep">•</span>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/privacy.html">Privacy Policy</a>
+      <span class="footer-sep">•</span>
+      <a href="https://mohdfaruk-ui.github.io/PromptCrop/terms.html">Terms of Service</a>
+    </p>
+  </footer>
+</body>
+</html>

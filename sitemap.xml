@@ -2,20 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mohdfaruk-ui.github.io/PromptCrop/</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://mohdfaruk-ui.github.io/PromptCrop/privacy.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://mohdfaruk-ui.github.io/PromptCrop/terms.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mohdfaruk-ui.github.io/PromptCrop/blog/copy-text-youtube-video.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohdfaruk-ui.github.io/PromptCrop/blog/best-ocr-chrome-extensions.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohdfaruk-ui.github.io/PromptCrop/blog/extract-code-from-tutorial-videos.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

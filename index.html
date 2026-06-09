@@ -7,21 +7,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <title>Offline Chrome OCR Extension: Drag, Copy & Extract Text | PromptCrop</title>
-  <meta name="description" content="Extract text from YouTube videos and images instantly with PromptCrop OCR. A secure, 100% offline Chrome extension using local WebAssembly. Try it free.">
+  <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e81.woff2" as="font" type="font/woff2" crossorigin>
+  <title>Copy Text from YouTube Videos — PromptCrop OCR Chrome Extension</title>
+  <meta name="description" content="Copy text from any YouTube video or web image instantly. PromptCrop is a 100% offline Chrome extension — no servers, no tracking. Free to try.">
+  <link rel="canonical" href="https://mohdfaruk-ui.github.io/PromptCrop/" />
   
   <!-- Open Graph Tags (Facebook, LinkedIn, WhatsApp) -->
-  <meta property="og:title" content="Securely Extract Text Offline from Any Video or Web Image | PromptCrop OCR">
-  <meta property="og:description" content="Tired of copy restrictions on YouTube and web apps? PromptCrop OCR runs 100% locally in your browser to extract code and text selections in milliseconds.">
-  <meta property="og:image" content="https://mohdfaruk-ui.github.io/PromptCrop/favicon.png">
+  <meta property="og:title" content="PromptCrop — Copy Text from Any Video in 1 Click">
+  <meta property="og:description" content="Copy text from any YouTube video or web image instantly. 100% offline Chrome extension — no servers, no tracking. Free to try.">
+  <meta property="og:image" content="https://mohdfaruk-ui.github.io/PromptCrop/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://mohdfaruk-ui.github.io/PromptCrop/">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Stop Typing Out Video Prompts Manually - PromptCrop OCR">
-  <meta name="twitter:description" content="Drag, copy, and paste text locally from any video or image. No servers, no tracking, pure WebAssembly speed. Add to Chrome for free.">
-  <meta name="twitter:image" content="https://mohdfaruk-ui.github.io/PromptCrop/favicon.png">
+  <meta name="twitter:title" content="PromptCrop — Copy Text from Any Video in 1 Click">
+  <meta name="twitter:description" content="Copy text from any YouTube video or web image instantly. 100% offline Chrome extension — no servers, no tracking.">
+  <meta name="twitter:image" content="https://mohdfaruk-ui.github.io/PromptCrop/assets/og-image.png">
 
   <!-- WebSite & Organization Schema -->
   <script type="application/ld+json">
@@ -50,40 +54,42 @@
     "applicationCategory": "BrowserApplication",
     "operatingSystem": "Windows, macOS, Linux, ChromeOS",
     "downloadUrl": "https://chromewebstore.google.com/detail/promptcrop-ocr/your-extension-id-here",
+    "description": "A 100% offline Chrome extension that extracts and copies text from YouTube videos, images, and web pages using local WebAssembly OCR.",
+    "url": "https://mohdfaruk-ui.github.io/PromptCrop/",
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "INR",
-      "lowPrice": "99",
-      "highPrice": "499",
+      "lowPrice": "149",
+      "highPrice": "799",
       "offerCount": "3",
       "offers": [
         {
           "@type": "Offer",
-          "name": "Starter Pack",
-          "price": "99",
+          "name": "Starter Pack (300 Scans)",
+          "price": "149",
           "priceCurrency": "INR"
         },
         {
           "@type": "Offer",
-          "name": "Pro Pack",
-          "price": "199",
+          "name": "Pro Pack (1500 Scans)",
+          "price": "399",
           "priceCurrency": "INR"
         },
         {
           "@type": "Offer",
           "name": "Unlimited Lifetime Premium",
-          "price": "499",
+          "price": "799",
           "priceCurrency": "INR"
         }
       ]
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "124",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
+    "featureList": [
+      "100% offline OCR processing",
+      "Copy text from YouTube videos",
+      "9-language auto-detection",
+      "WebAssembly-powered speed (~300ms)",
+      "Zero data upload — complete privacy"
+    ],
     "author": {
       "@type": "Person",
       "name": "Faruk"
@@ -1442,6 +1448,113 @@
       max-height: 150px;
       padding: 0 20px 20px 20px;
     }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .step-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #0b0b0e;
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Who Uses Section */
+    .who-uses {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .persona-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .persona-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(160, 32, 240, 0.25);
+    }
+
+    .persona-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .persona-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .persona-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .steps-grid,
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1466,7 +1579,7 @@
     <section class="hero">
       <div>
         <span class="hero-tag">🔥 Offline & Secure Extension</span>
-        <h1 class="hero-title">Offline Chrome OCR Extension: Drag, Copy & Extract <span>Text Instantly</span></h1>
+        <h1 class="hero-title">Copy Text from YouTube Videos & Web Images — <span>Instantly, Offline</span></h1>
         
         <blockquote class="aeo-summary" style="border-left: 3px solid var(--accent-cyan); padding: 12px 16px; margin: 15px 0; font-style: italic; color: var(--text-main); font-size: 14px; background: rgba(0, 240, 255, 0.02); border-radius: 0 8px 8px 0; line-height: 1.5; max-width: 550px; text-align: left;">
           PromptCrop OCR is a secure, 100% offline Chrome extension that extracts text instantly from any video or webpage using local WebAssembly, allowing developers to capture code and prompts without copy restrictions.
@@ -1514,6 +1627,29 @@
             <!-- Simulated Copy Notification -->
             <div class="mockup-copy-toast">📋 Copied to Clipboard!</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Copy text from any YouTube video or web image in 3 simple steps. No sign-ups, no server uploads — everything runs locally on your machine.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Install & Activate</h3>
+          <p class="step-desc">Add PromptCrop to Chrome from the Web Store. It works instantly — no configuration, no account creation needed. The free tier gives you 3 OCR scans per day.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Freeze & Select</h3>
+          <p class="step-desc">Press <strong>Alt + C</strong> on any YouTube video, web page, or image to freeze the screen. Drag a selection box over the text you want to copy — code, prompts, or any visible content.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Copy & Use</h3>
+          <p class="step-desc">PromptCrop's local WebAssembly OCR engine reads the text in ~300ms and copies it to your clipboard automatically. Paste it anywhere — your editor, notes, or terminal.</p>
         </div>
       </div>
     </section>
@@ -1652,6 +1788,29 @@
           <div class="feature-icon-wrapper">💎</div>
           <h3 class="feature-card-title">Flexible Pricing Systems</h3>
           <p class="feature-desc">Pay for exactly what you need. Choose from budget-friendly starter credits, medium usage pro credits, or buy a lifetime access key to scan infinitely.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Uses PromptCrop -->
+    <section class="who-uses" id="who-uses">
+      <h2 class="section-title">Who Uses PromptCrop?</h2>
+      <p class="section-subtitle">Professionals and students across the world rely on PromptCrop every day to copy text from screens they can't normally select.</p>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-icon">👨‍💻</div>
+          <h3 class="persona-title">Developers</h3>
+          <p class="persona-desc">Copy code snippets, terminal commands, and configuration prompts directly from YouTube coding tutorials — without pausing the video and typing everything manually.</p>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">🎓</div>
+          <h3 class="persona-title">Students & Researchers</h3>
+          <p class="persona-desc">Extract formulas, definitions, and lecture notes from recorded classes, presentation slides, and academic infographics in seconds flat.</p>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">📊</div>
+          <h3 class="persona-title">Content Creators & Marketers</h3>
+          <p class="persona-desc">Grab text from competitor websites, social media graphics, and web screenshots for research and content planning — no retyping required.</p>
         </div>
       </div>
     </section>
