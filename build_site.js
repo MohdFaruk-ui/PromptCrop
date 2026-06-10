@@ -1,5 +1,5 @@
 /**
- * PromptCrop OCR - Landing Page Build & Obfuscation Script
+ * SnapTextify - Landing Page Build & Obfuscation Script
  * Copyright (c) 2026 Faruk. All rights reserved.
  * 
  * This script obfuscates the checkout.src.js (editable source)
@@ -14,7 +14,7 @@ const { execSync } = require('child_process');
 const srcFile = path.join(__dirname, 'checkout.src.js');
 const destFile = path.join(__dirname, 'checkout.js');
 
-console.log('⚡ Starting PromptCrop Landing Page Build Process...');
+console.log('⚡ Starting SnapTextify Landing Page Build Process...');
 
 if (!fs.existsSync(srcFile)) {
   console.error('❌ Error: checkout.src.js not found! Cannot build.');

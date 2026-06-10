@@ -1,5 +1,5 @@
-# robots.txt for PromptCrop OCR
+# robots.txt for SnapTextify
 User-agent: *
 Allow: /
 
-Sitemap: https://mohdfaruk-ui.github.io/PromptCrop/sitemap.xml
+Sitemap: https://snaptextify.com/sitemap.xml
