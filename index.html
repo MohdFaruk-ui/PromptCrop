@@ -1684,6 +1684,114 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Support Section Styles */
+    .support-section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .support-container {
+      max-width: 680px;
+      margin: 40px auto 0 auto;
+    }
+    
+    .support-card {
+      background-color: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .support-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #f43f5e 100%);
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .form-row .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #a1a1aa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background-color: #09090b;
+      border: 1px solid #27272a;
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 15px;
+      transition: all 0.2s ease;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #a855f7;
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+    }
+    
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 16px;
+      padding-right: 40px;
+    }
+    
+    .support-status {
+      margin-top: 15px;
+      font-size: 14px;
+      text-align: center;
+      min-height: 20px;
+      font-weight: 500;
+    }
+    
+    @media (max-width: 640px) {
+      .form-row {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .support-card {
+        padding: 30px 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2173,6 +2281,47 @@
           <div class="faq-answer">
             A single premium license key can be activated on up to 3 separate Chrome browser installations simultaneously.
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated Support Section -->
+    <section class="support-section" id="support">
+      <h2 class="section-title">Dedicated Support</h2>
+      <p class="section-subtitle">Have questions or suggestions? Get in touch directly with our support team.</p>
+      
+      <div class="support-container">
+        <div class="support-card">
+          <form id="support-form" class="support-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="support-name">Your Name</label>
+                <input type="text" id="support-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="support-email">Your Email Address</label>
+                <input type="email" id="support-email" placeholder="john@example.com" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="support-type">Inquiry Type</label>
+              <select id="support-type" class="form-select" required>
+                <option value="question">Question</option>
+                <option value="suggestion">Suggestion</option>
+                <option value="issue">Technical Issue / Bug</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="support-message">Message</label>
+              <textarea id="support-message" rows="5" placeholder="How can we help you? Feel free to write suggestions or ask any questions." required></textarea>
+            </div>
+            
+            <button type="submit" id="btn-submit-support" class="btn btn-gradient" style="width: 100%; border: none; padding: 14px; cursor: pointer; font-weight: 700;">Submit Inquiry</button>
+            <p id="support-status" class="support-status"></p>
+          </form>
         </div>
       </div>
     </section>
