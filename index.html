@@ -257,6 +257,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
+      color: inherit;
     }
 
     .logo-icon {
@@ -274,6 +276,18 @@
       background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links .btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      border-radius: 8px;
     }
 
     .nav-links a {
@@ -1058,11 +1072,27 @@
       letter-spacing: 0.5px;
     }
 
+    .pricing-badge.badge-starter {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-color);
+      color: #fff;
+    }
+
+    .pricing-badge.badge-pro {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      border: none;
+      color: #0b0b0e;
+    }
+
     .pricing-name {
       font-size: 20px;
       font-weight: 700;
-      margin-top: 10px;
+      margin-top: 20px;
       color: var(--text-muted);
+    }
+
+    .pricing-name.name-unlimited {
+      color: #fff;
     }
 
     .price-row {
@@ -1087,7 +1117,7 @@
     .pricing-features {
       list-style: none;
       text-align: left;
-      margin: 30px 0;
+      margin: 20px 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -1104,6 +1134,21 @@
       content: '✓';
       color: var(--success);
       font-weight: bold;
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+    }
+    .pricing-card .btn-outline {
+      border: 1px solid var(--border-color);
+      background: none;
+      color: #fff;
+    }
+    .pricing-card .btn-gradient {
+      border: none;
     }
 
     /* Modal Overlay (Purchase Flow) */
@@ -1151,6 +1196,93 @@
 
     .modal-close:hover {
       color: #fff;
+    }
+
+    /* Modal Card Customizations */
+    .modal-card-checkout {
+      width: 440px;
+    }
+    .upi-manual-verification {
+      border-top: 1px solid var(--border-color);
+      margin-top: 15px;
+      padding-top: 15px;
+      text-align: left;
+    }
+    .upi-verification-group {
+      margin-bottom: 15px;
+    }
+    .upi-verification-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+    }
+    .upi-verification-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-tertiary);
+      color: #fff;
+      outline: none;
+      font-size: 14px;
+    }
+    .upi-verification-input.utr-field {
+      font-family: monospace;
+    }
+    .upi-submit-btn {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      margin-top: 5px;
+      font-weight: 700;
+    }
+    .upi-status-msg {
+      margin-top: 12px;
+      font-size: 13px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .modal-success-card {
+      text-align: center;
+    }
+    .modal-success-title {
+      color: var(--success);
+      margin-bottom: 12px;
+    }
+    .modal-success-desc {
+      color: #fff;
+      font-size: 14px;
+    }
+    .modal-success-info {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .modal-success-info strong {
+      color: #fff;
+    }
+    .modal-success-btn {
+      width: 100%;
+    }
+    
+    .checkout-form-btn {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+    }
+    .checkout-info-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.4;
     }
 
     .modal-title {
@@ -1208,6 +1340,15 @@
       border-top: 1px solid var(--border-color);
       font-size: 13px;
       color: var(--text-muted);
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    footer span {
+      color: rgba(255,255,255,0.08);
+      margin: 0 8px;
     }
 
     footer a {
@@ -1875,6 +2016,20 @@
     .aeo-definition-card p strong {
       color: var(--accent-cyan);
     }
+
+    .aeo-summary {
+      border-left: 3px solid var(--accent-cyan);
+      padding: 12px 16px;
+      margin: 15px 0;
+      font-style: italic;
+      color: var(--text-main);
+      font-size: 14px;
+      background: rgba(0, 240, 255, 0.02);
+      border-radius: 0 8px 8px 0;
+      line-height: 1.5;
+      max-width: 550px;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -1885,14 +2040,14 @@
   <div class="wrapper">
     <!-- Navigation Navbar -->
     <nav>
-      <a href="index.html" class="logo-area" style="text-decoration: none; color: inherit;">
+      <a href="index.html" class="logo-area">
         <span class="logo-icon">⚡</span>
         <div class="logo-text">SnapTextify <span>OCR</span></div>
       </a>
-      <div class="nav-links" style="display: flex; align-items: center; gap: 20px;">
+      <div class="nav-links">
         <a href="blog/index.html">Blog</a>
         <a href="#pricing">Buy Premium</a>
-        <a href="#" class="btn btn-outline link-download-ext" style="padding: 8px 16px; font-size: 13px; border-radius: 8px;">📥 Download Extension</a>
+        <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-outline link-download-ext" target="_blank" rel="noopener">📥 Download Extension</a>
       </div>
     </nav>
 
@@ -1902,13 +2057,13 @@
         <span class="hero-tag">🔥 Offline & Secure Extension</span>
         <h1 class="hero-title">Copy Text from YouTube Videos & Web Images — <span>Instantly, Offline</span></h1>
         
-        <blockquote class="aeo-summary" style="border-left: 3px solid var(--accent-cyan); padding: 12px 16px; margin: 15px 0; font-style: italic; color: var(--text-main); font-size: 14px; background: rgba(0, 240, 255, 0.02); border-radius: 0 8px 8px 0; line-height: 1.5; max-width: 550px; text-align: left;">
+        <blockquote class="aeo-summary">
           SnapTextify is a secure, 100% offline Chrome extension that extracts text instantly from any video or webpage using local WebAssembly, allowing developers to capture code and prompts without copy restrictions.
         </blockquote>
 
-        <p class="hero-desc" style="margin-top: 10px;">Bypass the pain of copying prompts or texts from YouTube videos and websites. Drag a box, run local OCR, and auto-copy text in milliseconds.</p>
+        <p class="hero-desc">Bypass the pain of copying prompts or texts from YouTube videos and websites. Drag a box, run local OCR, and auto-copy text in milliseconds.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-gradient link-download-ext">📥 Add to Chrome (Free)</a>
+          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">📥 Add to Chrome (Free)</a>
           <a href="#pricing" class="btn btn-outline" id="hero-pricing-cta">Unlock Premium (from ₹149)</a>
         </div>
       </div>
@@ -2207,56 +2362,56 @@
       <div class="pricing-grid">
         <!-- Starter Pack -->
         <div class="pricing-card">
-          <span class="pricing-badge" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff;">Starter Pack</span>
-          <h3 class="pricing-name" style="margin-top: 20px;">Starter</h3>
+          <span class="pricing-badge badge-starter">Starter Pack</span>
+          <h3 class="pricing-name">Starter</h3>
           <div class="price-row">
             <span class="price-value" id="starter-price">₹149</span>
             <span class="price-period">/ one-time</span>
           </div>
-          <ul class="pricing-features" style="margin: 20px 0;">
+          <ul class="pricing-features">
             <li><strong id="starter-credits">300</strong> Scan Credits (Never expire)</li>
             <li>9-Language Script Auto-Detection</li>
             <li>Activate on up to 3 Devices</li>
             <li>Local Offline Processing</li>
             <li>Lifetime Support</li>
           </ul>
-          <button data-plan="starter" data-desc="Starter Pack (300 Scans)" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Buy Starter Pack</button>
+          <button data-plan="starter" data-desc="Starter Pack (300 Scans)" class="btn btn-outline btn-buy-pack">Buy Starter Pack</button>
         </div>
 
         <!-- Pro Pack -->
         <div class="pricing-card premium-tier">
-          <span class="pricing-badge" style="background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%); border: none; color: #0b0b0e;">Most Popular</span>
-          <h3 class="pricing-name" style="margin-top: 20px;">Pro</h3>
+          <span class="pricing-badge badge-pro">Most Popular</span>
+          <h3 class="pricing-name">Pro</h3>
           <div class="price-row">
             <span class="price-value" id="pro-price">₹399</span>
             <span class="price-period">/ one-time</span>
           </div>
-          <ul class="pricing-features" style="margin: 20px 0;">
+          <ul class="pricing-features">
             <li><strong id="pro-credits">1500</strong> Scan Credits (Never expire)</li>
             <li>9-Language Script Auto-Detection</li>
             <li>Activate on up to 3 Devices</li>
             <li>Local Offline Processing</li>
             <li>Lifetime Support</li>
           </ul>
-          <button data-plan="pro" data-desc="Pro Pack (1500 Scans)" class="btn btn-gradient btn-buy-pack" style="width: 100%; border: none; padding: 12px; cursor: pointer; border-radius: 8px;">Buy Pro Pack</button>
+          <button data-plan="pro" data-desc="Pro Pack (1500 Scans)" class="btn btn-gradient btn-buy-pack">Buy Pro Pack</button>
         </div>
 
         <!-- Unlimited Lifetime -->
         <div class="pricing-card">
-          <span class="pricing-badge" style="background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%); color: #0b0b0e;">Best Value</span>
-          <h3 class="pricing-name" style="margin-top: 20px; color: #fff;">Unlimited Premium</h3>
+          <span class="pricing-badge">Best Value</span>
+          <h3 class="pricing-name name-unlimited">Unlimited Premium</h3>
           <div class="price-row">
             <span class="price-value" id="unlimited-price">₹799</span>
             <span class="price-period">/ lifetime access</span>
           </div>
-          <ul class="pricing-features" style="margin: 20px 0;">
+          <ul class="pricing-features">
             <li><strong>Unlimited</strong> Lifetime Scans</li>
             <li>9-Language Script Auto-Detection</li>
             <li>Activate on up to <strong>5 Devices</strong></li>
             <li>100% Offline Mode (No Server Sync)</li>
             <li>Lifetime Free Updates & Priority Support</li>
           </ul>
-          <button data-plan="unlimited" data-desc="Unlimited Lifetime Premium" class="btn btn-outline btn-buy-pack" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; background: none; color: #fff; cursor: pointer;">Go Unlimited</button>
+          <button data-plan="unlimited" data-desc="Unlimited Lifetime Premium" class="btn btn-outline btn-buy-pack">Go Unlimited</button>
         </div>
       </div>
     </section>
@@ -2430,7 +2585,7 @@
             <label for="support-message">Message</label>
             <textarea id="support-message" rows="4" placeholder="How can we help you?" required></textarea>
           </div>
-          <button type="submit" id="btn-submit-support" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer; font-weight: 700;">Submit Inquiry</button>
+          <button type="submit" id="btn-submit-support" class="btn btn-gradient upi-submit-btn">Submit Inquiry</button>
           <p id="support-status" class="support-status"></p>
         </form>
       </div>
@@ -2438,7 +2593,7 @@
 
     <!-- Purchase Modal Overlay -->
     <div id="purchase-modal" class="modal-overlay hidden">
-      <div class="modal-card" id="modal-card-form" style="width: 440px;">
+      <div class="modal-card modal-card-checkout" id="modal-card-form">
         <button id="btn-close-modal" class="modal-close">&times;</button>
         <h3 class="modal-title" id="purchase-modal-title">Upgrade to Premium</h3>
         <p class="modal-desc">Select your payment method. Your unique license key will be sent to your email after verification.</p>
@@ -2456,7 +2611,7 @@
             <label for="checkout-email">Your Email Address</label>
             <input type="email" id="checkout-email" placeholder="you@example.com" required>
           </div>
-          <button id="btn-proceed-payment" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Payment</button>
+          <button id="btn-proceed-payment" class="btn btn-gradient checkout-form-btn">Proceed to Payment</button>
         </div>
 
         <!-- Method 3: Dodo Payments Container -->
@@ -2465,15 +2620,15 @@
             <label for="dodopayments-email">Your Email Address</label>
             <input type="email" id="dodopayments-email" placeholder="you@example.com">
           </div>
-          <button id="btn-proceed-dodopayments" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Proceed to Checkout</button>
-          <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">Securely checkout via Dodo Payments. Supports cards, PayPal, Google Pay, and Apple Pay globally via secure pop-up overlay.</p>
+          <button id="btn-proceed-dodopayments" class="btn btn-gradient checkout-form-btn">Proceed to Checkout</button>
+          <p class="checkout-info-text">Securely checkout via Dodo Payments. Supports cards, PayPal, Google Pay, and Apple Pay globally via secure pop-up overlay.</p>
         </div>
 
         <!-- Method 2: UPI QR Code Container -->
         <div id="upi-qr-method-container" class="hidden">
           <div class="upi-qr-container">
             <div class="upi-qr-image-wrapper">
-              <img id="upi-qr-image" class="upi-qr-image" src="" alt="UPI QR Code">
+              <img id="upi-qr-image" class="upi-qr-image" src="" alt="UPI QR Code" width="180" height="180">
             </div>
             
             <div class="upi-id-box">
@@ -2491,42 +2646,42 @@
               </ol>
             </div>
 
-            <div style="border-top: 1px solid var(--border-color); margin-top: 15px; padding-top: 15px; text-align: left;">
-              <div class="form-group" style="margin-bottom: 15px;">
-                <label for="upi-user-email" style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; letter-spacing: 0.5px;">Your Checkout Email</label>
-                <input type="email" id="upi-user-email" placeholder="you@example.com" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--bg-tertiary); color: #fff; outline: none; font-size: 14px;">
+            <div class="upi-manual-verification">
+              <div class="form-group upi-verification-group">
+                <label for="upi-user-email" class="upi-verification-label">Your Checkout Email</label>
+                <input type="email" id="upi-user-email" placeholder="you@example.com" class="upi-verification-input">
               </div>
 
-              <div class="form-group" style="margin-bottom: 15px;">
-                <label for="upi-utr" style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; letter-spacing: 0.5px;">12-Digit UPI Transaction ID / UTR</label>
-                <input type="text" id="upi-utr" placeholder="Enter 12-digit reference number" maxlength="12" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--bg-tertiary); color: #fff; outline: none; font-family: monospace; font-size: 14px;">
+              <div class="form-group upi-verification-group">
+                <label for="upi-utr" class="upi-verification-label">12-Digit UPI Transaction ID / UTR</label>
+                <input type="text" id="upi-utr" placeholder="Enter 12-digit reference number" maxlength="12" class="upi-verification-input utr-field">
               </div>
 
-              <button type="button" id="btn-submit-upi-proof" class="btn btn-gradient" style="width: 100%; border: none; padding: 12px; cursor: pointer; margin-top: 5px; font-weight: 700;">Submit Payment Verification</button>
-              <div id="upi-submission-status" style="margin-top: 12px; font-size: 13px; text-align: center; font-weight: 600;"></div>
+              <button type="button" id="btn-submit-upi-proof" class="btn btn-gradient upi-submit-btn">Submit Payment Verification</button>
+              <div id="upi-submission-status" class="upi-status-msg"></div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Success Screen -->
-      <div class="modal-card hidden" id="modal-card-success" style="text-align: center;">
+      <div class="modal-card hidden modal-success-card" id="modal-card-success">
         <span class="success-icon">🎉</span>
-        <h3 class="modal-title" style="color: var(--success); margin-bottom: 12px;">Payment Successful!</h3>
-        <p class="modal-desc" style="color: #fff; font-size: 14px;">Your license has been activated.</p>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">We have sent your premium license key to: <strong id="success-email-text" style="color: #fff;">email@domain.com</strong>. Please check your inbox (and spam folder) to activate it in the extension.</p>
-        <button id="btn-close-success" class="btn btn-outline" style="width: 100%;">Close Window</button>
+        <h3 class="modal-title modal-success-title">Payment Successful!</h3>
+        <p class="modal-desc modal-success-desc">Your license has been activated.</p>
+        <p class="modal-success-info">We have sent your premium license key to: <strong id="success-email-text">email@domain.com</strong>. Please check your inbox (and spam folder) to activate it in the extension.</p>
+        <button id="btn-close-success" class="btn btn-outline modal-success-btn">Close Window</button>
       </div>
     </div>
 
     <!-- Footer Links -->
     <footer>
-      <p style="margin-bottom: 10px;">© 2026 Faruk. All rights reserved.</p>
+      <p>© 2026 Faruk. All rights reserved.</p>
       <p>
         <a href="privacy.html" title="SnapTextify Privacy Policy">Privacy & Data Protection Policy</a>
-        <span style="color: rgba(255,255,255,0.08); margin: 0 8px;">•</span>
+        <span>•</span>
         <a href="terms.html" title="SnapTextify Terms of Service">Terms & Conditions of Service</a>
-        <span style="color: rgba(255,255,255,0.08); margin: 0 8px;">•</span>
+        <span>•</span>
         <a href="blog/index.html" title="SnapTextify Blog">Blog</a>
       </p>
     </footer>
