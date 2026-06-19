@@ -1847,6 +1847,34 @@
         bottom: 60px;
       }
     }
+
+    /* AEO Definition Block Styles */
+    .aeo-definition-section {
+      padding: 40px 20px 20px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .aeo-definition-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(244, 63, 94, 0.03) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      border-radius: 16px;
+      padding: 24px 30px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .aeo-definition-card p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+    
+    .aeo-definition-card p strong {
+      color: var(--accent-cyan);
+    }
   </style>
 </head>
 <body>
@@ -1921,6 +1949,13 @@
             <div class="mockup-copy-toast">📋 Copied to Clipboard!</div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Direct Answer / AEO Definition Block -->
+    <section class="aeo-definition-section">
+      <div class="aeo-definition-card">
+        <p><strong>SnapTextify</strong> is a secure, 100% offline OCR Chrome extension powered by local WebAssembly binaries to instantly copy text and extract code from YouTube videos, images, and copy-restricted websites. Operating with zero server uploads, it delivers highly accurate, private, and zero-latency (~300ms) image-to-text conversion directly in your browser sandboxed environment.</p>
       </div>
     </section>
 
@@ -2054,33 +2089,33 @@
       <div class="grid-features">
         <div class="feature-card">
           <div class="feature-icon-wrapper">📸</div>
-          <h3 class="feature-card-title">Drag-to-Select Capture</h3>
-          <p class="feature-desc">Press Alt + C to instantly freeze your screen. Draw a selection box over any YouTube video, locked PDF, image, or web page component to grab text.</p>
+          <h3 class="feature-card-title">Instant Area Selection Overlay</h3>
+          <p class="feature-desc">Press Alt + C to activate a high-performance viewport freezing overlay. Instantly crop any bounding box over video streams, restricted PDFs, images, or protected HTML nodes to capture target pixels.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">🌐</div>
-          <h3 class="feature-card-title">9-Language Auto-Detection</h3>
-          <p class="feature-desc">Built-in local support for English, Bengali, Spanish, Hindi, French, German, Portuguese, Arabic, and Russian. Detects languages automatically without selecting menus.</p>
+          <h3 class="feature-card-title">9-Language Neural Script Detection</h3>
+          <p class="feature-desc">Utilizes compiled local script heuristics to auto-detect and transcribe English, Bengali, Spanish, Hindi, French, German, Portuguese, Arabic, and Russian simultaneously without server callbacks.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">🛡️</div>
-          <h3 class="feature-card-title">100% Client-Side Privacy</h3>
-          <p class="feature-desc">Zero external API calls. Your cropped images and extracted text are processed completely on your own machine using local WebAssembly. 100% safe.</p>
+          <h3 class="feature-card-title">100% Local Sandbox Data Isolation</h3>
+          <p class="feature-desc">Zero external API endpoints or analytics pings. Extracted text and image frames are processed in-memory inside the local browser sandbox via compiled WebAssembly binaries, ensuring absolute data security.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">⚡</div>
-          <h3 class="feature-card-title">Zero-Latency Local OCR</h3>
-          <p class="feature-desc">Optimized WebAssembly binaries run high-accuracy neural network OCR engines directly in your browser. Get copyable text outputs in a few hundred milliseconds.</p>
+          <h3 class="feature-card-title">~300ms WebAssembly OCR Engine</h3>
+          <p class="feature-desc">Leverages Tesseract OCR compiled to WebAssembly (WASM). Neural network layers execute inference directly on client CPU hardware, delivering plain-text output in under 300 milliseconds.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">📋</div>
-          <h3 class="feature-card-title">Instant Clipboard Sync</h3>
-          <p class="feature-desc">Extracted text is automatically copied to your clipboard. View and re-copy scan logs from your premium history dashboard whenever you need them.</p>
+          <h3 class="feature-card-title">Local Clipboard Auto-Sync</h3>
+          <p class="feature-desc">Instantly writes extracted plaintext to the system clipboard. Keeps an indexed history log inside Chrome's local storage (chrome.storage.local) for offline viewing and re-copying.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">💎</div>
-          <h3 class="feature-card-title">Flexible Pricing Systems</h3>
-          <p class="feature-desc">Pay for exactly what you need. Choose from budget-friendly starter credits, medium usage pro credits, or buy a lifetime access key to scan infinitely.</p>
+          <h3 class="feature-card-title">Granular Credit & Lifetime Licensing</h3>
+          <p class="feature-desc">Purchase individual prepaid OCR scan packs or unlock lifetime unlimited scans. Payment is secured locally, granting access keys that run entirely offline without recurring billing.</p>
         </div>
       </div>
     </section>
@@ -2126,37 +2161,37 @@
           <tbody>
             <tr>
               <td><strong>100% Offline Processing</strong></td>
-              <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (WASM-based)</td>
+              <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (100% local WebAssembly)</td>
               <td><span class="comparison-status-no">❌ No</span> (Server-dependent)</td>
               <td><span class="comparison-status-yes">✅ Yes</span> (Self-type)</td>
             </tr>
             <tr>
               <td><strong>Data Privacy & Safety</strong></td>
-              <td class="highlight-col"><span class="comparison-status-yes">🛡️ Absolute</span> (Zero server upload)</td>
+              <td class="highlight-col"><span class="comparison-status-yes">🛡️ Absolute</span> (In-memory, zero server uploads)</td>
               <td><span class="comparison-status-no">⚠️ Risk</span> (Images uploaded)</td>
               <td><span class="comparison-status-yes">🛡️ Safe</span></td>
             </tr>
             <tr>
               <td><strong>Speed & Latency</strong></td>
-              <td class="highlight-col"><span class="comparison-status-yes">⚡ ~300ms</span> (Instant local copy)</td>
-              <td><span class="comparison-status-no">⚠️ 3 - 10s</span> (Network lag)</td>
+              <td class="highlight-col"><span class="comparison-status-yes">⚡ ~300ms</span> (Instant client-side inference)</td>
+              <td><span class="comparison-status-no">⚠️ 3 - 10s</span> (Network latency)</td>
               <td><span class="comparison-status-no">❌ Slow</span> (Minutes of typing)</td>
             </tr>
             <tr>
               <td><strong>YouTube Video Copying</strong></td>
-              <td class="highlight-col"><span class="comparison-status-yes">✅ Seamless</span> (Capture frames directly)</td>
+              <td class="highlight-col"><span class="comparison-status-yes">✅ Seamless</span> (Instant Alt + C overlay)</td>
               <td><span class="comparison-status-no">❌ Complex</span> (Need screenshot first)</td>
               <td><span class="comparison-status-yes">⚠️ Tedious</span> (Pause/Play frequently)</td>
             </tr>
             <tr>
               <td><strong>9-Language Auto-Detection</strong></td>
-              <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (Auto-detect & run)</td>
+              <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (Multi-lingual auto-detection)</td>
               <td><span class="comparison-status-partial">⚠️ Manual</span> (Select from dropdown)</td>
               <td><span class="comparison-status-yes">✅ Yes</span> (Human brain)</td>
             </tr>
             <tr>
               <td><strong>Multi-page Document Scanning</strong></td>
-              <td class="highlight-col"><span class="comparison-status-no">❌ Limited</span> (Best for crops/screens)</td>
+              <td class="highlight-col"><span class="comparison-status-no">❌ Limited</span> (Designed for screens & crops)</td>
               <td><span class="comparison-status-yes">✅ Excellent</span> (PDF files support)</td>
               <td><span class="comparison-status-no">❌ Hard</span> (Manual typing)</td>
             </tr>
@@ -2297,44 +2332,65 @@
       
       <div class="faq-container">
         <div class="faq-item">
-          <div class="faq-question">What is SnapTextify?</div>
+          <div class="faq-question">What is SnapTextify and how does it extract text from my screen?</div>
           <div class="faq-answer">
-            SnapTextify is a secure, 100% offline Chrome extension that lets you drag a selection box over any video frame or webpage to instantly extract and copy text.
+            SnapTextify is a secure, 100% offline Chrome extension that lets you drag a selection overlay box over any video frame, document, or webpage to instantly extract and copy text using in-browser WebAssembly OCR.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">Does SnapTextify send my screenshots to a server?</div>
+          <div class="faq-question">Is my data safe with SnapTextify, or does it upload screenshots to the cloud?</div>
           <div class="faq-answer">
-            No. All image processing and OCR are executed entirely on your machine using local WebAssembly binaries, ensuring 100% data privacy and offline capability.
+            No data is ever uploaded to any server. All image extraction, cropping, and OCR operations are executed entirely on your local machine within a sandboxed environment using local WebAssembly binaries. Your privacy is 100% guaranteed.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">How does the offline OCR script auto-detection work?</div>
+          <div class="faq-question">How does the offline OCR auto-detection support multiple languages?</div>
           <div class="faq-answer">
-            It uses an optimized local Tesseract OCR engine that detects 9 languages simultaneously, including English, Bengali, Spanish, German, French, Portuguese, Hindi, Russian, and Arabic.
+            SnapTextify utilizes a compiled local Tesseract OCR engine that auto-detects and transcribes 9 different scripts simultaneously: English, Bengali, Hindi, Spanish, French, German, Portuguese, Russian, and Arabic, without requiring manual language toggles.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">What is the limit for the free tier?</div>
+          <div class="faq-question">How do I copy code from a YouTube video safely using this extension?</div>
           <div class="faq-answer">
-            The free tier allows up to 3 local OCR scans per day. Upgrade to a premium plan to increase your limits.
+            To copy code or prompt text from a YouTube video, pause the video on the frame showing the code, press <strong>Alt + C</strong> (or click the extension icon) to freeze the screen, and drag a selection box over the code block. SnapTextify's local WebAssembly OCR engine reads the text in ~300ms and copies it directly to your system clipboard.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I use SnapTextify to copy text from copy-protected or locked websites?</div>
+          <div class="faq-answer">
+            Yes. Since SnapTextify captures a secure screen overlay at the viewport level, it completely bypasses any CSS or JavaScript blockades (such as right-click disabling, copy-protection scripts, select-disabled CSS, or iframe locks). If the text is visible on your screen, SnapTextify can copy it.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Does the local WebAssembly OCR engine require an internet connection?</div>
+          <div class="faq-answer">
+            No. Once SnapTextify is installed, the compiled WebAssembly binaries and OCR models run entirely within your local browser sandbox. You can capture, extract, and copy text from any image or video offline, even when your computer has no active internet connection.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">How does the UPI QR payment verify my purchase?</div>
+          <div class="faq-question">What is included in the free tier of SnapTextify, and how do I scan more?</div>
           <div class="faq-answer">
-            Scan the UPI QR code, pay the plan amount, and email your transaction screenshot to support@snaptextify.com. We will email your license key within 5-10 minutes.
+            The free tier grants you 3 local OCR scans per day to extract text. To unlock higher scan limits or get unlimited lifetime usage, you can upgrade to one of our premium packs starting at just ₹149.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">How many devices can use a single premium key?</div>
+          <div class="faq-question">How does the local UPI QR payment verification work to unlock my license key?</div>
           <div class="faq-answer">
-            A single premium license key can be activated on up to 3 separate Chrome browser installations simultaneously.
+            When paying via local UPI, you simply scan the dynamically generated QR code, pay the exact amount using any UPI app (like GPay, PhonePe, or Paytm), and enter your 12-digit UPI Transaction ID / UTR number in the checkout screen. Our backend verifies the UTR reference instantly, and your license key is auto-generated and emailed to you, typically within 10 to 15 minutes.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">On how many devices or browsers can I activate my premium license key?</div>
+          <div class="faq-answer">
+            A standard premium key can be activated on up to 3 separate Chrome browser installations simultaneously. If you purchase our Unlimited pack, your license key supports activation on up to 5 concurrent browser profiles or devices.
           </div>
         </div>
       </div>
