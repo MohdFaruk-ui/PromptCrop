@@ -1,6 +1,6 @@
 /**
  * SnapTextify - Landing Page Build & Obfuscation Script
- * Copyright (c) 2026 Faruk. All rights reserved.
+ * Copyright (c) 2026 FarLabs. All rights reserved.
  * 
  * This script obfuscates the checkout.src.js (editable source)
  * into checkout.js (production obfuscated file) to prevent
