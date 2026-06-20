@@ -1837,6 +1837,7 @@
     
     .support-trigger {
       background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #f43f5e 100%);
+      background-size: 200% auto;
       border: none;
       border-radius: 30px;
       color: #ffffff;
@@ -1848,12 +1849,30 @@
       gap: 8px;
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      animation: support-glow-pulse 2s infinite ease-in-out;
     }
     
     .support-trigger:hover {
-      transform: translateY(-3px) scale(1.05);
+      background-position: right center;
+      transform: translateY(-3px) scale(1.03);
       box-shadow: 0 12px 30px rgba(168, 85, 247, 0.6);
+    }
+    
+    .support-trigger:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+    
+    @keyframes support-glow-pulse {
+      0% {
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4), 0 0 0 0 rgba(168, 85, 247, 0.5);
+      }
+      70% {
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4), 0 0 0 15px rgba(168, 85, 247, 0);
+      }
+      100% {
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4), 0 0 0 0 rgba(168, 85, 247, 0);
+      }
     }
     
     .support-icon {
@@ -1865,12 +1884,13 @@
       bottom: 70px;
       right: 0;
       width: 380px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
       background-color: rgba(24, 24, 27, 0.95);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(63, 63, 70, 0.5);
       border-radius: 20px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-origin: bottom right;
       opacity: 1;
@@ -1973,19 +1993,35 @@
       min-height: 16px;
     }
     
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .support-widget {
         bottom: 20px;
         right: 20px;
-        left: 20px;
+        left: auto;
       }
       .support-trigger {
-        width: 100%;
+        width: 54px;
+        height: 54px;
+        padding: 0;
+        border-radius: 50%;
         justify-content: center;
       }
+      .support-trigger-text {
+        display: none;
+      }
+      .support-icon {
+        font-size: 22px;
+        margin: 0;
+      }
       .support-floating-card {
-        width: 100%;
-        bottom: 60px;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        max-width: calc(100vw - 40px);
+        max-height: calc(100vh - 130px);
+        transform-origin: bottom right;
       }
     }
 
