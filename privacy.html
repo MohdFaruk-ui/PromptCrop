@@ -127,7 +127,7 @@
     </a>
 
     <h1>Privacy Policy</h1>
-    <div class="last-updated">Last Updated: June 6, 2026</div>
+    <div class="last-updated">Last Updated: June 28, 2026</div>
 
     <p>At SnapTextify, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our Chrome Extension and associated services.</p>
 
@@ -145,24 +145,32 @@
     <h2>3. Security of Your Information</h2>
     <p>Your license credentials and activation statuses are stored securely inside the Extension's Chrome Storage API locally, and synced securely using SSL/TLS encryption to our backend hosted on Supabase databases. We do not store or transmit financial information—all payments are securely processed by <strong>Razorpay</strong>, which complies with strict banking security standards.</p>
 
-    <h2>4. Third-Party Services</h2>
+    <h2>4. Smart AI Actions & Translation Routing (Premium Features)</h2>
+    <p>SnapTextify contains optional premium features that transmit content off your device to execute advanced processing:</p>
+    <ul>
+      <li><strong>Gemini AI Actions:</strong> When you actively trigger any AI Action (Solve / Explain, Summarize, or Draft Reply) on extracted text, the text is sent securely via SSL/TLS through our backend server to the Google Gemini API for processing. The original screenshot or image is <strong>never</strong> transmitted; only the cropped text is sent. Google’s data handling is governed by their Gemini API Terms of Service.</li>
+      <li><strong>In-Popup Translation:</strong> When you choose to translate extracted text, the text is routed securely through our server-side translation proxy helper to fetch translation results.</li>
+    </ul>
+    <p>All other core features of the extension—including standard OCR scanning, clipboard copying, history logging, and Table-to-CSV converters—remain 100% local and offline.</p>
+
+    <h2>5. Third-Party Services</h2>
     <p>Our website utilizes Razorpay to handle payments. Their collection and use of your payment details are governed by their respective Privacy Policies.</p>
 
-    <h2>5. Changes to This Policy</h2>
+    <h2>6. Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. We recommend checking this page periodically to remain informed of how we protect your data.</p>
 
-    <h2>6. Contact Us</h2>
+    <h2>7. Contact Us</h2>
     <p>If you have any questions or feedback regarding this Privacy Policy, feel free to contact us at: <strong>support@snaptextify.com</strong></p>
 
-    <h2>7. Privacy Verification & Network Audit Guide</h2>
-    <p>We believe in absolute transparency. Unlike cloud-based OCR products, SnapTextify runs entirely locally inside your browser. You can audit and verify this yourself at any time by following these steps:</p>
+    <h2>8. Privacy Verification & Network Audit Guide</h2>
+    <p>We believe in absolute transparency. Unlike cloud-based OCR products, SnapTextify's core OCR engine runs entirely locally inside your browser. You can audit and verify this yourself at any time by following these steps:</p>
     <ol style="margin-left: 20px; margin-bottom: 20px; color: #c0c0d0;">
       <li style="margin-bottom: 8px; font-size: 15px;">Open any webpage (e.g. YouTube) and open Google Chrome Developer Tools by pressing <strong>F12</strong> or <strong>Ctrl+Shift+I</strong> (Cmd+Option+I on macOS).</li>
       <li style="margin-bottom: 8px; font-size: 15px;">Navigate to the <strong>Network</strong> tab inside Developer Tools and check the <strong>Preserve log</strong> checkbox.</li>
       <li style="margin-bottom: 8px; font-size: 15px;">Trigger SnapTextify by clicking the extension icon or pressing <strong>Alt+C</strong>, then drag a selection box over any text/video area.</li>
-      <li style="margin-bottom: 8px; font-size: 15px;">Inspect the Network list: you will see that **zero network requests** are sent during the image cropping and OCR text extraction process. All calculations occur inside a sandboxed WebAssembly container local to your system.</li>
+      <li style="margin-bottom: 8px; font-size: 15px;">Inspect the Network list: you will see that **zero network requests** are sent during the image cropping and local OCR text extraction process. All calculations occur inside a sandboxed WebAssembly container local to your system. Network calls are only initiated if you explicitly activate premium translation or premium AI action buttons.</li>
     </ol>
-    <p>Our extension's <code>manifest.json</code> permissions do not request access to read full system details or intercept network calls. The code complies fully with the Chrome Web Store's program policies, and all operations execute without background tracking or outbound telemetry (as there is none).</p>
+    <p>Our extension's <code>manifest.json</code> permissions do not request access to read full system details or intercept network calls. The code complies fully with the Chrome Web Store's program policies, and all operations execute without background tracking or outbound telemetry.</p>
 
     <footer>
       © 2026 FarKode. All rights reserved. | <a href="terms.html" style="color: var(--text-muted); text-decoration: none; hover: color: #fff;">Terms of Service</a> | <a href="blog/index.html" style="color: var(--text-muted); text-decoration: none; hover: color: #fff;">Blog</a>

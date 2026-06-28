@@ -2081,6 +2081,62 @@
       max-width: 550px;
       text-align: left;
     }
+
+    /* Scroll Reveal Animations */
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-element.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CTA button pulse on hover */
+    .btn-gradient {
+      position: relative;
+      overflow: hidden;
+      animation: pulse-glow 3s infinite alternate;
+    }
+    .btn-gradient::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s ease-out;
+      pointer-events: none;
+    }
+    .btn-gradient:hover::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2); }
+      50% { box-shadow: 0 4px 30px rgba(0, 240, 255, 0.5); }
+      100% { box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2); }
+    }
+
+    /* Feature Card Micro-interactions */
+    .feature-card {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 240, 255, 0.2) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .feature-card .feature-icon-wrapper {
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .feature-card:hover .feature-icon-wrapper {
+      transform: scale(1.2) rotate(8deg);
+    }
   </style>
 </head>
 <body>
@@ -2105,17 +2161,17 @@
     <!-- Hero Area -->
     <section class="hero">
       <div>
-        <span class="hero-tag">🔒 100% Offline & Private</span>
-        <h1 class="hero-title">Copy Text from Any Video, Image or Locked Site — <span>Instantly, Offline</span></h1>
+        <span class="hero-tag">🔒 100% Offline Screen OCR</span>
+        <h1 class="hero-title">Copy Any Text You See — <span>Even From Videos or Locked Sites</span></h1>
         
         <blockquote class="aeo-summary">
-          SnapTextify is a secure, 100% offline Chrome extension that extracts text instantly from any video or webpage using local WebAssembly. Zero data uploads, zero tracking, complete privacy.
+          SnapTextify extracts text locally inside your browser using Tesseract WebAssembly. No screenshot or scanned text is ever uploaded to a server, guaranteeing complete content privacy.
         </blockquote>
 
-        <p class="hero-desc">Extract text or code from YouTube videos, slideshows, or copy-protected websites. Drag a box and the text is copied to your clipboard instantly. Try Free — No card needed!</p>
+        <p class="hero-desc">Instantly capture text or code from YouTube videos, presentation slides, or copy-protected web pages. Just drag a selection box to copy. Try Free — No card required!</p>
         <div class="hero-actions">
           <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">📥 Add to Chrome (Try Free)</a>
-          <a href="#pricing" class="btn btn-outline" id="hero-pricing-cta">Unlock Premium (from ₹149)</a>
+          <a href="#pricing" class="btn btn-outline" id="hero-pricing-cta">Unlock Pro (from ₹149)</a>
         </div>
       </div>
       <div class="hero-image">
@@ -2159,7 +2215,7 @@
     </section>
 
     <!-- Direct Answer / AEO Definition Block -->
-    <section class="aeo-definition-section">
+    <section class="aeo-definition-section reveal-element">
       <div class="aeo-definition-card">
         <p><strong>SnapTextify</strong> is a secure, 100% offline OCR Chrome extension powered by local WebAssembly binaries to instantly copy text and extract code from YouTube videos, images, and copy-restricted websites. Operating with zero server uploads, it delivers highly accurate, private, and zero-latency (~300ms) image-to-text conversion directly in your browser sandboxed environment.</p>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px; font-style: italic;">Note: You can audit and verify this offline capability at any time by monitoring the browser Developer Tools Network tab (F12) during a scan overlay copy operation. For complete transparency, we have open-sourced our core offline OCR WebAssembly model: inspect the <a href="https://github.com/FarKode/snaptextify-core-poc" target="_blank" style="color: var(--accent-cyan); text-decoration: underline; font-weight: 500;">GitHub Proof-of-Concept Repo</a>.</p>
@@ -2167,7 +2223,7 @@
     </section>
 
     <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
+    <section class="how-it-works reveal-element" id="how-it-works">
       <h2 class="section-title">How It Works</h2>
       <p class="section-subtitle">Copy text from any YouTube video or web image in 3 simple steps. No sign-ups, no server uploads — everything runs locally on your machine.</p>
       <div class="steps-grid">
@@ -2190,7 +2246,7 @@
     </section>
 
     <!-- Demos Area -->
-    <section class="demos-section">
+    <section class="demos-section reveal-element">
       <h2 class="section-title">See SnapTextify in Action</h2>
       <p class="section-subtitle">Unlock copy-restricted environments instantly. Here are two more common ways developers use SnapTextify daily:</p>
       
@@ -2290,55 +2346,55 @@
     </section>
 
     <!-- Features Area -->
-    <section id="features" class="features">
+    <section id="features" class="features reveal-element">
       <h2 class="section-title">Why SnapTextify?</h2>
       <p class="section-subtitle">Extract text from videos, images, code guides, and copy-restricted websites with absolute speed, privacy, and precision.</p>
       <div class="grid-features">
         <div class="feature-card">
           <div class="feature-icon-wrapper">📸</div>
           <h3 class="feature-card-title">Instant Area Selection Overlay</h3>
-          <p class="feature-desc">Press Alt + C to activate a high-performance viewport freezing overlay. Instantly crop any bounding box over video streams, restricted PDFs, images, or protected HTML nodes to capture target pixels.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrapper">🌐</div>
-          <h3 class="feature-card-title">9-Language Neural Script Detection</h3>
-          <p class="feature-desc">Utilizes compiled local script heuristics to auto-detect and transcribe English, Bengali, Spanish, Hindi, French, German, Portuguese, Arabic, and Russian simultaneously without server callbacks.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrapper">🛡️</div>
-          <h3 class="feature-card-title">100% Local Sandbox Data Isolation</h3>
-          <p class="feature-desc">Zero external API endpoints or analytics pings. Extracted text and image frames are processed in-memory inside the local browser sandbox via compiled WebAssembly binaries, ensuring absolute data security.</p>
+          <p class="feature-desc">Press Alt + C to freeze your browser viewport instantly. Crop any bounding box over streaming videos, copy-protected webpages, or PDFs to capture pixels in under 300ms.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">⚡</div>
           <h3 class="feature-card-title">~300ms WebAssembly OCR Engine</h3>
-          <p class="feature-desc">Leverages Tesseract OCR compiled to WebAssembly (WASM). Neural network layers execute inference directly on client CPU hardware, delivering plain-text output in under 300 milliseconds.</p>
+          <p class="feature-desc">Powered by local Tesseract OCR compiled in WebAssembly (WASM). Processing runs entirely inside the client sandbox using your CPU, making OCR 100% offline, free, and unlimited.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">📋</div>
-          <h3 class="feature-card-title">Local Clipboard Auto-Sync</h3>
-          <p class="feature-desc">Instantly writes extracted plaintext to the system clipboard. Keeps an indexed history log inside Chrome's local storage (chrome.storage.local) for offline viewing and re-copying.</p>
+          <div class="feature-icon-wrapper">🌐</div>
+          <h3 class="feature-card-title">9-Language Offline OCR Support</h3>
+          <p class="feature-desc">Transcribe and auto-detect English, Bengali, Hindi, Spanish, French, German, Portuguese, Arabic, and Russian simultaneously using local training files, completely offline.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">💎</div>
-          <h3 class="feature-card-title">Granular Credit & Lifetime Licensing</h3>
-          <p class="feature-desc">Purchase individual prepaid OCR scan packs or unlock lifetime unlimited scans. Payment is secured locally, granting access keys that run entirely offline without recurring billing.</p>
+          <div class="feature-icon-wrapper">🧠</div>
+          <h3 class="feature-card-title">Smart Gemini AI Actions</h3>
+          <p class="feature-desc">Explain formulas, solve complex homework, draft context-aware replies, or summarize scanned paragraphs in 3 bullets using integrated Google Gemini 1.5 Flash securely on the backend.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">📊</div>
+          <h3 class="feature-card-title">Table-to-CSV Grid Heuristics</h3>
+          <p class="feature-desc">Instantly convert image-based grids, tables, or financial reports into structured CSV format offline using vertical overlap clustering and whitespace gap analysis heuristics.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">🗣️</div>
           <h3 class="feature-card-title">In-Popup Neural Translation</h3>
-          <p class="feature-desc">Translate extracted text into 11 languages (English, Bengali, Hindi, Spanish, French, German, Portuguese, Russian, Arabic, Chinese, Japanese) directly inside the result overlay, or redirect to Google Translate with one click.</p>
+          <p class="feature-desc">Translate extracted text instantly into 11+ languages directly inside the result drawer, or jump directly to Google Translate for deeper multilingual analysis with one click.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">🔓</div>
-          <h3 class="feature-card-title">Open-Source Core Transparency</h3>
-          <p class="feature-desc">To verify our 100% offline security claim, the core WebAssembly OCR engine is open-sourced on GitHub. Anyone can audit our code and test it completely disconnected from the internet.</p>
+          <div class="feature-icon-wrapper">🛡️</div>
+          <h3 class="feature-card-title">100% Screenshot Content Privacy</h3>
+          <p class="feature-desc">Your screenshots and scanned text contents are never stored or tracked. All local OCR runs in-memory. Text is only securely sent to Gemini APIs when you actively click an AI Action button.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">💎</div>
+          <h3 class="feature-card-title">One-Time Lifetime Pro Licenses</h3>
+          <p class="feature-desc">Say goodbye to monthly subscriptions. Choose between prepaid Gemini AI credit packs or unlock unlimited lifetime usage. Enjoy permanent updates and priority support.</p>
         </div>
       </div>
     </section>
 
     <!-- Who Uses SnapTextify -->
-    <section class="who-uses" id="who-uses">
+    <section class="who-uses reveal-element" id="who-uses">
       <h2 class="section-title">Who Uses SnapTextify?</h2>
       <p class="section-subtitle">Professionals and students across the world rely on SnapTextify every day to copy text from screens they can't normally select.</p>
       <div class="persona-grid">
@@ -2361,7 +2417,7 @@
     </section>
 
     <!-- Competitor Comparison Section -->
-    <section class="comparison-section" id="comparison">
+    <section class="comparison-section reveal-element" id="comparison">
       <h2 class="section-title">Why SnapTextify Wins</h2>
       <p class="section-subtitle">A fair comparison between SnapTextify, online transcription tools, and manual typing.</p>
       
@@ -2412,12 +2468,6 @@
               <td><span class="comparison-status-no">❌ No</span> (Must copy-paste to translate page)</td>
               <td><span class="comparison-status-partial">⚠️ Manual</span> (Translate manually)</td>
             </tr>
-            <tr>
-              <td><strong>Multi-page Document Scanning</strong></td>
-              <td class="highlight-col"><span class="comparison-status-no">❌ Limited</span> (Designed for screens & crops)</td>
-              <td><span class="comparison-status-yes">✅ Excellent</span> (PDF files support)</td>
-              <td><span class="comparison-status-no">❌ Hard</span> (Manual typing)</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -2425,7 +2475,7 @@
     </section>
 
     <!-- Pricing Area -->
-    <section id="pricing" class="pricing">
+    <section id="pricing" class="pricing reveal-element">
       <h2 class="section-title">Choose Your Plan</h2>
       <div class="pricing-grid">
         <!-- Starter Pack -->
@@ -2437,11 +2487,11 @@
             <span class="price-period">/ one-time</span>
           </div>
           <ul class="pricing-features">
-            <li><strong>Unlimited</strong> Free English Scans</li>
-            <li><strong id="starter-credits">300</strong> Premium Credits (9-lang & Translation)</li>
+            <li><strong>Unlimited</strong> Offline OCR (English & Multi-lang)</li>
+            <li><strong>Unlimited</strong> Translation & Table-to-CSV</li>
+            <li><strong id="starter-credits">300</strong> Gemini AI Action Credits</li>
             <li>Activate on up to 3 Devices</li>
-            <li>Local Offline Processing</li>
-            <li>Lifetime Support</li>
+            <li>Lifetime Support & Free Updates</li>
           </ul>
           <button data-plan="starter" data-desc="Starter Pack (300 Scans)" class="btn btn-outline btn-buy-pack">Buy Starter Pack</button>
         </div>
@@ -2455,11 +2505,11 @@
             <span class="price-period">/ one-time</span>
           </div>
           <ul class="pricing-features">
-            <li><strong>Unlimited</strong> Free English Scans</li>
-            <li><strong id="pro-credits">1500</strong> Premium Credits (9-lang & Translation)</li>
+            <li><strong>Unlimited</strong> Offline OCR (English & Multi-lang)</li>
+            <li><strong>Unlimited</strong> Translation & Table-to-CSV</li>
+            <li><strong id="pro-credits">1500</strong> Gemini AI Action Credits</li>
             <li>Activate on up to 3 Devices</li>
-            <li>Local Offline Processing</li>
-            <li>Lifetime Support</li>
+            <li>Lifetime Support & Free Updates</li>
           </ul>
           <button data-plan="pro" data-desc="Pro Pack (1500 Scans)" class="btn btn-gradient btn-buy-pack">Buy Pro Pack</button>
         </div>
@@ -2473,10 +2523,10 @@
             <span class="price-period">/ lifetime access</span>
           </div>
           <ul class="pricing-features">
-            <li><strong>Unlimited</strong> Free English Scans</li>
-            <li><strong>Unlimited</strong> Premium Scans (9-lang & Translation)</li>
+            <li><strong>Unlimited</strong> Offline OCR (English & Multi-lang)</li>
+            <li><strong>Unlimited</strong> Translation & Table-to-CSV</li>
+            <li><strong>Unlimited Gemini AI Actions</strong> (No credits limit)</li>
             <li>Activate on up to <strong>5 Devices</strong></li>
-            <li>100% Offline Mode (No Server Sync)</li>
             <li>Lifetime Free Updates & Priority Support</li>
           </ul>
           <button data-plan="unlimited" data-desc="Unlimited Lifetime Premium" class="btn btn-outline btn-buy-pack">Go Unlimited</button>
@@ -2485,7 +2535,7 @@
     </section>
 
     <!-- Blog Section -->
-    <section class="blog-section" id="blog">
+    <section class="blog-section reveal-element" id="blog">
       <h2 class="section-title">Latest Guides & Resources</h2>
       <p class="section-subtitle" style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px auto; font-size: 16px; line-height: 1.6;">
         Deep dives, comparisons, and step-by-step tutorials to get the most out of SnapTextify.
@@ -2549,7 +2599,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
+    <section class="faq-section reveal-element" id="faq">
       <h2 class="section-title">Frequently Asked Questions</h2>
       <p class="section-subtitle">Got questions? We have answers. Find everything you need to know about SnapTextify below.</p>
       
@@ -2597,9 +2647,9 @@
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">What is included in the free tier of SnapTextify, and how do I scan more?</div>
+          <div class="faq-question">What is included in the free tier of SnapTextify, and how do I unlock premium features?</div>
           <div class="faq-answer">
-            The free tier grants you 3 local OCR scans per day to extract text. To unlock higher scan limits or get unlimited lifetime usage, you can upgrade to one of our premium packs starting at just ₹149.
+            The free tier grants you unlimited offline local OCR scans for English text! To unlock advanced offline multi-language OCR auto-detection, in-card translation, Table-to-CSV converters, and credits for Gemini AI Actions, you can upgrade to one of our premium packs starting at just ₹149 ($4.99).
           </div>
         </div>
         
@@ -2708,7 +2758,7 @@
               <strong>Instructions:</strong>
               <ol>
                 <li>Scan the QR code with any UPI app (GPay, PhonePe, Paytm, etc.).</li>
-                <li>Pay the **EXACT** amount shown above: <strong id="upi-amount-display">₹99.00</strong> (including paise).</li>
+                <li>Pay the **EXACT** amount shown above: <strong id="upi-amount-display">₹149.00</strong> (including paise).</li>
                 <li>Enter your email and the **12-digit UPI Transaction ID / UTR** from your app transaction details below.</li>
                 <li>Click **Submit Payment Verification**. Once approved, your key is automatically generated and emailed!</li>
               </ol>
