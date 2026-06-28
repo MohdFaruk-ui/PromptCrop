@@ -633,6 +633,109 @@ if (supportForm) {
 }
 
 // -------------------------------------------------------------
+// Product Showcase Carousel Controller
+// -------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.getElementById("showcase-track");
+  const slides = Array.from(track ? track.children : []);
+  const btnPrev = document.getElementById("btn-showcase-prev");
+  const btnNext = document.getElementById("btn-showcase-next");
+  const indicators = document.querySelectorAll("#showcase-indicators .indicator");
+  
+  if (!track || slides.length === 0) return;
+  
+  let currentIndex = 0;
+  let autoplayTimer = null;
+  
+  function updateCarousel(index) {
+    currentIndex = index;
+    
+    // Shift track
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    // Toggle active classes on slides
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add("active-slide");
+      } else {
+        slide.classList.remove("active-slide");
+      }
+    });
+    
+    // Toggle active classes on indicators
+    indicators.forEach((ind, i) => {
+      if (i === index) {
+        ind.classList.add("active-indicator");
+      } else {
+        ind.classList.remove("active-indicator");
+      }
+    });
+  }
+  
+  function nextSlide() {
+    let nextIndex = currentIndex + 1;
+    if (nextIndex >= slides.length) {
+      nextIndex = 0;
+    }
+    updateCarousel(nextIndex);
+  }
+  
+  function prevSlide() {
+    let prevIndex = currentIndex - 1;
+    if (prevIndex < 0) {
+      prevIndex = slides.length - 1;
+    }
+    updateCarousel(prevIndex);
+  }
+  
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(nextSlide, 6000); // Shift every 6 seconds
+  }
+  
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+  
+  // Controls click listeners
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      nextSlide();
+      startAutoplay(); // Reset timer on click
+    });
+  }
+  
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      prevSlide();
+      startAutoplay();
+    });
+  }
+  
+  // Indicators click listeners
+  indicators.forEach((indicator) => {
+    indicator.addEventListener("click", () => {
+      const targetIndex = parseInt(indicator.getAttribute("data-slide"), 10);
+      updateCarousel(targetIndex);
+      startAutoplay();
+    });
+  });
+  
+  // Auto-play when hover leaves
+  const container = document.querySelector(".showcase-carousel");
+  if (container) {
+    container.addEventListener("mouseenter", stopAutoplay);
+    container.addEventListener("mouseleave", startAutoplay);
+  }
+  
+  // Start autoplay initially
+  startAutoplay();
+});
+
+// -------------------------------------------------------------
 // Scroll Reveal Animation (IntersectionObserver)
 // -------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
