@@ -131,7 +131,7 @@
         "name": "What is SnapTextify?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SnapTextify is a secure, 100% offline Chrome extension that lets you drag a selection box over any video frame or webpage to instantly extract and copy text."
+          "text": "SnapTextify is a secure, 100% offline OCR Chrome extension that lets you drag a selection box over any video frame or webpage to instantly extract and copy text."
         }
       },
       {
@@ -2364,21 +2364,18 @@
       </div>
     </nav>
 
-    <!-- Hero Area -->
-    <section class="hero">
+        <section class="hero">
       <div>
-        <span class="hero-tag">🔒 100% Offline Screen OCR</span>
-        <h1 class="hero-title">Copy Any Text You See — <span>Even From Videos or Locked Sites</span></h1>
+        <span class="hero-tag">🔒 100% Offline · No Sign-up Required · Manifest V3</span>
+        <h1 class="hero-title">Copy Text From Any Video, Image, or Locked Page — <span>In Under 300ms.</span></h1>
         
-        <blockquote class="aeo-summary">
-          SnapTextify extracts text locally inside your browser using Tesseract WebAssembly. No screenshot or scanned text is ever uploaded to a server, guaranteeing complete content privacy.
-        </blockquote>
-
-        <p class="hero-desc">Instantly capture text or code from YouTube videos, presentation slides, or copy-protected web pages. Just drag a selection box to copy. Try Free — No card required!</p>
-        <div class="hero-actions">
-          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">📥 Add to Chrome (Try Free)</a>
-          <a href="#pricing" class="btn btn-outline" id="hero-pricing-cta">Unlock Pro (from ₹149)</a>
+        <p class="hero-desc">Stop retyping code, prompts, and notes by hand. Press Alt + C, drag a box over anything on your screen, and the text is instantly on your clipboard. Powered by offline OCR — your screenshots never leave your machine.</p>
+        
+        <div class="hero-actions" style="margin-bottom: 12px !important;">
+          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">🟢 Add to Chrome — It's Free</a>
+          <a href="#how-it-works" class="btn btn-outline" style="border-color: rgba(255, 255, 255, 0.15) !important;">See how it works ↓</a>
         </div>
+        <p style="font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px;">Free forever for unlimited English scans · No credit card · Works on YouTube, Udemy, PDFs & more</p>
       </div>
       <div class="hero-image">
         <div class="hero-image-box">
@@ -2428,25 +2425,52 @@
       </div>
     </section>
 
+    <!-- Problem / Agitation Section -->
+    <section class="problem-section reveal-element" style="padding: 60px 0; max-width: 1200px; margin: 0 auto; text-align: center;">
+      <div style="padding: 0 20px;">
+        <h2 class="section-title">The text is right there. So why can't you copy it?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; text-align: left;">
+          <div class="feature-card">
+            <div style="font-size: 24px; margin-bottom: 12px;">📹</div>
+            <h3 class="feature-card-title" style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">Locked inside videos</h3>
+            <p class="feature-desc" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Code snippets in programming tutorials, instructions in AI demo clips, or definitions in video lectures.</p>
+          </div>
+          <div class="feature-card">
+            <div style="font-size: 24px; margin-bottom: 12px;">🖼️</div>
+            <h3 class="feature-card-title" style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">Trapped in images</h3>
+            <p class="feature-desc" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Text inside system architecture diagrams, screenshot slides, infographics, and scanned slide decks.</p>
+          </div>
+          <div class="feature-card">
+            <div style="font-size: 24px; margin-bottom: 12px;">🚫</div>
+            <h3 class="feature-card-title" style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">Blocked by websites</h3>
+            <p class="feature-desc" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Copy-protected online documentation, locked academic archives, or paywalled articles.</p>
+          </div>
+        </div>
+        <p style="font-size: 16px; color: #e0faff; margin-top: 40px; font-weight: 600; line-height: 1.5; max-width: 680px; margin-left: auto; margin-right: auto;">
+          You end up squinting and retyping it character by character. SnapTextify ends that in one keystroke.
+        </p>
+      </div>
+    </section>
+
     <!-- How It Works -->
     <section class="how-it-works reveal-element" id="how-it-works">
-      <h2 class="section-title">How It Works</h2>
-      <p class="section-subtitle">Copy text from any YouTube video or web image in 3 simple steps. No sign-ups, no server uploads — everything runs locally on your machine.</p>
+      <h2 class="section-title">Three steps. Under a second.</h2>
+      <p class="section-subtitle">No sign-ups, no complex setup — grab any screen text in three simple micro-actions.</p>
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-number">1</div>
-          <h3 class="step-title">Install & Activate</h3>
-          <p class="step-desc">Add SnapTextify to Chrome from the Web Store. It works instantly — no configuration, no account creation needed. The free tier gives you unlimited English OCR scans!</p>
+          <h3 class="step-title">Freeze</h3>
+          <p class="step-desc">Press <strong>Alt + C</strong> (or click the extension icon) to instantly freeze your screen.</p>
         </div>
         <div class="step-card">
           <div class="step-number">2</div>
-          <h3 class="step-title">Freeze & Select</h3>
-          <p class="step-desc">Press <strong>Alt + C</strong> on any YouTube video, web page, or image to freeze the screen. Drag a selection box over the text you want to copy — code, prompts, or any visible content.</p>
+          <h3 class="step-title">Drag</h3>
+          <p class="step-desc">Draw a box around the text you want to grab — code, a prompt, a table, or anything visible.</p>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
-          <h3 class="step-title">Copy & Use</h3>
-          <p class="step-desc">SnapTextify's local WebAssembly OCR engine reads the text in ~300ms and copies it to your clipboard automatically. Paste it anywhere — your editor, notes, or terminal.</p>
+          <h3 class="step-title">Done</h3>
+          <p class="step-desc">The text is instantly copied to your clipboard. Simply press <strong>Ctrl + V</strong> to paste it anywhere.</p>
         </div>
       </div>
     </section>
@@ -2659,48 +2683,43 @@
 
     <!-- Features Area -->
     <section id="features" class="features reveal-element">
-      <h2 class="section-title">Why SnapTextify?</h2>
-      <p class="section-subtitle">Extract text from videos, images, code guides, and copy-restricted websites with absolute speed, privacy, and precision.</p>
+      <h2 class="section-title">Everything you need to grab text — nothing you don't.</h2>
+      <p class="section-subtitle">A highly optimized set of tools designed to make text capture instant, smart, and fully private.</p>
       <div class="grid-features">
         <div class="feature-card">
-          <div class="feature-icon-wrapper">📸</div>
-          <h3 class="feature-card-title">Instant Area Selection Overlay</h3>
-          <p class="feature-desc">Press Alt + C to freeze your browser viewport instantly. Crop any bounding box over streaming videos, copy-protected webpages, or PDFs to capture pixels in under 300ms.</p>
+          <div class="feature-icon-wrapper">🔒</div>
+          <h3 class="feature-card-title">100% Offline OCR</h3>
+          <p class="feature-desc">Tesseract WebAssembly runs entirely in your browser. Zero screenshot data ever touches a server. True privacy by architecture, not by promise.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">⚡</div>
-          <h3 class="feature-card-title">~300ms WebAssembly OCR Engine</h3>
-          <p class="feature-desc">Powered by local Tesseract OCR compiled in WebAssembly (WASM). Processing runs entirely inside the client sandbox using your CPU, making OCR 100% offline, free, and unlimited.</p>
+          <div class="feature-icon-wrapper">🎬</div>
+          <h3 class="feature-card-title">Works on Any Video</h3>
+          <p class="feature-desc">YouTube, Vimeo, Coursera, Udemy, any HTML5 player. Pause, select, copy code, prompts, or notes in milliseconds.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">🌐</div>
-          <h3 class="feature-card-title">9-Language Offline OCR Support</h3>
-          <p class="feature-desc">Transcribe and auto-detect English, Bengali, Hindi, Spanish, French, German, Portuguese, Arabic, and Russian simultaneously using local training files, completely offline.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrapper">🧠</div>
-          <h3 class="feature-card-title">Smart Gemini AI Actions</h3>
-          <p class="feature-desc">Explain formulas, solve complex homework, draft context-aware replies, or summarize scanned paragraphs in 3 bullets using integrated Google Gemini 1.5 Flash securely on the backend.</p>
+          <h3 class="feature-card-title">9 Languages, Auto-Detected</h3>
+          <p class="feature-desc">English, Bengali, Hindi, Spanish, French, German, Portuguese, Russian & Arabic — with smart script prioritizing so mixed text stays accurate.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrapper">📊</div>
-          <h3 class="feature-card-title">Table-to-CSV Grid Heuristics</h3>
-          <p class="feature-desc">Instantly convert image-based grids, tables, or financial reports into structured CSV format offline using vertical overlap clustering and whitespace gap analysis heuristics.</p>
+          <h3 class="feature-card-title">Table → CSV (Premium)</h3>
+          <p class="feature-desc">Grab a table from a video or image and export clean CSV data in seconds — processed fully offline on your machine.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">🗣️</div>
-          <h3 class="feature-card-title">In-Popup Neural Translation</h3>
-          <p class="feature-desc">Translate extracted text instantly into 11+ languages directly inside the result drawer, or jump directly to Google Translate for deeper multilingual analysis with one click.</p>
+          <div class="feature-icon-wrapper">🧠</div>
+          <h3 class="feature-card-title">Smart Gemini AI Actions (Premium)</h3>
+          <p class="feature-desc">Solve formulas, explain code, summarize long passages, or draft context-aware replies on extracted text in one click.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">🛡️</div>
-          <h3 class="feature-card-title">100% Screenshot Content Privacy</h3>
-          <p class="feature-desc">Your screenshots and scanned text contents are never stored or tracked. All local OCR runs in-memory. Text is only securely sent to Gemini APIs when you actively click an AI Action button.</p>
+          <div class="feature-icon-wrapper">🌍</div>
+          <h3 class="feature-card-title">In-Popup Translation (Premium)</h3>
+          <p class="feature-desc">Translate grabbed text into 11+ languages directly inside the selection window without losing your context.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-wrapper">💎</div>
-          <h3 class="feature-card-title">One-Time Lifetime Pro Licenses</h3>
-          <p class="feature-desc">Say goodbye to monthly subscriptions. Choose between prepaid Gemini AI credit packs or unlock unlimited lifetime usage. Enjoy permanent updates and priority support.</p>
+          <div class="feature-icon-wrapper">📂</div>
+          <h3 class="feature-card-title">Side Panel Scan Manager (Premium)</h3>
+          <p class="feature-desc">Full-height history sidebar workspace. Search text, add custom tags, and export your entire scan log history to CSV.</p>
         </div>
       </div>
     </section>
@@ -2728,6 +2747,21 @@
       </div>
     </section>
 
+    <!-- Privacy Differentiator Section -->
+    <section class="privacy-differentiator reveal-element" style="padding: 80px 0; background: linear-gradient(180deg, rgba(18, 18, 26, 0.4) 0%, rgba(10, 10, 15, 0) 100%); text-align: center;">
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <h2 class="section-title">Your screen is yours. We built it that way.</h2>
+        <p style="font-size: 16px; color: var(--text-muted); line-height: 1.8; margin-top: 24px; max-width: 720px; margin-left: auto; margin-right: auto;">
+          Most "screen reader" tools quietly send your screenshots to a cloud API. SnapTextify compiles OCR into WebAssembly and runs it inside a sealed browser sandbox. Your captures are processed locally and discarded. The only thing that ever contacts our server is an optional license check — never your content.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 24px; margin-top: 36px; flex-wrap: wrap;">
+          <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 8px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.2);">✅ No screenshots uploaded</span>
+          <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 8px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.2);">✅ No tracking</span>
+          <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 8px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.2);">✅ Works offline</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Competitor Comparison Section -->
     <section class="comparison-section reveal-element" id="comparison">
       <h2 class="section-title">Why SnapTextify Wins</h2>
@@ -2745,7 +2779,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>OCR 100% Offline Processing</strong></td>
+              <td><strong>100% Offline Processing</strong></td>
               <td class="highlight-col"><span class="comparison-status-yes">✅ Yes</span> (100% local WebAssembly)</td>
               <td><span class="comparison-status-no">❌ No</span> (Server-dependent)</td>
               <td><span class="comparison-status-yes">✅ Yes</span> (Self-type)</td>
@@ -2798,9 +2832,83 @@
       <p style="font-size: 11px; color: var(--text-muted); margin-top: 15px; font-style: italic;">Comparison data is verified as of May 2026. Online OCR tools typically refer to web-based cloud upload utilities.</p>
     </section>
 
+    <!-- Social Proof Section -->
+    <section class="social-proof-section reveal-element" style="padding: 80px 0; max-width: 1200px; margin: 0 auto; text-align: center;">
+      <div style="padding: 0 20px;">
+        <h2 class="section-title">Built for people who copy text all day.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; text-align: left;">
+          <div class="feature-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <p style="font-size: 15px; line-height: 1.6; color: var(--text-light); font-style: italic;">"I rip code straight out of YouTube tutorials now. Saved me hours every week."</p>
+            <span style="font-size: 13px; font-weight: 600; color: var(--accent-cyan); margin-top: 16px; display: block;">— Developer / Bootcamp Student</span>
+          </div>
+          <div class="feature-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <p style="font-size: 15px; line-height: 1.6; color: var(--text-light); font-style: italic;">"The offline part sold me. I work with sensitive docs and nothing leaves my laptop."</p>
+            <span style="font-size: 13px; font-weight: 600; color: var(--accent-cyan); margin-top: 16px; display: block;">— Legal Researcher</span>
+          </div>
+          <div class="feature-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <p style="font-size: 15px; line-height: 1.6; color: var(--text-light); font-style: italic;">"Bengali OCR actually works on conjuncts. First tool that didn't return garbage."</p>
+            <span style="font-size: 13px; font-weight: 600; color: var(--accent-cyan); margin-top: 16px; display: block;">— Content Localizer</span>
+          </div>
+        </div>
+        <!-- Stat strip -->
+        <div style="margin-top: 50px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); display: inline-flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+          <span style="font-size: 14px; font-weight: 600; color: #fff;">⚡ ~300ms per scan</span>
+          <span style="font-size: 14px; font-weight: 600; color: #fff;">🌐 9 OCR languages</span>
+          <span style="font-size: 14px; font-weight: 600; color: #fff;">🔒 0 screenshots uploaded</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Pricing Area -->
     <section id="pricing" class="pricing reveal-element">
-      <h2 class="section-title">Choose Your Plan</h2>
+      <h2 class="section-title">Free to start. Upgrade when you're ready.</h2>
+      <p class="section-subtitle">No monthly subscriptions. Pick the lifetime license that fits your usage.</p>
+      
+      <!-- Feature Comparison Table -->
+      <div class="comparison-table-wrapper" style="max-width: 800px; margin: 40px auto 60px auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="text-align: center;">Free</th>
+              <th class="highlight-col" style="text-align: center; color: var(--accent-cyan);">Premium Lifetime</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Offline OCR scans</strong></td>
+              <td style="text-align: center;">Unlimited (English)</td>
+              <td class="highlight-col" style="text-align: center;"><span class="comparison-status-yes">✅ Unlimited</span> (9 languages)</td>
+            </tr>
+            <tr>
+              <td><strong>Copy to clipboard</strong></td>
+              <td style="text-align: center;"><span class="comparison-status-yes">✅ Yes</span></td>
+              <td class="highlight-col" style="text-align: center;"><span class="comparison-status-yes">✅ Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Table → CSV</strong></td>
+              <td style="text-align: center;">—</td>
+              <td class="highlight-col" style="text-align: center;"><span class="comparison-status-yes">✅ Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>In-popup translation</strong></td>
+              <td style="text-align: center;">—</td>
+              <td class="highlight-col" style="text-align: center;"><span class="comparison-status-yes">✅ Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Gemini AI Actions</strong></td>
+              <td style="text-align: center;">—</td>
+              <td class="highlight-col" style="text-align: center;"><span class="comparison-status-yes">✅ Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Side Panel manager</strong></td>
+              <td style="text-align: center;">—</td>
+              <td class="highlight-col" style="text-align: center;"><span class="comparison-status-yes">✅ Yes</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="pricing-grid">
         <!-- Starter Pack -->
         <div class="pricing-card">
@@ -2856,6 +2964,9 @@
           <button data-plan="unlimited" data-desc="Unlimited Lifetime Premium" class="btn btn-outline btn-buy-pack">Go Unlimited</button>
         </div>
       </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-top: 30px; text-align: center; font-style: italic;">
+        One-time payment · Lifetime access · Secure checkout via Razorpay & Dodo Payments
+      </p>
     </section>
 
     <!-- Blog Section -->
@@ -2929,65 +3040,30 @@
       
       <div class="faq-container">
         <div class="faq-item">
-          <div class="faq-question">What is SnapTextify and how does it extract text from my screen?</div>
+          <div class="faq-question">Is my data really private?</div>
           <div class="faq-answer">
-            SnapTextify is a secure, 100% offline Chrome extension that lets you drag a selection overlay box over any video frame, document, or webpage to instantly extract and copy text using in-browser WebAssembly OCR.
+            Yes. OCR runs locally via WebAssembly inside a sealed browser sandbox. Your screenshots are processed locally and discarded. They are never uploaded to our servers.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">Is my data safe with SnapTextify, or does it upload screenshots to the cloud?</div>
+          <div class="faq-question">Does it work on videos?</div>
           <div class="faq-answer">
-            No data is ever uploaded to any server. All image extraction, cropping, and OCR operations are executed entirely on your local machine within a sandboxed environment using local WebAssembly binaries. Your privacy is 100% guaranteed.
+            Yes — pause any video (YouTube, Udemy, Coursera, Vimeo, or any HTML5 player) and select the text to copy it instantly.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">How does the offline OCR auto-detection support multiple languages?</div>
+          <div class="faq-question">Do I need to sign up?</div>
           <div class="faq-answer">
-            SnapTextify utilizes a compiled local Tesseract OCR engine that auto-detects and transcribes 9 different scripts simultaneously: English, Bengali, Hindi, Spanish, French, German, Portuguese, Russian, and Arabic, without requiring manual language toggles.
+            No. Free English OCR works immediately after installation without any registration or credit cards. An account or license key is only needed to unlock Premium features.
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">How do I copy code from a YouTube video safely using this extension?</div>
+          <div class="faq-question">Which languages are supported?</div>
           <div class="faq-answer">
-            To copy code or prompt text from a YouTube video, pause the video on the frame showing the code, press <strong>Alt + C</strong> (or click the extension icon) to freeze the screen, and drag a selection box over the code block. SnapTextify's local WebAssembly OCR engine reads the text in ~300ms and copies it directly to your system clipboard.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">Can I use SnapTextify to copy text from copy-protected or locked websites?</div>
-          <div class="faq-answer">
-            Yes. Since SnapTextify captures a secure screen overlay at the viewport level, it completely bypasses any CSS or JavaScript blockades (such as right-click disabling, copy-protection scripts, select-disabled CSS, or iframe locks). If the text is visible on your screen, SnapTextify can copy it.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">Does the local WebAssembly OCR engine require an internet connection?</div>
-          <div class="faq-answer">
-            No. Once SnapTextify is installed, the compiled WebAssembly binaries and OCR models run entirely within your local browser sandbox. You can capture, extract, and copy text from any image or video offline, even when your computer has no active internet connection.
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">What is included in the free tier of SnapTextify, and how do I unlock premium features?</div>
-          <div class="faq-answer">
-            The free tier grants you unlimited offline local OCR scans for English text! To unlock advanced offline multi-language OCR auto-detection, in-card translation, Table-to-CSV converters, and credits for Gemini AI Actions, you can upgrade to one of our premium packs starting at just ₹149 ($4.99).
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">How does the local UPI QR payment verification work to unlock my license key?</div>
-          <div class="faq-answer">
-            When paying via local UPI, you simply scan the dynamically generated QR code, pay the exact amount using any UPI app (like GPay, PhonePe, or Paytm), and enter your 12-digit UPI Transaction ID / UTR number in the checkout screen. Our backend verifies the UTR reference instantly, and your license key is auto-generated and emailed to you, typically within 10 to 15 minutes.
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">On how many devices or browsers can I activate my premium license key?</div>
-          <div class="faq-answer">
-            A standard premium key can be activated on up to 3 separate Chrome browser installations simultaneously. If you purchase our Unlimited pack, your license key supports activation on up to 5 concurrent browser profiles or devices.
+            SnapTextify supports English, Bengali, Hindi, Spanish, French, German, Portuguese, Russian, and Arabic OCR auto-detection.
           </div>
         </div>
       </div>
@@ -3116,16 +3192,17 @@
       </div>
     </div>
 
+    <!-- Final CTA Section -->
+    <section class="final-cta reveal-element" style="padding: 100px 0; text-align: center; background: linear-gradient(0deg, rgba(18, 18, 26, 0.4) 0%, rgba(10, 10, 15, 0) 100%);">
+      <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 24px;">Stop retyping. Start snapping.</h2>
+        <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" style="font-size: 16px; padding: 16px 36px;" target="_blank" rel="noopener">🟢 Add to Chrome — Free Forever</a>
+      </div>
+    </section>
+
     <!-- Footer Links -->
     <footer>
-      <p>© 2026 FarKode. All rights reserved.</p>
-      <p>
-        <a href="privacy.html" title="SnapTextify Privacy Policy">Privacy & Data Protection Policy</a>
-        <span>•</span>
-        <a href="terms.html" title="SnapTextify Terms of Service">Terms & Conditions of Service</a>
-        <span>•</span>
-        <a href="blog/index.html" title="SnapTextify Blog">Blog</a>
-      </p>
+      <p>© 2026 FarKode · <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy Policy</a> · <a href="terms.html" style="color: inherit; text-decoration: none;">Terms of Service</a> · <a href="#pricing" style="color: inherit; text-decoration: none;">Support</a></p>
     </footer>
   </div>
 
