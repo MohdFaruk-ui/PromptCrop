@@ -2366,8 +2366,8 @@
     </nav>
 
         <section class="hero">
-          <canvas id="hero-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.8;"></canvas>
-      <div>
+          <canvas id="hero-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.8;"></canvas>
+      <div style="position: relative; z-index: 1;">
         <span class="hero-tag">🔒 100% Offline · No Sign-up Required · Manifest V3</span>
         <h1 class="hero-title">Copy Text From Any Video, Image, or Locked Page — <span>In Under 300ms.</span></h1>
         
@@ -2379,7 +2379,7 @@
         </div>
         <p style="font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px;">Free forever for unlimited English scans · No credit card · Works on YouTube, Udemy, PDFs & more</p>
       </div>
-      <div class="hero-image">
+      <div class="hero-image" style="position: relative; z-index: 1;">
         <div class="hero-image-box">
           <div class="mockup-header">
             <span class="dot"></span>
