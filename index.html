@@ -2368,16 +2368,16 @@
         <section class="hero">
           <canvas id="hero-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.8;"></canvas>
       <div style="position: relative; z-index: 1;">
-        <span class="hero-tag">🔒 100% Offline · No Sign-up Required · Manifest V3</span>
-        <h1 class="hero-title">Copy Text From Any Video, Image, or Locked Page — <span>In Under 300ms.</span></h1>
+        <span class="hero-tag" style="background: rgba(255, 77, 77, 0.1); border-color: rgba(255, 77, 77, 0.2); color: #ff4d4d; font-weight: 700;">🔒 CLOSED BETA - EARLY ACCESS COHORT #1</span>
+        <h1 class="hero-title">You're not supposed to have this link yet.</h1>
         
-        <p class="hero-desc">Stop retyping code, prompts, and notes by hand. Press Alt + C, drag a box over anything on your screen, and the text is instantly on your clipboard. Powered by offline OCR — your screenshots never leave your machine.</p>
+        <p class="hero-desc">SnapTextify is in closed early access — offline WebAssembly OCR that copies text and extracts code from any video, image, or paywalled page in under 300ms. Zero cloud logging. Zero tracking.</p>
         
         <div class="hero-actions" style="margin-bottom: 12px !important;">
-          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">🟢 Add to Chrome — It's Free</a>
-          <a href="#how-it-works" class="btn btn-outline" style="border-color: rgba(255, 255, 255, 0.15) !important;">See how it works ↓</a>
+          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">🟢 Claim Early Access →</a>
+          <a href="#pricing" class="btn btn-outline" style="border-color: rgba(255, 255, 255, 0.15) !important;">Skip the Waitlist</a>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px;">Free forever for unlimited English scans · No credit card · Works on YouTube, Udemy, PDFs & more</p>
+        <p style="font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px;">Free forever for unlimited English scans · Zero tracking · Self-verification supported below</p>
       </div>
       <div class="hero-image" style="position: relative; z-index: 1;">
         <div class="hero-image-box">
@@ -2424,6 +2424,33 @@
       <div class="aeo-definition-card">
         <p><strong>SnapTextify</strong> is a secure, 100% offline OCR Chrome extension powered by local WebAssembly binaries to instantly copy text and extract code from YouTube videos, images, and copy-restricted websites. Operating with zero server uploads, it delivers highly accurate, private, and zero-latency (~300ms) image-to-text conversion directly in your browser sandboxed environment.</p>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px; font-style: italic;">Note: You can audit and verify this offline capability at any time by monitoring the browser Developer Tools Network tab (F12) during a scan overlay copy operation. For complete transparency, we have open-sourced our core offline OCR WebAssembly model: inspect the <a href="https://github.com/FarKode/snaptextify-core-poc" target="_blank" style="color: var(--accent-cyan); text-decoration: underline; font-weight: 500;">GitHub Proof-of-Concept Repo</a>.</p>
+      </div>
+    </section>
+
+    <!-- Verification Trust Challenge Section -->
+    <section class="trust-challenge-section reveal-element" style="padding: 40px 0; max-width: 900px; margin: 0 auto; text-align: center;">
+      <div style="background: rgba(0, 240, 255, 0.02); border: 1px dashed rgba(0, 240, 255, 0.15); border-radius: 20px; padding: 30px; box-sizing: border-box;">
+        <span style="font-size: 32px; display: block; margin-bottom: 12px;">🧪</span>
+        <h3 style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">Verify it yourself: Turn off your internet.</h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; max-width: 650px; margin: 0 auto 20px auto; font-family: 'Outfit', sans-serif;">
+          SnapTextify operates 100% locally in your browser. Install the extension, disconnect your WiFi or Ethernet, and drag to capture text from any offline PDF or video. It works instantly because the WebAssembly engine runs directly in a local sandboxed browser thread. Zero screenshots or texts ever hit our servers.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px; font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
+          <div style="text-align: center;">
+            <div style="font-size: 20px; margin-bottom: 4px; color: var(--accent-cyan);">📁 Local Crop</div>
+            <div>Browser Canvas</div>
+          </div>
+          <div style="align-self: center; font-size: 16px; color: rgba(255,255,255,0.1);">➔</div>
+          <div style="text-align: center;">
+            <div style="font-size: 20px; margin-bottom: 4px; color: var(--accent-cyan);">⚙️ WASM Engine</div>
+            <div>Tesseract.js Local Worker</div>
+          </div>
+          <div style="align-self: center; font-size: 16px; color: rgba(255,255,255,0.1);">➔</div>
+          <div style="text-align: center;">
+            <div style="font-size: 20px; margin-bottom: 4px; color: var(--accent-cyan);">📋 Clipboard</div>
+            <div>Instant Local Copy</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2863,8 +2890,8 @@
 
     <!-- Pricing Area -->
     <section id="pricing" class="pricing reveal-element">
-      <h2 class="section-title">Free to start. Upgrade when you're ready.</h2>
-      <p class="section-subtitle">No monthly subscriptions. Pick the lifetime license that fits your usage.</p>
+      <h2 class="section-title">🔒 Skip the Waitlist: Get a Beta Cohort Pass</h2>
+      <p class="section-subtitle">We are onboarding a limited number of premium users this week to keep API costs predictable. Grab a Supporter Pass below to skip the queue and get instant lifetime access.</p>
       
       <!-- Feature Comparison Table -->
       <div class="comparison-table-wrapper" style="max-width: 800px; margin: 40px auto 60px auto;">
@@ -2914,56 +2941,56 @@
       <div class="pricing-grid">
         <!-- Starter Pack -->
         <div class="pricing-card">
-          <span class="pricing-badge badge-starter">Starter Pack</span>
-          <h3 class="pricing-name">Starter</h3>
+          <span class="pricing-badge badge-starter" style="background: rgba(0, 240, 255, 0.1); border-color: rgba(0, 240, 255, 0.2); color: #00f0ff;">Starter Pass</span>
+          <h3 class="pricing-name">Starter Key</h3>
           <div class="price-row">
             <span class="price-value" id="starter-price">₹149</span>
             <span class="price-period">/ one-time</span>
           </div>
           <ul class="pricing-features">
+            <li><strong>Skip the Waitlist</strong> (Instant Activation)</li>
             <li><strong>Unlimited</strong> Offline OCR (English & Multi-lang)</li>
             <li><strong>Unlimited</strong> Translation & Table-to-CSV</li>
             <li><strong id="starter-credits">300</strong> Gemini AI Action Credits</li>
             <li>Activate on up to 3 Devices</li>
-            <li>Lifetime Support & Free Updates</li>
           </ul>
-          <button data-plan="starter" data-desc="Starter Pack (300 Scans)" class="btn btn-outline btn-buy-pack">Buy Starter Pack</button>
+          <button data-plan="starter" data-desc="Starter Cohort Key (300 Credits)" class="btn btn-outline btn-buy-pack">Get Starter Key</button>
         </div>
 
         <!-- Pro Pack -->
         <div class="pricing-card premium-tier">
           <span class="pricing-badge badge-pro">Most Popular</span>
-          <h3 class="pricing-name">Pro</h3>
+          <h3 class="pricing-name">Pro Supporter</h3>
           <div class="price-row">
             <span class="price-value" id="pro-price">₹399</span>
             <span class="price-period">/ one-time</span>
           </div>
           <ul class="pricing-features">
+            <li><strong>Skip the Waitlist</strong> (Instant Activation)</li>
             <li><strong>Unlimited</strong> Offline OCR (English & Multi-lang)</li>
             <li><strong>Unlimited</strong> Translation & Table-to-CSV</li>
             <li><strong id="pro-credits">1500</strong> Gemini AI Action Credits</li>
             <li>Activate on up to 3 Devices</li>
-            <li>Lifetime Support & Free Updates</li>
           </ul>
-          <button data-plan="pro" data-desc="Pro Pack (1500 Scans)" class="btn btn-gradient btn-buy-pack">Buy Pro Pack</button>
+          <button data-plan="pro" data-desc="Pro Supporter Key (1500 Credits)" class="btn btn-gradient btn-buy-pack">Get Pro Key</button>
         </div>
 
         <!-- Unlimited Lifetime -->
         <div class="pricing-card">
-          <span class="pricing-badge">Best Value</span>
-          <h3 class="pricing-name name-unlimited">Unlimited Premium</h3>
+          <span class="pricing-badge" style="background: rgba(179, 136, 255, 0.1); border-color: rgba(179, 136, 255, 0.2); color: #b388ff;">Unlimited Pass</span>
+          <h3 class="pricing-name name-unlimited">Lifetime Supporter</h3>
           <div class="price-row">
             <span class="price-value" id="unlimited-price">₹799</span>
             <span class="price-period">/ lifetime access</span>
           </div>
           <ul class="pricing-features">
+            <li><strong>Skip the Waitlist</strong> (Instant Activation)</li>
             <li><strong>Unlimited</strong> Offline OCR (English & Multi-lang)</li>
             <li><strong>Unlimited</strong> Translation & Table-to-CSV</li>
             <li><strong>Unlimited Gemini AI Actions</strong> (No credits limit)</li>
             <li>Activate on up to <strong>5 Devices</strong></li>
-            <li>Lifetime Free Updates & Priority Support</li>
           </ul>
-          <button data-plan="unlimited" data-desc="Unlimited Lifetime Premium" class="btn btn-outline btn-buy-pack">Go Unlimited</button>
+          <button data-plan="unlimited" data-desc="Unlimited Lifetime Supporter Pass" class="btn btn-outline btn-buy-pack">Go Unlimited</button>
         </div>
       </div>
       <p style="font-size: 13px; color: var(--text-muted); margin-top: 30px; text-align: center; font-style: italic;">
