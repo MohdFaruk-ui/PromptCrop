@@ -2368,16 +2368,16 @@
         <section class="hero">
           <canvas id="hero-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.8;"></canvas>
       <div style="position: relative; z-index: 1;">
-        <span class="hero-tag" style="background: rgba(255, 77, 77, 0.1); border-color: rgba(255, 77, 77, 0.2); color: #ff4d4d; font-weight: 700;">🔒 CLOSED BETA - EARLY ACCESS COHORT #1</span>
-        <h1 class="hero-title">You're not supposed to have this link yet.</h1>
+        <span class="hero-tag" style="background: rgba(0, 240, 255, 0.1); border-color: rgba(0, 240, 255, 0.2); color: var(--accent-cyan); font-weight: 700;">🟢 FREE OPEN BETA STAGE</span>
+        <h1 class="hero-title">Copy text off any video, locked site, or image. Instantly.</h1>
         
-        <p class="hero-desc">SnapTextify is in closed early access — offline WebAssembly OCR that copies text and extracts code from any video, image, or paywalled page in under 300ms. Zero cloud logging. Zero tracking.</p>
+        <p class="hero-desc">Retyping code from video tutorials or writing notes from paywalled docs is a waste of time. Press Alt + C, drag a box over anything on your screen, and the text is on your clipboard. Runs 100% locally in WebAssembly — private by architecture.</p>
         
         <div class="hero-actions" style="margin-bottom: 12px !important;">
-          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">🟢 Claim Early Access →</a>
-          <a href="#pricing" class="btn btn-outline" style="border-color: rgba(255, 255, 255, 0.15) !important;">Skip the Waitlist</a>
+          <a href="https://chromewebstore.google.com/detail/snaptextify-ocr/ledjnblkfpcjocaojgeiefecgkalgkjh" class="btn btn-gradient link-download-ext" target="_blank" rel="noopener">🟢 Add to Chrome — It's Free</a>
+          <a href="#how-it-works" class="btn btn-outline" style="border-color: rgba(255, 255, 255, 0.15) !important;">See how it works ↓</a>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px;">Free forever for unlimited English scans · Zero tracking · Self-verification supported below</p>
+        <p style="font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px;">Free forever for unlimited English scans · No signup required · Inspect network logs below</p>
       </div>
       <div class="hero-image" style="position: relative; z-index: 1;">
         <div class="hero-image-box">
@@ -2431,9 +2431,9 @@
     <section class="trust-challenge-section reveal-element" style="padding: 40px 0; max-width: 900px; margin: 0 auto; text-align: center;">
       <div style="background: rgba(0, 240, 255, 0.02); border: 1px dashed rgba(0, 240, 255, 0.15); border-radius: 20px; padding: 30px; box-sizing: border-box;">
         <span style="font-size: 32px; display: block; margin-bottom: 12px;">🧪</span>
-        <h3 style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">Verify it yourself: Turn off your internet.</h3>
+        <h3 style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">Verify it yourself: Disconnect your WiFi.</h3>
         <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; max-width: 650px; margin: 0 auto 20px auto; font-family: 'Outfit', sans-serif;">
-          SnapTextify operates 100% locally in your browser. Install the extension, disconnect your WiFi or Ethernet, and drag to capture text from any offline PDF or video. It works instantly because the WebAssembly engine runs directly in a local sandboxed browser thread. Zero screenshots or texts ever hit our servers.
+          I believe privacy shouldn't rely on trust. After installing the extension, turn off your internet completely and drag to capture text from any local video or offline PDF. It works exactly the same. That's because the WebAssembly OCR engine runs in a local sandbox inside your browser. No cloud, no trackers, no leak paths.
         </p>
         <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px; font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
           <div style="text-align: center;">
@@ -2889,7 +2889,7 @@
     </section>
 
     <!-- Pricing Area -->
-    <section id="pricing" class="pricing reveal-element">
+    <section id="pricing" class="pricing reveal-element" style="display: none !important;">
       <h2 class="section-title">🔒 Skip the Waitlist: Get a Beta Cohort Pass</h2>
       <p class="section-subtitle">We are onboarding a limited number of premium users this week to keep API costs predictable. Grab a Supporter Pass below to skip the queue and get instant lifetime access.</p>
       
